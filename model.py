@@ -5,7 +5,7 @@ Created on Nov 30, 2011
 
 '''
 
-NUM_RANDOM = 10
+NUM_RANDOM = 20
 
 import tools
 from tools import Serializer
@@ -238,7 +238,7 @@ class Judge():
         for conf_att in rev2.conflicting_fe[rev1]:
             cac2 += self.attrib_count[conf_att]
             
-        return (rev1.rating == rev2.rating and cac1 == cac2)  
+        return (rev1.rating == rev2.rating) ### !!! PUT THIS BACK and cac1 == cac2)  
         
     def get_better_review(self, rev1, rev2):
         # given that they are conflicting, this method determines the best
@@ -297,17 +297,22 @@ class Judge():
             return set([])
 
 class Grapher():
-
+    '''
+    handles all things related to graph handling
+    it keeps the graph and 
+    a dictionary of nodes whose key is the node id 
+    and the value is the node itself
+    '''
     def __init__(self, nodes, edges, judge):
         self.graph = nx.DiGraph()
-        self.blocked = []
+        self.nodes = {}
         for n in nodes:
             self.graph.add_node(n.id, shape="record", label=n.get_label())
+            self.nodes[n.id] = n
         for (n1, n2) in edges:
             if judge.equivalent(n1, n2):
-                self.graph.add_edge(n1.id, n2.id, dir="both", label=n1.get_conf_label(n2))
+                self.graph.add_edge(n1.id, n2.id, color="red", dir="both", label=n1.get_conf_label(n2))
                 self.graph.add_edge(n2.id, n1.id, color="transparent")
-                self.blocked.append((n1, n2))
             else:
                 (better, worse) = judge.get_better_review(n1, n2)
                 self.graph.add_edge(better.id, worse.id, label=better.get_conf_label(worse))
@@ -315,8 +320,75 @@ class Grapher():
     def get_graph(self):
         return self.graph
 
-if __name__ == '__main__':
-    r = Review(999, {'text':[],'feats':[1,2,3]}, {'text':[],'feats':[4,5]})
-    print r.attributes
+    def resolve_cycles(self): 
+        # capture all cycles
+        cycles = nx.simple_cycles(self.graph)
+        # the kind of cycles we are interested in are either binary (eg, [1,2,1]) or
+        # even-lengthed (eg, [0,1,2,0]) - here we capture the latter and flag them
+        # as "blocked"- don't be fooled by the length of the list
+        blocked = []
+        for cycle in cycles:
+            #if (len(cycle) % 2 == 0):
+            blocked += cycle
+        affected_by_cycles = []
+        preds = {}
+        succs = {}
+        for cycle in cycles:
+            # we store all predecessors of all cycles and compute all successors
+            cycle_set = list(set(cycle))
+            cycle_predecessors = tools.all_predecessors(self.graph, cycle_set, [])
+            cycle_predecessors = list(set(cycle_predecessors) - set(blocked))
+            cycle_successors = tools.all_successors(self.graph, cycle_set, [])
+            preds[str(cycle)] = cycle_predecessors
+            # whenever a cycle has no predecessors, it introduces undecidedness
+            # hence we store all successors in a global list of nodes that are
+            # "affected by cycles"
+            if (cycle_predecessors == []):
+                affected_by_cycles += cycle_successors
+        # those cycles that have no predecessors or that their predecessors
+        # are affected by cycles that have no predecessors or... and so on and so forth
+        out = []
+        for cycle in cycles:
+            if (preds[str(cycle)] == []) or (set(preds[str(cycle)]) & set(affected_by_cycles) == []):
+                out += cycle
+        if out != []:
+            print "out due to unforgiving cycles: ", out
+        for o in set(out):
+            self.graph.remove_node(o)
+
+    def remove_dupes(self):
+        removals = []
+        remaining_nodes = set(self.graph.nodes())
+        while remaining_nodes != set([]):
+            n = remaining_nodes.pop()
+            for n2 in remaining_nodes:
+                if set(self.nodes[n].attributes) == set(self.nodes[n2].attributes):
+                    removals.append(n2)
+        if removals != []:
+            print "out due to duplication: ", set(removals)
+        for r in set(removals):
+            self.graph.remove_node(r)
+
+    def compress(self):
+        first_stage = set([node for (node,x) in self.graph.edges() if (x,node) not in set(self.graph.edges())])
+        first_stage |= set([node for node in self.graph.nodes() if nx.is_isolate(self.graph, node)])
+        defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
+        cs = []
+        for stage in defeat_stages:
+            print "stage: " + str(stage)
+            #cs += self.consistent_subsets(stage, warranted)
+
+    def stages(self, fringe, so_far):
+        next = set()
+        for r in fringe:
+            next = next | set(self.graph.successors(r))
+        next = next - so_far - fringe
+        if next == set([]):
+            return []
+        else:
+            return [next] + self.stages(next, so_far | fringe)
+
+# if __name__ == '__main__':
+    # g = Grapher()
 
 # EOF
