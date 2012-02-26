@@ -5,7 +5,7 @@ Created on Nov 30, 2011
 
 '''
 
-NUM_RANDOM = 20
+NUM_RANDOM = 500
 
 import tools
 from tools import Serializer
@@ -65,8 +65,7 @@ class Review():
             rating = 0
             for a in common_atts:
                 rating += len(list(a))
-            #print self.id+':'+str(rating)
-            self.rating = rating / 5
+            self.rating = rating
             
     def random_fillup(self, features, opinions):
         # number of attributes between 2 and 4 
@@ -98,7 +97,13 @@ class Review():
         return str(atts)
                     
     def get_label(self):
-        return self.id + ' | ' + self.get_formatted_atts() + '| (' + str(self.rating) + ')'                
+        return self.id + ' | ' + self.get_formatted_atts() + '| (' + str(self.rating) + ')'
+
+    def subset_label(self, included):
+        return self.id + ' | ' + str(list(included)) + ' | ' + self.get_formatted_atts()
+
+    def plain_label(self):
+        return self.get_formatted_atts()
         
     def in_conflict(self, review):
         confs = [a1 for a1 in self.attributes for a2 in review.attributes if self.conflicting_attributes(a1,a2)]
@@ -306,6 +311,8 @@ class Grapher():
     def __init__(self, nodes, edges, judge):
         self.graph = nx.DiGraph()
         self.nodes = {}
+        self.warranted = set([])
+        self.judge = judge
         for n in nodes:
             self.graph.add_node(n.id, shape="record", label=n.get_label())
             self.nodes[n.id] = n
@@ -352,7 +359,8 @@ class Grapher():
             if (preds[str(cycle)] == []) or (set(preds[str(cycle)]) & set(affected_by_cycles) == []):
                 out += cycle
         if out != []:
-            print "out due to unforgiving cycles: ", out
+            # print "out due to unforgiving cycles: ", out
+            print len(out), "reviews were involved in improper cycling"
         for o in set(out):
             self.graph.remove_node(o)
 
@@ -362,21 +370,74 @@ class Grapher():
         while remaining_nodes != set([]):
             n = remaining_nodes.pop()
             for n2 in remaining_nodes:
-                if set(self.nodes[n].attributes) == set(self.nodes[n2].attributes):
+                # if set(self.nodes[n].attributes) == set(self.nodes[n2].attributes):
+                if set(self.nodes[n2].attributes).issubset(set(self.nodes[n].attributes)):
                     removals.append(n2)
         if removals != []:
-            print "out due to duplication: ", set(removals)
+            # print "out due to redundance: ", set(removals)
+            if len(set(removals)) == 1:
+                print "1 review was redundant"
+            else:
+                print len(set(removals)), "reviews were redundant"
         for r in set(removals):
             self.graph.remove_node(r)
 
+    def set_warranted(self):
+        undefeated = set([node for (node,x) in self.graph.edges()]) - \
+                      set([node for (x,node) in self.graph.edges()])
+        undefeated |= set([node for node in self.graph.nodes() 
+                           if nx.is_isolate(self.graph, node)])
+        warranted = undefeated | self.judge.grounded(undefeated, self.graph, set([]), set([]))
+        for w in warranted:
+            self.graph.add_node(w, style="filled", fillcolor="green")
+        self.warranted = warranted
+        print len(warranted), "reviews were accepted"
+
     def compress(self):
-        first_stage = set([node for (node,x) in self.graph.edges() if (x,node) not in set(self.graph.edges())])
-        first_stage |= set([node for node in self.graph.nodes() if nx.is_isolate(self.graph, node)])
+        first_stage = set([node for (node,x) in self.graph.edges()]) - \
+                      set([node for (x,node) in self.graph.edges()])
+        first_stage |= set([node for node in self.graph.nodes() 
+                           if nx.is_isolate(self.graph, node)])
         defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
         cs = []
+        cid = 0
         for stage in defeat_stages:
-            print "stage: " + str(stage)
-            #cs += self.consistent_subsets(stage, warranted)
+            cs += self.consistent_subsets(stage, self.warranted)
+        compressed_nodes = {}
+        has_compressed = {}
+        compressed_warranted = set([])
+        compressed_graph = nx.DiGraph()
+        for subset in cs:
+            positive_feats = set([])
+            negative_feats = set([])
+            for i in subset:
+                positive_feats |= set(self.nodes[i].get_positive_feats())
+                negative_feats |= set(self.nodes[i].get_negative_feats())
+                r = Review(cid, 
+                           {'feats': list(positive_feats),'text': []}, 
+                           {'feats': list(negative_feats),'text': []})
+            compressed_nodes[r.id] = r
+            has_compressed[r.id] = subset
+            cid += 1
+            if subset.issubset(self.warranted):
+                compressed_warranted.add(r.id)
+                compressed_graph.add_node(r.id, style="filled", fillcolor="green", 
+                                          shape="record", label=str(r.subset_label(subset)))
+            else:
+                compressed_graph.add_node(r.id, shape="record", label=str(r.subset_label(subset)))
+        for id1, n1 in has_compressed.items():
+            for id2, n2 in has_compressed.items():
+                for i in n1:
+                    for j in n2:
+                        ri = self.nodes[i]
+                        rj = self.nodes[j]
+                        if ri.in_conflict(rj) and \
+                           not (id1, id2) in compressed_graph.edges() and \
+                           not (id2, id1) in compressed_graph.edges():
+                            compressed_graph.add_edge(id1, id2, dir="none")
+        self.warranted = compressed_warranted
+        self.graph = compressed_graph
+        self.nodes = compressed_nodes
 
     def stages(self, fringe, so_far):
         next = set()
@@ -387,6 +448,34 @@ class Grapher():
             return []
         else:
             return [next] + self.stages(next, so_far | fringe)
+
+    def consistent_subsets(self, stage, warranted):
+        elem = stage.pop()
+        (incons, consis) = self.consistent_in_rest([elem], stage, warranted)
+        if incons == set([]):
+            return [consis]
+        else:
+            return [consis] + self.consistent_subsets(incons, warranted)
+
+    def consistent_in_rest(self, elems, rest, warranted):
+        if rest == set([]):
+            return (set([]), set(elems))
+        else:
+            ss = set()
+            ps = set()
+            for elem in elems:
+                ss |= set(self.graph.successors(elem))
+                ps |= set(self.graph.predecessors(elem))
+            next = rest.pop()
+            # print "next: " + next
+            if next in ss or next in ps or set(elems).issubset(warranted) and next not in warranted:
+                # print next + " is inconsistent with " + str(elems)
+                (i, c) = self.consistent_in_rest(elems, rest, warranted)
+                return (i | set([next]), c | set(elems))
+            else:
+                # print next + " is consistent with " + str(elems)
+                (i, c) = self.consistent_in_rest(elems + [next], rest, warranted)
+                return (i, set(elems + [next]) | c)
 
 # if __name__ == '__main__':
     # g = Grapher()

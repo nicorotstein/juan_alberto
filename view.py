@@ -8,5 +8,6 @@ class Drawer():
 	def draw_graph(cls, graph, filename):
 		nx.draw(graph)
 		nx.write_dot(graph, '../data/' + filename + '.dot')
+		print "----------> number of nodes in", filename + ':', len(graph)
 
 # EOF

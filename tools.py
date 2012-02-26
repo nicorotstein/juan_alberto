@@ -2,6 +2,7 @@
 commonly used methods
 '''
 
+import time
 import random
 from pickle import load,dump
 
@@ -78,4 +79,56 @@ class Serializer(object):
             print "I/O error({0}): {1}".format(errno, strerror)            
             raise      
     
+class Stopwatch(object):
+	"""
+	a stopwatch to keep track of time
+	it has to be started and then
+	you can check elapsed time from start
+	or
+	you can check "lap" by "lap"
+	so that different portions of code
+	can be compared in terms of absolute time
+	"""
+	def __init__(self):
+		self.start_time = 0
+		self.last_lap_time = 0
+		self.last_split = 0
+
+	def start(self):
+		self.start_time = self.last_split = time.time()
+		print "STOPWATCH - started"
+
+	def elapsed(self):
+		delta = time.time() - self.start_time
+		if delta < 1:
+			print "STOPWATCH - time elapsed: " + str(int(delta * 1000)) + " msec"
+		else:
+			print "STOPWATCH - time elapsed: %.2f" %delta + " sec"
+
+	def begin_lap(self):
+		self.last_lap_time = time.time()
+		print "STOPWATCH - lap has begun"
+
+	def end_lap(self):
+		delta = time.time() - self.last_lap_time
+		if delta < 1:
+			print "STOPWATCH - lap time: " + str(int(delta * 1000)) + " msec"
+		else:
+			print "STOPWATCH - lap time: %.2f" %delta + " sec"
+
+	def split(self):
+		delta = time.time() - self.last_split
+		if delta < 1:
+			print "STOPWATCH - split time: " + str(int(delta * 1000)) + " msec"
+		else:
+			print "STOPWATCH - split time: %.2f" %delta + " sec"
+		self.last_split = time.time()
+		
+	def ssplit(self, some_string):
+		delta = time.time() - self.last_split
+		if delta < 1:
+			print "STOPWATCH - split time for " + some_string + ": " + str(int(delta * 1000)) + " msec"
+		else:
+			print "STOPWATCH - split time for " + some_string + ": %.2f" %delta + " sec"
+		self.last_split = time.time()
 # EOF
