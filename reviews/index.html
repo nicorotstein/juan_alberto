@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Review Parser</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.json-2.3.js"></script>
+	<script>
+
+		var Data = function() {
+			this.data = new Array();
+
+			this.add = function(obj) {
+				this.data.push(obj);
+			}
+		}
+
+		function toArray(divs) {
+			var result = new Array();
+			divs.each(function(index, obj) {
+				result.push($.trim($(obj).text()).replace(/\s\s+/g, ' '));
+			});
+			return result;
+		}
+
+		function jsonizar(obj, tope) {
+			var data = new Data();
+			var i = 0;
+			while (i++ < tope) {
+				var review = new Object();
+				for (var index in obj) {
+					review[index] = obj[index][i];
+				}
+				data.add(review);
+			}
+			return $.toJSON(data)
+		}
+
+		$(function() {
+			$.ajax({
+			  	url: "review.html",
+			  	success: function(rta) {
+			    	var nombres  = toArray($(rta).find('.cell_user_name'));
+			    	var ciudades = toArray($(rta).find('.cell_user_location'));
+			    	var fechas   = toArray($(rta).find('.dtreviewed'));
+			    	var positivos = toArray($(rta).find('.comments_good'));
+			    	var negativos = toArray($(rta).find('.comments_bad'));
+			    	var puntuaciones = toArray($(rta).find('.cell_score'));
+			    	
+			    	var json = jsonizar({
+				    	nombre: nombres, 
+				    	ciudad: ciudades,
+				    	fecha: fechas,
+				    	positivo: positivos,
+				    	negativo: negativos,
+				    	puntuacion: puntuaciones,
+				    }, nombres.length - 1);
+
+				    console.log(json);
+					document.write(json);
+			    }
+			});
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

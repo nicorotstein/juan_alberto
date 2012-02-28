@@ -1,0 +1,28 @@
+strict digraph G {
+1 [shape=record, label="1 | +comfort+staff-price| (1)"];
+0 [shape=record, label="0 | -price+location-rooms+cleanliness| (1)", style=filled, fillcolor=lightgray];
+3 [shape=record, label="3 | -staff+comfort-cleanliness| (1)", style=filled, fillcolor=lightgray];
+2 [shape=record, label="2 | -location+cleanliness-rooms| (1)", style=filled, fillcolor=lightgray];
+5 [shape=record, label="5 | +comfort+rooms+staff| (1)", style=filled, fillcolor=lightgray];
+4 [shape=record, label="4 | -cleanliness| (0)"];
+6 [shape=record, label="6 | +staff+price-location+rooms| (1)", style=filled, fillcolor=lightgray];
+1 -> 3  [label="/staff/"];
+1 -> 6  [label="/price/"];
+0 -> 3  [dir=both, label="/cleanliness/"];
+0 -> 5  [dir=both, label="/rooms/"];
+0 -> 4  [label="/cleanliness/"];
+0 -> 6  [dir=both, label="/price/location/rooms/"];
+3 -> 0  [color=transparent];
+3 -> 2  [color=transparent];
+2 -> 0  [label="/location/"];
+2 -> 3  [dir=both, label="/cleanliness/"];
+2 -> 5  [dir=both, label="/rooms/"];
+2 -> 4  [label="/cleanliness/"];
+2 -> 6  [dir=both, label="/rooms/"];
+5 -> 0  [color=transparent];
+5 -> 3  [label="/staff/"];
+5 -> 2  [color=transparent];
+6 -> 0  [color=transparent];
+6 -> 3  [label="/staff/"];
+6 -> 2  [color=transparent];
+}

@@ -1,0 +1,25 @@
+strict digraph G {
+"['1']" [shape=record, label="['1'] | -rooms-price+location+cleanliness| (1)", style=filled, fillcolor=lightgray];
+"['3']" [shape=record, label="['3'] | -location+cleanliness-rooms| (1)", style=filled, fillcolor=lightgray];
+"['6']" [style=filled, label="['6'] | +staff-location+rooms+price| (1)", shape=record, fillcolor=lightgray];
+"['0']" [shape=record, label="['0'] | +staff-price+comfort| (1)"];
+"['5', '4']" [style=filled, label="['5', '4'] | +staff+rooms+comfort-cleanliness| (1)", shape=record, fillcolor=lightgray];
+"['2']" [shape=record, label="['2'] | -staff+comfort-cleanliness| (1)", style=filled, fillcolor=lightgray];
+"['1']" -> "['6']"  [dir=both, label="/rooms/price/location/"];
+"['1']" -> "['5', '4']"  [dir=both, label="/rooms/cleanliness/"];
+"['1']" -> "['2']"  [dir=both, label="/cleanliness/"];
+"['3']" -> "['6']"  [dir=both, label="/rooms/"];
+"['3']" -> "['1']"  [label="/location/"];
+"['3']" -> "['5', '4']"  [dir=both, label="/cleanliness/rooms/"];
+"['3']" -> "['2']"  [color=transparent];
+"['6']" -> "['1']"  [color=transparent];
+"['6']" -> "['3']"  [color=transparent];
+"['6']" -> "['2']"  [label="/staff/"];
+"['0']" -> "['6']"  [label="/price/"];
+"['0']" -> "['2']"  [label="/staff/"];
+"['5', '4']" -> "['1']"  [color=transparent];
+"['5', '4']" -> "['3']"  [color=transparent];
+"['5', '4']" -> "['2']"  [label="/staff/"];
+"['2']" -> "['1']"  [color=transparent];
+"['2']" -> "['3']"  [dir=both, label="/cleanliness/"];
+}

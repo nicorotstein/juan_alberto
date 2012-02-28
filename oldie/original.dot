@@ -1,0 +1,13 @@
+strict digraph G {
+0 [shape=record, label="0 | +price| (3)"];
+1 [shape=record, label="1 | -staff+rooms+location| (7)"];
+2 [shape=record, label="2 | +location+rooms+price| (8)"];
+3 [shape=record, label="3 | +comfort| (4)"];
+4 [shape=record, label="4 | +staff+location+comfort| (10)"];
+5 [shape=record, label="5 | -cleanliness+location-price+comfort| (10)"];
+6 [shape=record, label="6 | +staff+comfort| (6)"];
+1 -> 6  [label="/staff/"];
+4 -> 1  [label="/staff/"];
+5 -> 0  [label="/price/"];
+5 -> 2  [label="/price/"];
+}
