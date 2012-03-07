@@ -5,7 +5,7 @@ Created on Nov 30, 2011
 
 '''
 
-NUM_RANDOM = 500
+NUM_RANDOM = 100
 
 import tools
 from tools import Serializer
