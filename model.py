@@ -25,7 +25,7 @@ class Review():
         '''
         Constructor
         '''
-        # id is just a number for visualisation purposes
+        # id is just a number for indi/visualisation purposes
         self.id = str(revid)
         # are we gonna attach a user to each review? what for?
         self.user = 'juani'
@@ -78,6 +78,7 @@ class Review():
         self.attributes = zip(op_set,features[0:upper_bound])
 
     def biased_random_fillup(self, features, opinions):
+        # same as above but biased .7 towards '+'
         opinionate = [tools.flip(opinions,.7) for i in range(len(features))]
         self.attributes = zip(opinionate,features[0:6])
         random.shuffle(self.attributes)
