@@ -5,6 +5,7 @@ class PolarityClasifier():
     los reviews pos y negs que ya vienen tageados.'''
 
     def train():
+        print 'hola'
         pass
     
     def get_polarity(sentence):
