@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>model Module &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="index.html" />
+    <link rel="next" title="tools Module" href="tools.html" />
+    <link rel="prev" title="linguatools_lucho Module" href="linguatools_lucho.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tools.html" title="tools Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="linguatools_lucho.html" title="linguatools_lucho Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-model">
+<span id="model-module"></span><h1>model Module<a class="headerlink" href="#module-model" title="Permalink to this headline">¶</a></h1>
+<p>Created on Nov 30, 2011</p>
+<p>&#64;author: nicorotstein</p>
+<dl class="class">
+<dt id="model.Grapher">
+<em class="property">class </em><tt class="descclassname">model.</tt><tt class="descname">Grapher</tt><big>(</big><em>nodes</em>, <em>edges</em>, <em>judge</em><big>)</big><a class="reference internal" href="_modules/model.html#Grapher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher" title="Permalink to this definition">¶</a></dt>
+<dd><p>handles all things related to graph handling
+it keeps the graph and 
+a dictionary of nodes whose key is the node id 
+and the value is the node itself</p>
+<dl class="method">
+<dt id="model.Grapher.compress">
+<tt class="descname">compress</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.compress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.consistent_in_rest">
+<tt class="descname">consistent_in_rest</tt><big>(</big><em>elems</em>, <em>rest</em>, <em>warranted</em><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.consistent_in_rest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.consistent_in_rest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.consistent_subsets">
+<tt class="descname">consistent_subsets</tt><big>(</big><em>stage</em>, <em>warranted</em><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.consistent_subsets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.consistent_subsets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.get_graph">
+<tt class="descname">get_graph</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.get_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.get_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.remove_dupes">
+<tt class="descname">remove_dupes</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.remove_dupes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.remove_dupes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.resolve_cycles">
+<tt class="descname">resolve_cycles</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.resolve_cycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.resolve_cycles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.set_warranted">
+<tt class="descname">set_warranted</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.set_warranted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.set_warranted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Grapher.stages">
+<tt class="descname">stages</tt><big>(</big><em>fringe</em>, <em>so_far</em><big>)</big><a class="reference internal" href="_modules/model.html#Grapher.stages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Grapher.stages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="model.Judge">
+<em class="property">class </em><tt class="descclassname">model.</tt><tt class="descname">Judge</tt><big>(</big><em>arguments</em><big>)</big><a class="reference internal" href="_modules/model.html#Judge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge" title="Permalink to this definition">¶</a></dt>
+<dd><p>use this class with a list of arguments, in order to determine 
+the existence of conflict and defeat between arguments
+use this class with a graph of arguments, in order to evaluate it
+and obtain the set of warranted arguments</p>
+<dl class="method">
+<dt id="model.Judge.count_features">
+<tt class="descname">count_features</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Judge.count_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge.count_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Judge.equivalent">
+<tt class="descname">equivalent</tt><big>(</big><em>rev1</em>, <em>rev2</em><big>)</big><a class="reference internal" href="_modules/model.html#Judge.equivalent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge.equivalent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Judge.get_better_review">
+<tt class="descname">get_better_review</tt><big>(</big><em>rev1</em>, <em>rev2</em><big>)</big><a class="reference internal" href="_modules/model.html#Judge.get_better_review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge.get_better_review" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Judge.get_conflicts">
+<tt class="descname">get_conflicts</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Judge.get_conflicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge.get_conflicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Judge.grounded">
+<tt class="descname">grounded</tt><big>(</big><em>undefeated</em>, <em>graph</em>, <em>so_far</em>, <em>defeated_so_far</em><big>)</big><a class="reference internal" href="_modules/model.html#Judge.grounded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Judge.grounded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="model.Review">
+<em class="property">class </em><tt class="descclassname">model.</tt><tt class="descname">Review</tt><big>(</big><em>revid=-1</em>, <em>positive={'text':</em><span class="optional">[</span><span class="optional">]</span>, <em>'feats': []}</em>, <em>negative={'text':</em><span class="optional">[</span><span class="optional">]</span>, <em>'feats': []}</em>, <em>gender='na'</em>, <em>age_range='na'</em><big>)</big><a class="reference internal" href="_modules/model.html#Review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review" title="Permalink to this definition">¶</a></dt>
+<dd><p>classdocs</p>
+<dl class="method">
+<dt id="model.Review.biased_random_fillup">
+<tt class="descname">biased_random_fillup</tt><big>(</big><em>features</em>, <em>opinions</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.biased_random_fillup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.biased_random_fillup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.conflicting_attributes">
+<tt class="descname">conflicting_attributes</tt><big>(</big><em>(o1</em>, <em>f1)</em>, <em>(o2</em>, <em>f2)</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.conflicting_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.conflicting_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_attributes">
+<tt class="descname">get_attributes</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_conf_label">
+<tt class="descname">get_conf_label</tt><big>(</big><em>review</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_conf_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_conf_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_formatted_atts">
+<tt class="descname">get_formatted_atts</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_formatted_atts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_formatted_atts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_label">
+<tt class="descname">get_label</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_negative_feats">
+<tt class="descname">get_negative_feats</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_negative_feats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_negative_feats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_negative_text">
+<tt class="descname">get_negative_text</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_negative_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_negative_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_positive_feats">
+<tt class="descname">get_positive_feats</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_positive_feats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_positive_feats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.get_positive_text">
+<tt class="descname">get_positive_text</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.get_positive_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.get_positive_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.in_conflict">
+<tt class="descname">in_conflict</tt><big>(</big><em>review</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.in_conflict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.in_conflict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.plain_label">
+<tt class="descname">plain_label</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.plain_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.plain_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.print_review">
+<tt class="descname">print_review</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#Review.print_review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.print_review" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.random_fillup">
+<tt class="descname">random_fillup</tt><big>(</big><em>features</em>, <em>opinions</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.random_fillup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.random_fillup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.set_rating">
+<tt class="descname">set_rating</tt><big>(</big><em>reviews</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.set_rating"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.set_rating" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.Review.subset_label">
+<tt class="descname">subset_label</tt><big>(</big><em>included</em><big>)</big><a class="reference internal" href="_modules/model.html#Review.subset_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.Review.subset_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="model.ReviewsList">
+<em class="property">class </em><tt class="descclassname">model.</tt><tt class="descname">ReviewsList</tt><a class="reference internal" href="_modules/model.html#ReviewsList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList" title="Permalink to this definition">¶</a></dt>
+<dd><p>:class::ReviewsList</p>
+<dl class="method">
+<dt id="model.ReviewsList.create_reviews">
+<tt class="descname">create_reviews</tt><big>(</big><em>data_pos</em>, <em>data_neg</em><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.create_reviews"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.create_reviews" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.get_all_reviews">
+<tt class="descname">get_all_reviews</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.get_all_reviews"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.get_all_reviews" title="Permalink to this definition">¶</a></dt>
+<dd><p>:returns all the list_reviews (list of reviews).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.get_review">
+<tt class="descname">get_review</tt><big>(</big><em>n</em><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.get_review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.get_review" title="Permalink to this definition">¶</a></dt>
+<dd><p>:param n:the n-th element to retrieve
+:returns a review in the n-th position of list_reviews</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.list_features">
+<tt class="descname">list_features</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.list_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.list_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.list_pos_tags">
+<tt class="descname">list_pos_tags</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.list_pos_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.list_pos_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method prints all the reviews by id and its positives and negatives tagged text.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.load_data">
+<tt class="descname">load_data</tt><big>(</big><em>new=0</em><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>:method:: load_data  
+:param new: new == 0 try to load list already created, else create a new one.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="model.ReviewsList.save_reviews">
+<tt class="descname">save_reviews</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/model.html#ReviewsList.save_reviews"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#model.ReviewsList.save_reviews" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="linguatools_lucho.html"
+                        title="previous chapter">linguatools_lucho Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tools.html"
+                        title="next chapter">tools Module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/model.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tools.html" title="tools Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="linguatools_lucho.html" title="linguatools_lucho Module"
+             >previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

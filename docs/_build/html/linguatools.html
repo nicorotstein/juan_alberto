@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>linguatools Module &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="index.html" />
+    <link rel="next" title="linguatools_lucho Module" href="linguatools_lucho.html" />
+    <link rel="prev" title="controller_lucho Module" href="controller_lucho.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="linguatools_lucho.html" title="linguatools_lucho Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="controller_lucho.html" title="controller_lucho Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-linguatools">
+<span id="linguatools-module"></span><h1>linguatools Module<a class="headerlink" href="#module-linguatools" title="Permalink to this headline">¶</a></h1>
+<p>Created on Nov 30, 2011</p>
+<p>&#64;author: luchux
+This module contains NLP tools based on NLTK class library. This tools are used for 
+tokenization, tagging, chunks extraction, and features extraction.</p>
+<dl class="class">
+<dt id="linguatools.FeaturesGrammar">
+<em class="property">class </em><tt class="descclassname">linguatools.</tt><tt class="descname">FeaturesGrammar</tt><a class="reference internal" href="_modules/linguatools.html#FeaturesGrammar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.FeaturesGrammar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="linguatools.FeaturesGrammar.parse_features">
+<tt class="descname">parse_features</tt><big>(</big><em>review</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#FeaturesGrammar.parse_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.FeaturesGrammar.parse_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="linguatools.NGramTagger">
+<em class="property">class </em><tt class="descclassname">linguatools.</tt><tt class="descname">NGramTagger</tt><big>(</big><em>language</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#NGramTagger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.NGramTagger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>wrapper for nltk tagger
+A little tagger trained with unigrams, bigrams, trigrams
+and backoff training. 
+Todo: test and boostrap with review corpuss</p>
+<dl class="method">
+<dt id="linguatools.NGramTagger.backoff_tagger">
+<tt class="descname">backoff_tagger</tt><big>(</big><em>train_sents</em>, <em>tagger_classes</em>, <em>backoff=None</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#NGramTagger.backoff_tagger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.NGramTagger.backoff_tagger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.NGramTagger.init_tagger">
+<tt class="descname">init_tagger</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/linguatools.html#NGramTagger.init_tagger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.NGramTagger.init_tagger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.NGramTagger.tag">
+<tt class="descname">tag</tt><big>(</big><em>text</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#NGramTagger.tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.NGramTagger.tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.NGramTagger.train_classifier_tagger">
+<tt class="descname">train_classifier_tagger</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/linguatools.html#NGramTagger.train_classifier_tagger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.NGramTagger.train_classifier_tagger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.NGramTagger.traintest_bigram_trigram_tagger">
+<tt class="descname">traintest_bigram_trigram_tagger</tt><big>(</big><big>)</big><a class="headerlink" href="#linguatools.NGramTagger.traintest_bigram_trigram_tagger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.NGramTagger.traintest_uni_bi_tri_tagger">
+<tt class="descname">traintest_uni_bi_tri_tagger</tt><big>(</big><big>)</big><a class="headerlink" href="#linguatools.NGramTagger.traintest_uni_bi_tri_tagger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="linguatools.Parser">
+<em class="property">class </em><tt class="descclassname">linguatools.</tt><tt class="descname">Parser</tt><big>(</big><em>lang</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#Parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.Parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class crawls the web from one url, jumping in many offsets of pagination and extracting 
+all the reviews. 
+Todo: Now is crowling only one hotel. Crowling all the list of hotels, iterate over that list 
+applying get_reguest_url</p>
+<dl class="method">
+<dt id="linguatools.Parser.get_request_url">
+<tt class="descname">get_request_url</tt><big>(</big><em>url</em>, <em>max_page=100</em><big>)</big><a class="headerlink" href="#linguatools.Parser.get_request_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="linguatools.Parser.parse">
+<tt class="descname">parse</tt><big>(</big><em>html</em><big>)</big><a class="reference internal" href="_modules/linguatools.html#Parser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#linguatools.Parser.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="controller_lucho.html"
+                        title="previous chapter">controller_lucho Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="linguatools_lucho.html"
+                        title="next chapter">linguatools_lucho Module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/linguatools.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="linguatools_lucho.html" title="linguatools_lucho Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="controller_lucho.html" title="controller_lucho Module"
+             >previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

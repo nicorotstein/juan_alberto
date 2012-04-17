@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>linguatools_lucho &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for linguatools_lucho</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="PolarityClasifier"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.PolarityClasifier">[docs]</a><span class="k">class</span> <span class="nc">PolarityClasifier</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;aca voy a implementar un tagger</span>
+<span class="sd">    para reviews que no se sepan si son pos o neg, </span>
+<span class="sd">    utilizando como training la info del sitema, es decir</span>
+<span class="sd">    los reviews pos y negs que ya vienen tageados.&#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="PolarityClasifier.train"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.PolarityClasifier.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&#39;hola&#39;</span>
+        <span class="k">pass</span>
+    </div>
+<div class="viewcode-block" id="PolarityClasifier.get_polarity"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.PolarityClasifier.get_polarity">[docs]</a>    <span class="k">def</span> <span class="nf">get_polarity</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+        <span class="k">pass</span>
+    </div></div>
+<div class="viewcode-block" id="CorpusGenerator"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusGenerator">[docs]</a><span class="k">class</span> <span class="nc">CorpusGenerator</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+<div class="viewcode-block" id="CorpusGenerator.convert_tag"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusGenerator.convert_tag">[docs]</a>    <span class="k">def</span> <span class="nf">convert_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">tuple_tag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tuple_tag</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CorpusGenerator.parse_data"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusGenerator.parse_data">[docs]</a>    <span class="k">def</span> <span class="nf">parse_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">list_reviews</span><span class="p">):</span>          
+        <span class="kn">import</span> <span class="nn">codecs</span>
+        <span class="n">fw_pos</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;../data/rev_pos.pos&quot;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">fw_neg</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;../data/rev_neg.pos&quot;</span><span class="p">,</span><span class="s">&#39;w&#39;</span><span class="p">,</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">list_reviews</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;---REVIEW---&#39;</span>
+            <span class="k">print</span> <span class="s">&#39;rev id: &#39;</span><span class="p">,</span><span class="n">review</span><span class="o">.</span><span class="n">id</span>
+            
+            <span class="k">print</span> <span class="s">&#39;pos: &#39;</span><span class="p">,</span><span class="n">review</span><span class="o">.</span><span class="n">review_text</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>     
+            <span class="n">pos_new</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_tag</span><span class="p">(</span><span class="n">tuple_tag</span><span class="p">)</span> <span class="k">for</span> <span class="n">tuple_tag</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">review_text</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+            <span class="n">fw_pos</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pos_new</span><span class="p">))</span>
+            <span class="n">fw_pos</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+            <span class="n">fw_pos</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+
+            <span class="k">print</span> <span class="s">&#39;neg: &#39;</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">review_text</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">neg_new</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_tag</span><span class="p">(</span><span class="n">tuple_tag</span><span class="p">)</span> <span class="k">for</span> <span class="n">tuple_tag</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">review_text</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="p">]</span>
+            <span class="n">fw_neg</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">neg_new</span><span class="p">))</span>
+            <span class="n">fw_neg</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+            <span class="n">fw_neg</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">u&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+            
+        
+        <span class="n">fw_pos</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">fw_neg</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    </div>
+<div class="viewcode-block" id="CorpusGenerator.word"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusGenerator.word">[docs]</a>    <span class="k">def</span> <span class="nf">word</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">([</span><span class="s">&#39;review_hotels_pos.pos&#39;</span><span class="p">]):</span>
+            <span class="k">print</span> <span class="n">sent</span>
+</div></div>
+<div class="viewcode-block" id="CorpusAnalysis"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis">[docs]</a><span class="k">class</span> <span class="nc">CorpusAnalysis</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">punctuation</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&#39;,&#39;</span><span class="p">,</span><span class="s">&#39;;&#39;</span><span class="p">,</span><span class="s">&#39;!&#39;</span><span class="p">,</span><span class="s">&#39;?&#39;</span><span class="p">,</span><span class="s">&#39;_&#39;</span><span class="p">,</span><span class="s">&#39;&quot;&#39;</span><span class="p">,</span><span class="s">&#39;&amp;&#39;</span><span class="p">,</span><span class="s">&quot;&#39;&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+        
+<div class="viewcode-block" id="CorpusAnalysis.load"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk.corpus.reader</span> <span class="kn">import</span> <span class="n">TaggedCorpusReader</span>
+        <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">WordPunctTokenizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">TaggedCorpusReader</span><span class="p">(</span><span class="s">&#39;../data/&#39;</span><span class="p">,</span> <span class="s">r&#39;.*\.pos&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CorpusAnalysis.words"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.words">[docs]</a>    <span class="k">def</span> <span class="nf">words</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">words</span><span class="p">([</span><span class="s">&#39;rev_pos.pos&#39;</span><span class="p">])</span>
+</div>
+<div class="viewcode-block" id="CorpusAnalysis.ngrams"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.ngrams">[docs]</a>    <span class="k">def</span> <span class="nf">ngrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">words</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        
+        <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+        <span class="n">word_list2</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s">&#39;english&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">punctutation</span><span class="p">]</span>
+
+        <span class="n">wprev</span><span class="p">,</span><span class="n">wprev1</span><span class="p">,</span><span class="n">wprev2</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="bp">None</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_list2</span><span class="p">)):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">word_list2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+            <span class="k">yield</span> <span class="p">(</span><span class="n">wprev</span><span class="p">,</span><span class="n">wprev1</span><span class="p">,</span><span class="n">wprev2</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+            <span class="n">wprev</span> <span class="o">=</span> <span class="n">wprev1</span>
+            <span class="n">wprev1</span> <span class="o">=</span> <span class="n">wprev2</span>
+            <span class="n">wprev2</span> <span class="o">=</span> <span class="n">w</span>
+</div>
+<div class="viewcode-block" id="CorpusAnalysis.freq_dist_words"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.freq_dist_words">[docs]</a>    <span class="k">def</span> <span class="nf">freq_dist_words</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ConditionalFreqDist</span>
+        <span class="kn">from</span> <span class="nn">nltk.model</span> <span class="kn">import</span> <span class="n">NgramModel</span>
+        <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;rev_neg.pos&#39;</span><span class="p">,</span><span class="s">&#39;rev_pos.pos&#39;</span><span class="p">]</span>
+        <span class="n">cfd</span> <span class="o">=</span> <span class="n">ConditionalFreqDist</span><span class="p">((</span><span class="n">category</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">categories</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">ngrams</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="n">category</span><span class="p">)))</span>       
+        <span class="n">genres</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;rev_neg.pos&#39;</span><span class="p">,</span> <span class="s">&#39;rev_pos.pos&#39;</span><span class="p">]</span>
+        <span class="n">modals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;location&#39;</span><span class="p">,</span><span class="s">&#39;room&#39;</span><span class="p">,</span><span class="s">&#39;size&#39;</span><span class="p">,</span><span class="s">&#39;staff&#39;</span><span class="p">,</span><span class="s">&#39;excellent&#39;</span><span class="p">,</span><span class="s">&#39;poor&#39;</span><span class="p">,</span><span class="s">&#39;good&#39;</span><span class="p">,</span><span class="s">&#39;bad&#39;</span><span class="p">]</span>
+
+        <span class="k">print</span> <span class="s">&#39;neg :&#39;</span><span class="p">,</span> <span class="n">cfd</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">(</span><span class="s">&#39;rev_neg.pos&#39;</span><span class="p">)</span>       
+        <span class="k">print</span> <span class="s">&#39;pos :&#39;</span><span class="p">,</span> <span class="n">cfd</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">(</span><span class="s">&#39;rev_pos.pos&#39;</span><span class="p">)</span>
+        <span class="c">#lm = NgramModel(4, self.reader.words([&#39;rev_neg.pos&#39;]))</span>
+</div>
+<div class="viewcode-block" id="CorpusAnalysis.freq_dist_tags"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.freq_dist_tags">[docs]</a>    <span class="k">def</span> <span class="nf">freq_dist_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">ConditionalFreqDist</span>
+        <span class="kn">from</span> <span class="nn">nltk.model</span> <span class="kn">import</span> <span class="n">NgramModel</span>        
+        <span class="n">cfd</span> <span class="o">=</span> <span class="n">ConditionalFreqDist</span><span class="p">((</span><span class="n">tag</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">tag</span><span class="p">)</span>  <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_pos</span><span class="p">)</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
+        
+        <span class="k">return</span> <span class="n">cfd</span>
+</div>
+<div class="viewcode-block" id="CorpusAnalysis.MI"><a class="viewcode-back" href="../linguatools_lucho.html#linguatools_lucho.CorpusAnalysis.MI">[docs]</a>    <span class="k">def</span> <span class="nf">MI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

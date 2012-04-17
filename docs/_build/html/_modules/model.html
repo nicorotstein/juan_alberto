@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>model &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for model</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 30, 2011</span>
+
+<span class="sd">@author: nicorotstein</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">NUM_RANDOM</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="kn">import</span> <span class="nn">tools</span>
+<span class="kn">from</span> <span class="nn">tools</span> <span class="kn">import</span> <span class="n">Serializer</span>
+<span class="c"># from linguatools import NGramTagger</span>
+<span class="c"># from linguatools import FeaturesGrammar</span>
+<span class="c"># from linguatools import Parser</span>
+<span class="c"># from nltk import word_tokenize</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="kn">as</span> <span class="nn">nx</span>
+
+<div class="viewcode-block" id="Review"><a class="viewcode-back" href="../model.html#model.Review">[docs]</a><span class="k">class</span> <span class="nc">Review</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    classdocs</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">positive</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:[],</span> <span class="s">&#39;text&#39;</span><span class="p">:[]},</span> <span class="n">negative</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:[],</span> <span class="s">&#39;text&#39;</span><span class="p">:[]},</span> <span class="n">gender</span> <span class="o">=</span> <span class="s">&#39;na&#39;</span><span class="p">,</span> <span class="n">age_range</span> <span class="o">=</span> <span class="s">&#39;na&#39;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructor</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c"># id is just a number for indi/visualisation purposes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">revid</span><span class="p">)</span>
+        <span class="c"># are we gonna attach a user to each review? what for?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="s">&#39;juani&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age_range</span> <span class="o">=</span> <span class="n">age_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positive_text</span> <span class="o">=</span> <span class="n">positive</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negative_text</span> <span class="o">=</span> <span class="n">negative</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positive_feats</span> <span class="o">=</span> <span class="n">positive</span><span class="p">[</span><span class="s">&#39;feats&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negative_feats</span> <span class="o">=</span> <span class="n">negative</span><span class="p">[</span><span class="s">&#39;feats&#39;</span><span class="p">]</span>
+        <span class="n">pluses</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;+&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positive_feats</span><span class="p">))]</span>
+        <span class="n">minuses</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">negative_feats</span><span class="p">))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pluses</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive_feats</span><span class="p">)</span> <span class="o">+</span> <span class="nb">zip</span><span class="p">(</span><span class="n">minuses</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">negative_feats</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rating</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conflicting_fe</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accrued</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="Review.get_positive_feats"><a class="viewcode-back" href="../model.html#model.Review.get_positive_feats">[docs]</a>    <span class="k">def</span> <span class="nf">get_positive_feats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive_feats</span>
+</div>
+<div class="viewcode-block" id="Review.get_negative_feats"><a class="viewcode-back" href="../model.html#model.Review.get_negative_feats">[docs]</a>    <span class="k">def</span> <span class="nf">get_negative_feats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">negative_feats</span>
+</div>
+<div class="viewcode-block" id="Review.get_positive_text"><a class="viewcode-back" href="../model.html#model.Review.get_positive_text">[docs]</a>    <span class="k">def</span> <span class="nf">get_positive_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive_text</span>
+</div>
+<div class="viewcode-block" id="Review.get_negative_text"><a class="viewcode-back" href="../model.html#model.Review.get_negative_text">[docs]</a>    <span class="k">def</span> <span class="nf">get_negative_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">negative_text</span>
+</div>
+<div class="viewcode-block" id="Review.get_attributes"><a class="viewcode-back" href="../model.html#model.Review.get_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">get_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span>
+        </div>
+<div class="viewcode-block" id="Review.set_rating"><a class="viewcode-back" href="../model.html#model.Review.set_rating">[docs]</a>    <span class="k">def</span> <span class="nf">set_rating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reviews</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">accrued</span><span class="p">:</span>
+            <span class="n">common_atts</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">:</span>
+                <span class="n">common_atts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get_attributes</span><span class="p">()))</span>
+            <span class="n">rating</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">common_atts</span><span class="p">:</span>
+                <span class="n">rating</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rating</span> <span class="o">=</span> <span class="n">rating</span>
+            </div>
+<div class="viewcode-block" id="Review.random_fillup"><a class="viewcode-back" href="../model.html#model.Review.random_fillup">[docs]</a>    <span class="k">def</span> <span class="nf">random_fillup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">opinions</span><span class="p">):</span>
+        <span class="c"># number of attributes between 2 and 4 </span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c"># features list shuffled in place</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+        <span class="c"># list of random opinions with upper_bound length</span>
+        <span class="n">op_set</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">opinions</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">)]</span>
+        <span class="c"># an attribute is an opinion plus a feature in the first upper_bound positions in features list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">op_set</span><span class="p">,</span><span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">upper_bound</span><span class="p">])</span>
+</div>
+<div class="viewcode-block" id="Review.biased_random_fillup"><a class="viewcode-back" href="../model.html#model.Review.biased_random_fillup">[docs]</a>    <span class="k">def</span> <span class="nf">biased_random_fillup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">opinions</span><span class="p">):</span>
+        <span class="c"># same as above but biased .7 towards &#39;+&#39;</span>
+        <span class="n">opinionate</span> <span class="o">=</span> <span class="p">[</span><span class="n">tools</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">opinions</span><span class="p">,</span><span class="o">.</span><span class="mi">7</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">opinionate</span><span class="p">,</span><span class="n">features</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">upper_bound</span><span class="p">]</span>
+        </div>
+<div class="viewcode-block" id="Review.print_review"><a class="viewcode-back" href="../model.html#model.Review.print_review">[docs]</a>    <span class="k">def</span> <span class="nf">print_review</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;.&#39;</span><span class="p">,</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">fe</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">op</span><span class="o">+</span><span class="n">fe</span><span class="p">,</span>
+        <span class="k">print</span> <span class="p">;</span>
+            </div>
+<div class="viewcode-block" id="Review.get_formatted_atts"><a class="viewcode-back" href="../model.html#model.Review.get_formatted_atts">[docs]</a>    <span class="k">def</span> <span class="nf">get_formatted_atts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">atts</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">fe</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
+            <span class="n">atts</span> <span class="o">+=</span> <span class="n">op</span><span class="o">+</span><span class="n">fe</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">atts</span><span class="p">)</span>
+                    </div>
+<div class="viewcode-block" id="Review.get_label"><a class="viewcode-back" href="../model.html#model.Review.get_label">[docs]</a>    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39; | &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_formatted_atts</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;| (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;)&#39;</span>
+</div>
+<div class="viewcode-block" id="Review.subset_label"><a class="viewcode-back" href="../model.html#model.Review.subset_label">[docs]</a>    <span class="k">def</span> <span class="nf">subset_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">included</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39; | &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">included</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; | &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_formatted_atts</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Review.plain_label"><a class="viewcode-back" href="../model.html#model.Review.plain_label">[docs]</a>    <span class="k">def</span> <span class="nf">plain_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_formatted_atts</span><span class="p">()</span>
+        </div>
+<div class="viewcode-block" id="Review.in_conflict"><a class="viewcode-back" href="../model.html#model.Review.in_conflict">[docs]</a>    <span class="k">def</span> <span class="nf">in_conflict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">review</span><span class="p">):</span>
+        <span class="n">confs</span> <span class="o">=</span> <span class="p">[</span><span class="n">a1</span> <span class="k">for</span> <span class="n">a1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="k">for</span> <span class="n">a2</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">attributes</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conflicting_attributes</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">)]</span>
+        <span class="n">confatts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">fe</span><span class="p">)</span> <span class="ow">in</span> <span class="n">confs</span><span class="p">:</span>
+            <span class="n">confatts</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">op</span><span class="p">,</span><span class="n">fe</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">review</span><span class="p">]</span> <span class="o">=</span> <span class="n">confatts</span>
+        <span class="k">return</span> <span class="n">confs</span> <span class="o">!=</span> <span class="p">[]</span>
+    </div>
+<div class="viewcode-block" id="Review.get_conf_label"><a class="viewcode-back" href="../model.html#model.Review.get_conf_label">[docs]</a>    <span class="k">def</span> <span class="nf">get_conf_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">review</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="n">fe</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">review</span><span class="p">]:</span>
+            <span class="n">label</span> <span class="o">+=</span> <span class="n">fe</span><span class="o">+</span><span class="s">&#39;/&#39;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+    </div>
+<div class="viewcode-block" id="Review.conflicting_attributes"><a class="viewcode-back" href="../model.html#model.Review.conflicting_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">conflicting_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">o1</span><span class="p">,</span> <span class="n">f1</span><span class="p">),</span> <span class="p">(</span><span class="n">o2</span><span class="p">,</span> <span class="n">f2</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">o1</span> <span class="o">!=</span> <span class="n">o2</span> <span class="ow">and</span> <span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span>
+</div></div>
+<div class="viewcode-block" id="ReviewsList"><a class="viewcode-back" href="../model.html#model.ReviewsList">[docs]</a><span class="k">class</span> <span class="nc">ReviewsList</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang</span> <span class="o">=</span> <span class="s">&#39;en-us&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ReviewsList.load_data"><a class="viewcode-back" href="../model.html#model.ReviewsList.load_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">new</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">new</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span> <span class="o">=</span> <span class="n">Serializer</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">&#39;../data/reviews.dat&#39;</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;impossible to load&#39;</span>
+        <span class="k">elif</span> <span class="n">new</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_reviews</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_RANDOM</span><span class="p">)],</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_RANDOM</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grammar</span> <span class="o">=</span> <span class="n">FeaturesGrammar</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span> <span class="o">=</span> <span class="n">NGramTagger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lang</span><span class="p">)</span>
+        
+            <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://www.booking.com/reviewlist.en.html&quot;</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">get_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_reviews</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_neg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save_reviews</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="ReviewsList.create_reviews"><a class="viewcode-back" href="../model.html#model.ReviewsList.create_reviews">[docs]</a>    <span class="k">def</span> <span class="nf">create_reviews</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_pos</span><span class="p">,</span> <span class="n">data_neg</span><span class="p">):</span>
+        <span class="c">#todo: here will pass more parameters: name, age, etc</span>
+        <span class="n">review_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">print</span> <span class="s">&#39;creating reviews...&#39;</span> 
+                
+        <span class="k">for</span> <span class="n">revi_pos</span><span class="p">,</span> <span class="n">revi_neg</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_pos</span><span class="p">,</span> <span class="n">data_neg</span><span class="p">):</span>
+            <span class="n">rev_id</span> <span class="o">=</span> <span class="n">count</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">positive_tags</span> <span class="o">=</span> <span class="p">[]</span><span class="c">#self.tagger.tag(word_tokenize(revi_pos))</span>
+            <span class="n">negative_tags</span> <span class="o">=</span> <span class="p">[]</span><span class="c">#self.tagger.tag(word_tokenize(revi_neg))</span>
+
+            <span class="c">#positive_atts = self.grammar.parse_features(tags_pos)</span>
+            <span class="c">#negative_atts = self.grammar.parse_features(tags_neg)</span>
+            
+            <span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;bathroom&#39;</span><span class="p">,</span><span class="s">&#39;stuff&#39;</span><span class="p">,</span><span class="s">&#39;location&#39;</span><span class="p">,</span><span class="s">&#39;room&#39;</span><span class="p">,</span><span class="s">&#39;bed&#39;</span><span class="p">,</span><span class="s">&#39;breakfast&#39;</span><span class="p">,</span><span class="s">&#39;clean&#39;</span><span class="p">,</span><span class="s">&#39;food&#39;</span><span class="p">,</span><span class="s">&#39;price&#39;</span><span class="p">,</span><span class="s">&#39;friendly&#39;</span><span class="p">,</span><span class="s">&#39;atmosphere&#39;</span><span class="p">,</span><span class="s">&#39;size&#39;</span><span class="p">,</span><span class="s">&#39;tranquility&#39;</span><span class="p">]</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+            <span class="n">qpos</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">qneg</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">positive_feats</span> <span class="o">=</span> <span class="n">l1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">qpos</span><span class="p">]</span>
+            <span class="n">negative_feats</span> <span class="o">=</span> <span class="n">l1</span><span class="p">[</span><span class="n">qpos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">qpos</span> <span class="o">+</span> <span class="n">qneg</span><span class="p">]</span>
+
+            <span class="n">positive</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:</span> <span class="n">positive_feats</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="n">positive_tags</span><span class="p">}</span>
+            <span class="n">negative</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:</span> <span class="n">negative_feats</span><span class="p">,</span> <span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="n">negative_tags</span><span class="p">}</span>
+
+            <span class="n">review_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Review</span><span class="p">(</span><span class="n">rev_id</span><span class="p">,</span> <span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">review_list</span>
+            </div>
+<div class="viewcode-block" id="ReviewsList.save_reviews"><a class="viewcode-back" href="../model.html#model.ReviewsList.save_reviews">[docs]</a>    <span class="k">def</span> <span class="nf">save_reviews</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">Serializer</span><span class="o">.</span><span class="n">save_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span><span class="p">,</span> <span class="s">&#39;../data/reviews.dat&#39;</span><span class="p">)</span> 
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;i/o error. Not saving&#39;</span>
+</div>
+<div class="viewcode-block" id="ReviewsList.list_features"><a class="viewcode-back" href="../model.html#model.ReviewsList.list_features">[docs]</a>    <span class="k">def</span> <span class="nf">list_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span><span class="p">:</span>
+            
+            <span class="k">print</span> <span class="s">&#39;---REVIEW---&#39;</span>
+            <span class="k">print</span> <span class="s">&#39;rev id: &#39;</span><span class="p">,</span><span class="n">review</span><span class="o">.</span><span class="n">id</span>
+            
+            <span class="k">print</span> <span class="s">&#39;pos: &#39;</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">get_positive_feats</span><span class="p">()</span>
+            <span class="k">print</span> <span class="s">&#39;neg: &#39;</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">get_negative_feats</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="ReviewsList.list_pos_tags"><a class="viewcode-back" href="../model.html#model.ReviewsList.list_pos_tags">[docs]</a>    <span class="k">def</span> <span class="nf">list_pos_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span><span class="p">:</span>
+            
+            <span class="k">print</span> <span class="s">&#39;---REVIEW---&#39;</span>
+            <span class="k">print</span> <span class="s">&#39;rev id: &#39;</span><span class="p">,</span><span class="n">review</span><span class="o">.</span><span class="n">id</span>
+            
+            <span class="k">print</span> <span class="s">&#39;pos: &#39;</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">get_positive_text</span><span class="p">()</span>
+            <span class="k">print</span> <span class="s">&#39;neg: &#39;</span><span class="p">,</span> <span class="n">review</span><span class="o">.</span><span class="n">get_negative_text</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="ReviewsList.get_review"><a class="viewcode-back" href="../model.html#model.ReviewsList.get_review">[docs]</a>    <span class="k">def</span> <span class="nf">get_review</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="ReviewsList.get_all_reviews"><a class="viewcode-back" href="../model.html#model.ReviewsList.get_all_reviews">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_reviews</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_reviews</span>
+</div></div>
+<div class="viewcode-block" id="Judge"><a class="viewcode-back" href="../model.html#model.Judge">[docs]</a><span class="k">class</span> <span class="nc">Judge</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    use this class with a list of arguments, in order to determine </span>
+<span class="sd">    the existence of conflict and defeat between arguments</span>
+<span class="sd">    use this class with a graph of arguments, in order to evaluate it</span>
+<span class="sd">    and obtain the set of warranted arguments</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arguments</span><span class="p">):</span>
+        <span class="c"># Arguments are a list of attributes, what a coincidence, just like reviews!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">att</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span> <span class="k">for</span> <span class="n">att</span> <span class="ow">in</span> <span class="n">arg</span><span class="o">.</span><span class="n">attributes</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">arguments</span><span class="p">:</span>
+            <span class="n">arg</span><span class="o">.</span><span class="n">set_rating</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_features</span><span class="p">()</span>
+        
+<div class="viewcode-block" id="Judge.get_conflicts"><a class="viewcode-back" href="../model.html#model.Judge.get_conflicts">[docs]</a>    <span class="k">def</span> <span class="nf">get_conflicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="p">[(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> 
+                <span class="k">for</span> <span class="n">arg1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span> <span class="k">for</span> <span class="n">arg2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span>
+                <span class="k">if</span> <span class="n">arg1</span><span class="o">.</span><span class="n">in_conflict</span><span class="p">(</span><span class="n">arg2</span><span class="p">)</span> <span class="ow">and</span> <span class="n">arg1</span><span class="o">.</span><span class="n">id</span> <span class="o">&lt;</span> <span class="n">arg2</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+    </div>
+<div class="viewcode-block" id="Judge.equivalent"><a class="viewcode-back" href="../model.html#model.Judge.equivalent">[docs]</a>    <span class="k">def</span> <span class="nf">equivalent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rev1</span><span class="p">,</span> <span class="n">rev2</span><span class="p">):</span>
+        <span class="c"># given that they are conflicting, rev1 and rev2 are equivalent</span>
+        <span class="c"># iff their rating is equal, and the count of conflicting attributes</span>
+        <span class="c"># is also equal</span>
+        <span class="c"># cac stands for conflicting_attributes_count</span>
+        <span class="n">cac1</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">conf_att</span> <span class="ow">in</span> <span class="n">rev1</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">rev2</span><span class="p">]:</span>
+            <span class="n">cac1</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">conf_att</span><span class="p">]</span>
+        <span class="n">cac2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">conf_att</span> <span class="ow">in</span> <span class="n">rev2</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">rev1</span><span class="p">]:</span>
+            <span class="n">cac2</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">conf_att</span><span class="p">]</span>
+            
+        <span class="k">return</span> <span class="p">(</span><span class="n">rev1</span><span class="o">.</span><span class="n">rating</span> <span class="o">==</span> <span class="n">rev2</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span> <span class="c">### !!! PUT THIS BACK and cac1 == cac2)  </span>
+        </div>
+<div class="viewcode-block" id="Judge.get_better_review"><a class="viewcode-back" href="../model.html#model.Judge.get_better_review">[docs]</a>    <span class="k">def</span> <span class="nf">get_better_review</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rev1</span><span class="p">,</span> <span class="n">rev2</span><span class="p">):</span>
+        <span class="c"># given that they are conflicting, this method determines the best</span>
+        <span class="c"># review: the one with greater rating, or the one with greater count</span>
+        <span class="c"># of conflicting attributes if the reviews&#39; rating is equal</span>
+        <span class="c"># retuns a tuple (best, worse)</span>
+
+        <span class="c"># !!! COULD BE DONE BETTER</span>
+        <span class="c"># THE &quot;ATTRIBUTE SUPPORT&quot; SHOULD BE STORED WHEN COMPUTING CONFLICTS </span>
+        <span class="c"># print &quot;checking for betterness: &quot;+str(rev1.id)+&quot; and &quot;+str(rev2.id)</span>
+        <span class="n">cac1</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">conf_att</span> <span class="ow">in</span> <span class="n">rev1</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">rev2</span><span class="p">]:</span>
+            <span class="n">cac1</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">conf_att</span><span class="p">]</span>
+        <span class="n">cac2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">conf_att</span> <span class="ow">in</span> <span class="n">rev2</span><span class="o">.</span><span class="n">conflicting_fe</span><span class="p">[</span><span class="n">rev1</span><span class="p">]:</span>
+            <span class="n">cac2</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">conf_att</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">rev1</span><span class="o">.</span><span class="n">rating</span> <span class="o">&gt;</span> <span class="n">rev2</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">rev1</span><span class="o">.</span><span class="n">rating</span> <span class="o">==</span> <span class="n">rev2</span><span class="o">.</span><span class="n">rating</span> <span class="ow">and</span> <span class="n">cac1</span> <span class="o">&gt;</span> <span class="n">cac2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">rev1</span><span class="p">,</span> <span class="n">rev2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">rev1</span><span class="o">.</span><span class="n">rating</span> <span class="o">&lt;</span> <span class="n">rev2</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">rev1</span><span class="o">.</span><span class="n">rating</span> <span class="o">==</span> <span class="n">rev2</span><span class="o">.</span><span class="n">rating</span> <span class="ow">and</span> <span class="n">cac1</span> <span class="o">&lt;</span> <span class="n">cac2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">rev2</span><span class="p">,</span> <span class="n">rev1</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Judge.count_features"><a class="viewcode-back" href="../model.html#model.Judge.count_features">[docs]</a>    <span class="k">def</span> <span class="nf">count_features</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">at</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">arg</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">attrib_count</span><span class="p">[</span><span class="n">at</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Judge.grounded"><a class="viewcode-back" href="../model.html#model.Judge.grounded">[docs]</a>    <span class="k">def</span> <span class="nf">grounded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">undefeated</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">so_far</span><span class="p">,</span> <span class="n">defeated_so_far</span><span class="p">):</span>
+        <span class="c"># recursive evaluation of the graph to obtain the set of</span>
+        <span class="c"># warranted arguments</span>
+        <span class="n">defeated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="c"># get all the arguments defeated by those in &quot;undefeated&quot;</span>
+        <span class="c"># (which will be defeated)</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">undefeated</span><span class="p">:</span>
+            <span class="n">defeated</span> <span class="o">=</span> <span class="n">defeated</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+        <span class="n">defeated</span> <span class="o">=</span> <span class="n">defeated</span> <span class="o">-</span> <span class="n">so_far</span> <span class="o">-</span> <span class="n">undefeated</span>
+        <span class="c"># take separately the new undefeated arguments, which are those</span>
+        <span class="c"># defeated by the defeated ones</span>
+        <span class="n">new_undefeated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">defeated</span><span class="p">:</span>
+            <span class="n">new_undefeated</span> <span class="o">=</span> <span class="n">new_undefeated</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+        <span class="n">new_undefeated</span> <span class="o">=</span> <span class="n">new_undefeated</span> <span class="o">-</span> <span class="n">so_far</span> <span class="o">-</span> <span class="n">defeated</span> <span class="o">-</span> <span class="n">defeated_so_far</span>
+        <span class="n">inconsistent</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">new_undefeated</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">predecessors</span><span class="p">(</span><span class="n">u</span><span class="p">))</span> <span class="o">&amp;</span> <span class="n">new_undefeated</span><span class="p">:</span>
+                <span class="n">inconsistent</span> <span class="o">=</span> <span class="n">inconsistent</span> <span class="o">|</span> <span class="nb">set</span><span class="p">([</span><span class="n">u</span><span class="p">])</span>
+        <span class="n">new_undefeated</span> <span class="o">=</span> <span class="n">new_undefeated</span> <span class="o">-</span> <span class="n">inconsistent</span>
+        <span class="c"># if there are new undefeated arguments, iterate</span>
+        <span class="k">if</span> <span class="n">new_undefeated</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">([]):</span>
+            <span class="k">return</span> <span class="n">new_undefeated</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">grounded</span><span class="p">(</span><span class="n">new_undefeated</span><span class="p">,</span> 
+                                                  <span class="n">graph</span><span class="p">,</span> <span class="n">so_far</span> <span class="o">|</span> <span class="n">defeated</span> <span class="o">|</span> <span class="n">new_undefeated</span><span class="p">,</span> 
+                                                  <span class="n">defeated_so_far</span> <span class="o">|</span> <span class="n">defeated</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">set</span><span class="p">([])</span>
+</div></div>
+<div class="viewcode-block" id="Grapher"><a class="viewcode-back" href="../model.html#model.Grapher">[docs]</a><span class="k">class</span> <span class="nc">Grapher</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    handles all things related to graph handling</span>
+<span class="sd">    it keeps the graph and </span>
+<span class="sd">    a dictionary of nodes whose key is the node id </span>
+<span class="sd">    and the value is the node itself</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">judge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warranted</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">judge</span> <span class="o">=</span> <span class="n">judge</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s">&quot;record&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">n</span><span class="o">.</span><span class="n">get_label</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">judge</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">n1</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n2</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s">&quot;both&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">n1</span><span class="o">.</span><span class="n">get_conf_label</span><span class="p">(</span><span class="n">n2</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">n2</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">n1</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;transparent&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">better</span><span class="p">,</span> <span class="n">worse</span><span class="p">)</span> <span class="o">=</span> <span class="n">judge</span><span class="o">.</span><span class="n">get_better_review</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">better</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">worse</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">better</span><span class="o">.</span><span class="n">get_conf_label</span><span class="p">(</span><span class="n">worse</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Grapher.get_graph"><a class="viewcode-back" href="../model.html#model.Grapher.get_graph">[docs]</a>    <span class="k">def</span> <span class="nf">get_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span>
+</div>
+<div class="viewcode-block" id="Grapher.resolve_cycles"><a class="viewcode-back" href="../model.html#model.Grapher.resolve_cycles">[docs]</a>    <span class="k">def</span> <span class="nf">resolve_cycles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="c"># capture all cycles</span>
+        <span class="n">cycles</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">simple_cycles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+        <span class="c"># the kind of cycles we are interested in are either binary (eg, [1,2,1]) or</span>
+        <span class="c"># even-lengthed (eg, [0,1,2,0]) - here we capture the latter and flag them</span>
+        <span class="c"># as &quot;blocked&quot;- don&#39;t be fooled by the length of the list</span>
+        <span class="n">blocked</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">cycles</span><span class="p">:</span>
+            <span class="c">#if (len(cycle) % 2 == 0):</span>
+            <span class="n">blocked</span> <span class="o">+=</span> <span class="n">cycle</span>
+        <span class="n">affected_by_cycles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">succs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">cycles</span><span class="p">:</span>
+            <span class="c"># we store all predecessors of all cycles and compute all successors</span>
+            <span class="n">cycle_set</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cycle</span><span class="p">))</span>
+            <span class="n">cycle_predecessors</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">all_predecessors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">cycle_set</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">cycle_predecessors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cycle_predecessors</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">blocked</span><span class="p">))</span>
+            <span class="n">cycle_successors</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">all_successors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">cycle_set</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">preds</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cycle</span><span class="p">)]</span> <span class="o">=</span> <span class="n">cycle_predecessors</span>
+            <span class="c"># whenever a cycle has no predecessors, it introduces undecidedness</span>
+            <span class="c"># hence we store all successors in a global list of nodes that are</span>
+            <span class="c"># &quot;affected by cycles&quot;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cycle_predecessors</span> <span class="o">==</span> <span class="p">[]):</span>
+                <span class="n">affected_by_cycles</span> <span class="o">+=</span> <span class="n">cycle_successors</span>
+        <span class="c"># those cycles that have no predecessors or that their predecessors</span>
+        <span class="c"># are affected by cycles that have no predecessors or... and so on and so forth</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">cycles</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cycle</span><span class="p">)]</span> <span class="o">==</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cycle</span><span class="p">)])</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">affected_by_cycles</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]):</span>
+                <span class="n">out</span> <span class="o">+=</span> <span class="n">cycle</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="c"># print &quot;out due to unforgiving cycles: &quot;, out</span>
+            <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="s">&quot;reviews were involved in improper cycling&quot;</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">out</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Grapher.remove_dupes"><a class="viewcode-back" href="../model.html#model.Grapher.remove_dupes">[docs]</a>    <span class="k">def</span> <span class="nf">remove_dupes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">removals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">remaining_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">remaining_nodes</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">([]):</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">remaining_nodes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">n2</span> <span class="ow">in</span> <span class="n">remaining_nodes</span><span class="p">:</span>
+                <span class="c"># if set(self.nodes[n].attributes) == set(self.nodes[n2].attributes):</span>
+                <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n2</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)):</span>
+                    <span class="n">removals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">removals</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="c"># print &quot;out due to redundance: &quot;, set(removals)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">removals</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;1 review was redundant&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">removals</span><span class="p">)),</span> <span class="s">&quot;reviews were redundant&quot;</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">removals</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">remove_node</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Grapher.set_warranted"><a class="viewcode-back" href="../model.html#model.Grapher.set_warranted">[docs]</a>    <span class="k">def</span> <span class="nf">set_warranted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">undefeated</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span> <span class="o">-</span> \
+                      <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">node</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span>
+        <span class="n">undefeated</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> 
+                           <span class="k">if</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_isolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">)])</span>
+        <span class="n">warranted</span> <span class="o">=</span> <span class="n">undefeated</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">judge</span><span class="o">.</span><span class="n">grounded</span><span class="p">(</span><span class="n">undefeated</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="nb">set</span><span class="p">([]),</span> <span class="nb">set</span><span class="p">([]))</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">warranted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;filled&quot;</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warranted</span> <span class="o">=</span> <span class="n">warranted</span>
+        <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">warranted</span><span class="p">),</span> <span class="s">&quot;reviews were accepted&quot;</span>
+</div>
+<div class="viewcode-block" id="Grapher.compress"><a class="viewcode-back" href="../model.html#model.Grapher.compress">[docs]</a>    <span class="k">def</span> <span class="nf">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">first_stage</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span> <span class="o">-</span> \
+                      <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">node</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()])</span>
+        <span class="n">first_stage</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> 
+                           <span class="k">if</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_isolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">node</span><span class="p">)])</span>
+        <span class="n">defeat_stages</span> <span class="o">=</span> <span class="p">[</span><span class="n">first_stage</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">(</span><span class="n">first_stage</span><span class="p">,</span> <span class="n">first_stage</span><span class="p">)</span>
+        <span class="n">cs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cid</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">defeat_stages</span><span class="p">:</span>
+            <span class="n">cs</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consistent_subsets</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">warranted</span><span class="p">)</span>
+        <span class="n">compressed_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">has_compressed</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">compressed_warranted</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+        <span class="n">compressed_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">cs</span><span class="p">:</span>
+            <span class="n">positive_feats</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+            <span class="n">negative_feats</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">subset</span><span class="p">:</span>
+                <span class="n">positive_feats</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_positive_feats</span><span class="p">())</span>
+                <span class="n">negative_feats</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_negative_feats</span><span class="p">())</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">Review</span><span class="p">(</span><span class="n">cid</span><span class="p">,</span> 
+                           <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">positive_feats</span><span class="p">),</span><span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="p">[]},</span> 
+                           <span class="p">{</span><span class="s">&#39;feats&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">negative_feats</span><span class="p">),</span><span class="s">&#39;text&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+            <span class="n">compressed_nodes</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+            <span class="n">has_compressed</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">subset</span>
+            <span class="n">cid</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">subset</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">warranted</span><span class="p">):</span>
+                <span class="n">compressed_warranted</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="n">compressed_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;filled&quot;</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">,</span> 
+                                          <span class="n">shape</span><span class="o">=</span><span class="s">&quot;record&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">subset_label</span><span class="p">(</span><span class="n">subset</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">compressed_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s">&quot;record&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">subset_label</span><span class="p">(</span><span class="n">subset</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">id1</span><span class="p">,</span> <span class="n">n1</span> <span class="ow">in</span> <span class="n">has_compressed</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">id2</span><span class="p">,</span> <span class="n">n2</span> <span class="ow">in</span> <span class="n">has_compressed</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">n1</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">n2</span><span class="p">:</span>
+                        <span class="n">ri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">rj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">ri</span><span class="o">.</span><span class="n">in_conflict</span><span class="p">(</span><span class="n">rj</span><span class="p">)</span> <span class="ow">and</span> \
+                           <span class="ow">not</span> <span class="p">(</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">compressed_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span> <span class="ow">and</span> \
+                           <span class="ow">not</span> <span class="p">(</span><span class="n">id2</span><span class="p">,</span> <span class="n">id1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">compressed_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+                            <span class="n">compressed_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warranted</span> <span class="o">=</span> <span class="n">compressed_warranted</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">compressed_graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">compressed_nodes</span>
+</div>
+<div class="viewcode-block" id="Grapher.stages"><a class="viewcode-back" href="../model.html#model.Grapher.stages">[docs]</a>    <span class="k">def</span> <span class="nf">stages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fringe</span><span class="p">,</span> <span class="n">so_far</span><span class="p">):</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">fringe</span><span class="p">:</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span> <span class="o">-</span> <span class="n">so_far</span> <span class="o">-</span> <span class="n">fringe</span>
+        <span class="k">if</span> <span class="nb">next</span> <span class="o">==</span> <span class="nb">set</span><span class="p">([]):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="nb">next</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">(</span><span class="nb">next</span><span class="p">,</span> <span class="n">so_far</span> <span class="o">|</span> <span class="n">fringe</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Grapher.consistent_subsets"><a class="viewcode-back" href="../model.html#model.Grapher.consistent_subsets">[docs]</a>    <span class="k">def</span> <span class="nf">consistent_subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">warranted</span><span class="p">):</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="p">(</span><span class="n">incons</span><span class="p">,</span> <span class="n">consis</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consistent_in_rest</span><span class="p">([</span><span class="n">elem</span><span class="p">],</span> <span class="n">stage</span><span class="p">,</span> <span class="n">warranted</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">incons</span> <span class="o">==</span> <span class="nb">set</span><span class="p">([]):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">consis</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">consis</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">consistent_subsets</span><span class="p">(</span><span class="n">incons</span><span class="p">,</span> <span class="n">warranted</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Grapher.consistent_in_rest"><a class="viewcode-back" href="../model.html#model.Grapher.consistent_in_rest">[docs]</a>    <span class="k">def</span> <span class="nf">consistent_in_rest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elems</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">warranted</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rest</span> <span class="o">==</span> <span class="nb">set</span><span class="p">([]):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nb">set</span><span class="p">([]),</span> <span class="nb">set</span><span class="p">(</span><span class="n">elems</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ss</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="n">ps</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+                <span class="n">ss</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span>
+                <span class="n">ps</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">predecessors</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span>
+            <span class="nb">next</span> <span class="o">=</span> <span class="n">rest</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="c"># print &quot;next: &quot; + next</span>
+            <span class="k">if</span> <span class="nb">next</span> <span class="ow">in</span> <span class="n">ss</span> <span class="ow">or</span> <span class="nb">next</span> <span class="ow">in</span> <span class="n">ps</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">(</span><span class="n">elems</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">warranted</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">next</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">warranted</span><span class="p">:</span>
+                <span class="c"># print next + &quot; is inconsistent with &quot; + str(elems)</span>
+                <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consistent_in_rest</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">warranted</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">|</span> <span class="nb">set</span><span class="p">([</span><span class="nb">next</span><span class="p">]),</span> <span class="n">c</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">elems</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># print next + &quot; is consistent with &quot; + str(elems)</span>
+                <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consistent_in_rest</span><span class="p">(</span><span class="n">elems</span> <span class="o">+</span> <span class="p">[</span><span class="nb">next</span><span class="p">],</span> <span class="n">rest</span><span class="p">,</span> <span class="n">warranted</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">elems</span> <span class="o">+</span> <span class="p">[</span><span class="nb">next</span><span class="p">])</span> <span class="o">|</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="c"># if __name__ == &#39;__main__&#39;:</span>
+    <span class="c"># g = Grapher()</span>
+
+<span class="c"># EOF</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

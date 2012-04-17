@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tools Module &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="index.html" />
+    <link rel="next" title="view Module" href="view.html" />
+    <link rel="prev" title="model Module" href="model.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="view.html" title="view Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="model.html" title="model Module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-tools">
+<span id="tools-module"></span><h1>tools Module<a class="headerlink" href="#module-tools" title="Permalink to this headline">¶</a></h1>
+<p>commonly used methods</p>
+<dl class="class">
+<dt id="tools.Serializer">
+<em class="property">class </em><tt class="descclassname">tools.</tt><tt class="descname">Serializer</tt><a class="reference internal" href="_modules/tools.html#Serializer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Serializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="classmethod">
+<dt id="tools.Serializer.get_object">
+<em class="property">classmethod </em><tt class="descname">get_object</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/tools.html#Serializer.get_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Serializer.get_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="tools.Serializer.save_object">
+<em class="property">classmethod </em><tt class="descname">save_object</tt><big>(</big><em>obj</em>, <em>file_name</em><big>)</big><a class="reference internal" href="_modules/tools.html#Serializer.save_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Serializer.save_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tools.Stopwatch">
+<em class="property">class </em><tt class="descclassname">tools.</tt><tt class="descname">Stopwatch</tt><a class="reference internal" href="_modules/tools.html#Stopwatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>a stopwatch to keep track of time
+it has to be started and then
+you can check elapsed time from start
+or
+you can check &#8220;lap&#8221; by &#8220;lap&#8221;
+so that different portions of code
+can be compared in terms of absolute time</p>
+<dl class="method">
+<dt id="tools.Stopwatch.begin_lap">
+<tt class="descname">begin_lap</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.begin_lap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.begin_lap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tools.Stopwatch.elapsed">
+<tt class="descname">elapsed</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.elapsed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.elapsed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tools.Stopwatch.end_lap">
+<tt class="descname">end_lap</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.end_lap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.end_lap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tools.Stopwatch.split">
+<tt class="descname">split</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.split"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.split" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tools.Stopwatch.ssplit">
+<tt class="descname">ssplit</tt><big>(</big><em>some_string</em><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.ssplit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.ssplit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tools.Stopwatch.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/tools.html#Stopwatch.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.Stopwatch.start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tools.all_predecessors">
+<tt class="descclassname">tools.</tt><tt class="descname">all_predecessors</tt><big>(</big><em>graph</em>, <em>nodes</em>, <em>so_far</em><big>)</big><a class="reference internal" href="_modules/tools.html#all_predecessors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.all_predecessors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tools.all_successors">
+<tt class="descclassname">tools.</tt><tt class="descname">all_successors</tt><big>(</big><em>graph</em>, <em>nodes</em>, <em>so_far</em><big>)</big><a class="reference internal" href="_modules/tools.html#all_successors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.all_successors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tools.flip">
+<tt class="descclassname">tools.</tt><tt class="descname">flip</tt><big>(</big><em>two_things</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/tools.html#flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.flip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tools.remove_all_in_list">
+<tt class="descclassname">tools.</tt><tt class="descname">remove_all_in_list</tt><big>(</big><em>list_out</em>, <em>list_from</em><big>)</big><a class="reference internal" href="_modules/tools.html#remove_all_in_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tools.remove_all_in_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="model.html"
+                        title="previous chapter">model Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="view.html"
+                        title="next chapter">view Module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tools.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="view.html" title="view Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="model.html" title="model Module"
+             >previous</a> |</li>
+        <li><a href="index.html">.  documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

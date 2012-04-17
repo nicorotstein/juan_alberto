@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>linguatools &mdash; .  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title=".  documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for linguatools</h1><div class="highlight"><pre>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Created on Nov 30, 2011</span>
+
+<span class="sd">@author: luchux</span>
+<span class="sd">ver como organizar los modules para que solo se levanten </span>
+<span class="sd">cuando la clase se carga. </span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">tools</span> <span class="kn">import</span> <span class="n">Serializer</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">RegexpParser</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<div class="viewcode-block" id="NGramTagger"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger">[docs]</a><span class="k">class</span> <span class="nc">NGramTagger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    wrapper for nltk tagger</span>
+<span class="sd">    A little tagger trained with unigrams, bigrams, trigrams</span>
+<span class="sd">    and backoff training. </span>
+<span class="sd">    May be corpus should be related to what it is being used for:</span>
+<span class="sd">    Reviews are in Brown corpus</span>
+<span class="sd">    todo: check brown corpus if related with hotels.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lang</span><span class="p">):</span>
+        
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructor</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang</span> <span class="o">=</span> <span class="n">lang</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ser_path</span> <span class="o">=</span> <span class="s">&quot;../data/tagger.dat&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_tagger</span><span class="p">()</span>
+    
+<div class="viewcode-block" id="NGramTagger.init_tagger"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.init_tagger">[docs]</a>    <span class="k">def</span> <span class="nf">init_tagger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;loading tagger...&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span> <span class="o">=</span> <span class="n">Serializer</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ser_path</span><span class="p">)</span> 
+            <span class="k">print</span> <span class="s">&#39;DONE...&#39;</span>           
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;tagger not found in disk. Training one&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_classifier_tagger</span><span class="p">()</span>
+                <span class="k">print</span> <span class="s">&#39;saving tagger to disk&#39;</span>
+                <span class="n">Serializer</span><span class="o">.</span><span class="n">save_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tagger</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ser_path</span><span class="p">)</span>
+                <span class="k">print</span> <span class="s">&#39;DONE...&#39;</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">print</span> <span class="ne">Exception</span>
+            </div>
+<div class="viewcode-block" id="NGramTagger.tag"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.tag">[docs]</a>    <span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagger</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+   </div>
+<div class="viewcode-block" id="NGramTagger.backoff_tagger"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.backoff_tagger">[docs]</a>    <span class="k">def</span> <span class="nf">backoff_tagger</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_sents</span><span class="p">,</span> <span class="n">tagger_classes</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">cls</span> <span class="ow">in</span> <span class="n">tagger_classes</span><span class="p">:</span>
+            <span class="n">backoff</span> <span class="o">=</span> <span class="n">cls</span><span class="p">(</span><span class="n">train_sents</span><span class="p">,</span> <span class="n">backoff</span><span class="o">=</span><span class="n">backoff</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">backoff</span>    
+    </div>
+<div class="viewcode-block" id="NGramTagger.trainTrigram"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.trainTrigram">[docs]</a>    <span class="k">def</span> <span class="nf">trainTrigram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">DefaultTagger</span><span class="p">,</span><span class="n">UnigramTagger</span><span class="p">,</span> <span class="n">BigramTagger</span><span class="p">,</span> <span class="n">TrigramTagger</span> 
+        <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">treebank</span>        
+        <span class="n">test_sents</span>  <span class="o">=</span> <span class="n">treebank</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[</span><span class="mi">3000</span><span class="p">:]</span>          
+        <span class="n">train_sents</span> <span class="o">=</span> <span class="n">treebank</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[:</span><span class="mi">3000</span><span class="p">]</span>
+        
+        <span class="k">print</span> <span class="s">&#39;trainging bigramTagger&#39;</span>                
+        <span class="n">bitagger</span> <span class="o">=</span> <span class="n">BigramTagger</span><span class="p">(</span><span class="n">train_sents</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;evaluation bitagger&#39;</span>
+        <span class="k">print</span> <span class="n">bitagger</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_sents</span><span class="p">)</span>
+        
+        <span class="k">print</span> <span class="s">&#39;trainging trigram Tagger&#39;</span>
+        <span class="n">tritagger</span> <span class="o">=</span> <span class="n">TrigramTagger</span><span class="p">(</span><span class="n">train_sents</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;evaluation bitagger&#39;</span>
+        <span class="k">print</span> <span class="n">tritagger</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_sents</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;tagging&#39;</span>
+     
+           </div>
+<div class="viewcode-block" id="NGramTagger.trainTrigramBK"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.trainTrigramBK">[docs]</a>    <span class="k">def</span> <span class="nf">trainTrigramBK</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">DefaultTagger</span><span class="p">,</span><span class="n">UnigramTagger</span><span class="p">,</span> <span class="n">BigramTagger</span><span class="p">,</span> <span class="n">TrigramTagger</span>
+        <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">conll2000</span><span class="p">,</span> <span class="n">treebank</span>    
+        <span class="n">test_sents</span>  <span class="o">=</span> <span class="n">conll2000</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[</span><span class="mi">8000</span><span class="p">:]</span>          
+        <span class="n">train_sents</span> <span class="o">=</span> <span class="n">treebank</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[</span><span class="mi">3000</span><span class="p">:]</span>
+        <span class="k">print</span> <span class="s">&#39;trainging trigramter with backoff&#39;</span>
+        <span class="n">backoff</span> <span class="o">=</span> <span class="n">DefaultTagger</span><span class="p">(</span><span class="s">&#39;NN&#39;</span><span class="p">)</span>
+        <span class="n">tagger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backoff_tagger</span><span class="p">(</span><span class="n">train_sents</span><span class="p">,</span> <span class="p">[</span><span class="n">UnigramTagger</span><span class="p">,</span> <span class="n">BigramTagger</span><span class="p">,</span><span class="n">TrigramTagger</span><span class="p">],</span> <span class="n">backoff</span><span class="o">=</span><span class="n">backoff</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;evaluation trigram with backoff&#39;</span>        
+        <span class="k">print</span> <span class="n">tagger</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_sents</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;tagging&#39;</span>
+        <span class="k">print</span> <span class="n">tagger</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s">&quot;This is a test. This should be faster than nothing. How can I rent a car in the next twelve hours? &quot;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="NGramTagger.train_classifier_tagger"><a class="viewcode-back" href="../linguatools.html#linguatools.NGramTagger.train_classifier_tagger">[docs]</a>    <span class="k">def</span> <span class="nf">train_classifier_tagger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">conll2000</span> 
+        <span class="kn">from</span> <span class="nn">nltk.tag.sequential</span> <span class="kn">import</span> <span class="n">ClassifierBasedPOSTagger</span>    
+        <span class="n">test_sents</span>  <span class="o">=</span> <span class="n">conll2000</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[</span><span class="mi">9500</span><span class="p">:]</span>          
+        <span class="n">train_sents</span> <span class="o">=</span> <span class="n">conll2000</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()</span>
+        <span class="k">print</span> <span class="s">&quot;training class&quot;</span>
+        <span class="n">tagger</span> <span class="o">=</span> <span class="n">ClassifierBasedPOSTagger</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">train_sents</span><span class="p">)</span>
+        <span class="c">#print &quot;evaluating&quot;</span>
+        <span class="c">#print tagger.evaluate(test_sents)</span>
+        <span class="c">#print &quot;tag&quot;        </span>
+        <span class="k">return</span> <span class="n">tagger</span>
+
+<span class="c">#chunker</span></div></div>
+<div class="viewcode-block" id="FeaturesGrammar"><a class="viewcode-back" href="../linguatools.html#linguatools.FeaturesGrammar">[docs]</a><span class="k">class</span> <span class="nc">FeaturesGrammar</span><span class="p">():</span>
+    
+ 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grammar</span> <span class="o">=</span> <span class="s">r&quot;&quot;&quot; </span>
+<span class="s">            FEATURE:</span>
+<span class="s">            {&lt;JJ&gt;&lt;NN|NNS&gt;} </span>
+<span class="s">              </span>
+<span class="s">            }&lt;RB|RBR|RBS&gt;&lt;JJ&gt;&lt;NN|NNS&gt;{</span>
+<span class="s">            {&lt;RB|RBR|RBS&gt;&lt;JJ&gt;&lt;.*&gt;}</span>
+
+<span class="s">            }&lt;JJ&gt;&lt;JJ&gt;&lt;NN|NS&gt;{</span>
+<span class="s">            {&lt;JJ&gt;&lt;JJ&gt;&lt;.*&gt;}</span>
+
+<span class="s">            }&lt;NN|NNS&gt;&lt;JJ&gt;&lt;NN|NNS&gt;{</span>
+<span class="s">            {&lt;NN|NNS&gt;&lt;JJ&gt;&lt;.*&gt;}</span>
+<span class="s">            {&lt;NN|NNS&gt;&lt;VB.*&gt;&lt;JJ&gt;} </span>
+<span class="s">            {&lt;RB|RBR|RBS&gt;&lt;VB|VBD|VBN|VBG&gt;$}</span>
+<span class="s">            </span>
+<span class="s">        &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="FeaturesGrammar.parse_features"><a class="viewcode-back" href="../linguatools.html#linguatools.FeaturesGrammar.parse_features">[docs]</a>    <span class="k">def</span> <span class="nf">parse_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">review</span><span class="p">):</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">RegexpParser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grammar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+
+        
+                </div></div>
+<div class="viewcode-block" id="Parser"><a class="viewcode-back" href="../linguatools.html#linguatools.Parser">[docs]</a><span class="k">class</span> <span class="nc">Parser</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    classdocs</span>
+<span class="sd">    &#39;&#39;&#39;</span>             
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">lang</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang</span> <span class="o">=</span> <span class="n">lang</span>
+    
+<div class="viewcode-block" id="Parser.parse"><a class="viewcode-back" href="../linguatools.html#linguatools.Parser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>               
+        <span class="c">#nombres  = soup.findAll(True,&#39;cell_user_name&#39;);</span>
+        <span class="c">#ciudades = soup.findAll(True,&#39;cell_user_location&#39;);</span>
+        <span class="c">#fechas   = soup.findAll(True,&#39;dtreviewed&#39;);</span>
+        <span class="n">positives</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="s">&#39;comments_good&#39;</span><span class="p">);</span>
+        <span class="n">negatives</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="s">&#39;comments_bad&#39;</span><span class="p">);</span>
+        <span class="c">#puntuaciones = soup.findAll(True,&#39;cell_score&#39;);</span>
+        <span class="n">positives</span> <span class="o">=</span> <span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">positives</span><span class="p">]</span>                     
+        <span class="n">negatives</span> <span class="o">=</span> <span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">negatives</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">positives</span><span class="p">,</span><span class="n">negatives</span>
+    </div>
+<div class="viewcode-block" id="Parser.get_from_url"><a class="viewcode-back" href="../linguatools.html#linguatools.Parser.get_from_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_from_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">max_page</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="n">pos_tot</span><span class="p">,</span><span class="n">neg_tot</span> <span class="o">=</span> <span class="p">[],[]</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="mi">25</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="n">step</span><span class="p">):</span>                          
+            <span class="k">print</span>  <span class="s">&#39;pagina </span><span class="si">%d</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">&#39;cc1&#39;</span><span class="p">:</span><span class="s">&#39;fr&#39;</span><span class="p">,</span>
+                <span class="s">&#39;sid&#39;</span><span class="p">:</span><span class="s">&#39;17e1e96dcaaab2c671ad64fb6cf963d8&#39;</span><span class="p">,</span>
+                <span class="s">&#39;pagename&#39;</span><span class="p">:</span><span class="s">&#39;concorde-la-fayette&#39;</span><span class="p">,</span>
+                <span class="s">&#39;offset&#39;</span><span class="p">:</span><span class="n">i</span><span class="p">,</span>
+                <span class="s">&#39;rows&#39;</span><span class="p">:</span><span class="n">step</span><span class="p">,</span>
+                <span class="s">&#39;sort&#39;</span><span class="p">:</span><span class="s">&#39;language_relevance&#39;</span><span class="p">,</span>
+                <span class="s">&#39;rid&#39;</span><span class="p">:</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+                <span class="s">&#39;lang&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">lang</span>
+            <span class="p">})</span>        
+            <span class="n">pos</span><span class="p">,</span><span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">&#39;parsed pos: &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">&#39;parsed neg: &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span>
+            <span class="n">pos_tot</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="n">neg_tot</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span>
+             <span class="c">#&amp;_=1329914466370&quot;                        </span>
+        
+        <span class="k">print</span> <span class="s">&#39;neg_tot :&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">neg_tot</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;pos_tot :&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pos_tot</span><span class="p">)</span>
+        <span class="c">#Serializer.save_object(pos_tot,&#39;../data/rev_pos.dat&#39;)</span>
+        <span class="c">#Serializer.save_object(neg_tot,&#39;../data/rev_neg.dat&#39;)</span>
+        <span class="k">return</span> <span class="n">pos_tot</span><span class="p">,</span><span class="n">neg_tot</span>
+
+    </div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">model</span> <span class="kn">import</span> <span class="n">ReviewsList</span>
+
+    <span class="n">l</span> <span class="o">=</span> <span class="n">ReviewsList</span><span class="p">()</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">CorpusAnalysis</span><span class="p">()</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">freq_dist_tags</span><span class="p">()</span>
+
+    <span class="n">fd</span><span class="o">.</span><span class="n">tabulate</span><span class="p">()</span>
+
+    
+    
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">.  documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Author.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
