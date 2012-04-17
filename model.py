@@ -124,14 +124,22 @@ class Review():
         return o1 != o2 and f1 == f2
 
 class ReviewsList():
-    
+    '''
+    :class::ReviewsList
+    '''
     def __init__(self):
-        
+        '''constructor
+        :attribute::self.list_reviews:the list of reviews
+        '''
         self.list_reviews = []
         self.lang = 'en-us'
         self.load_data(2)
-    
+     
     def load_data(self,new=0):
+        '''
+        :method:: load_data  
+        :param new: new == 0 try to load list already created, else create a new one.
+        '''
         if(new == 0):
             try:
                 self.list_reviews = Serializer.get_object('../data/reviews.dat')
@@ -195,6 +203,9 @@ class ReviewsList():
             print 'neg: ', review.get_negative_feats()
 
     def list_pos_tags(self):
+        '''
+        This method prints all the reviews by id and its positives and negatives tagged text. 
+        '''
         for review in self.list_reviews:
             
             print '---REVIEW---'
@@ -204,9 +215,16 @@ class ReviewsList():
             print 'neg: ', review.get_negative_text()
 
     def get_review(self,n):
+        '''
+        :param n:the n-th element to retrieve
+        :returns a review in the n-th position of list_reviews
+        '''
         return self.list_reviews[n]
 
     def get_all_reviews(self):
+        '''
+        :returns all the list_reviews (list of reviews).
+        '''
         return self.list_reviews
 
 class Judge():

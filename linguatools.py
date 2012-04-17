@@ -2,8 +2,8 @@
 Created on Nov 30, 2011
 
 @author: luchux
-ver como organizar los modules para que solo se levanten 
-cuando la clase se carga. 
+This module contains NLP tools based on NLTK class library. This tools are used for 
+tokenization, tagging, chunks extraction, and features extraction.  
 
 '''
 from tools import Serializer
@@ -12,23 +12,23 @@ from nltk import RegexpParser
 import requests
 from bs4 import BeautifulSoup
 import time
+
 class NGramTagger(object):
     '''
     wrapper for nltk tagger
     A little tagger trained with unigrams, bigrams, trigrams
     and backoff training. 
-    May be corpus should be related to what it is being used for:
-    Reviews are in Brown corpus
-    todo: check brown corpus if related with hotels.
+    Todo: test and boostrap with review corpuss
     '''
     
-    def __init__(self,lang):
+    def __init__(self,language):
         
         '''
-        Constructor
+        :param:language
+        :type lan string representing language to be used in the training 
         '''
-        self.lang = lang
-        self.ser_path = "../data/tagger.dat"
+        self.lang = language
+        self.ser_path = "data/tagger.dat"
         self.init_tagger()
     
     def init_tagger(self):
@@ -53,7 +53,7 @@ class NGramTagger(object):
             backoff = cls(train_sents, backoff=backoff)
         return backoff    
     
-    def trainTrigram(self):
+    def traintest_bigram_trigram_tagger(self):
         from nltk.tag import DefaultTagger,UnigramTagger, BigramTagger, TrigramTagger 
         from nltk.corpus import treebank        
         test_sents  = treebank.tagged_sents()[3000:]          
@@ -71,7 +71,7 @@ class NGramTagger(object):
         print 'tagging'
      
            
-    def trainTrigramBK(self):
+    def traintest_uni_bi_tri_tagger(self):
         from nltk.tag import DefaultTagger,UnigramTagger, BigramTagger, TrigramTagger
         from nltk.corpus import conll2000, treebank    
         test_sents  = conll2000.tagged_sents()[8000:]          
@@ -122,14 +122,13 @@ class FeaturesGrammar():
         cp = RegexpParser(self.grammar)
         return cp.parse(review)
 
-        
-
-
-
                 
 class Parser():
     '''
-    classdocs
+    This class crawls the web from one url, jumping in many offsets of pagination and extracting 
+    all the reviews. 
+    Todo: Now is crowling only one hotel. Crowling all the list of hotels, iterate over that list 
+    applying get_reguest_url
     '''             
     def __init__(self,lang):
         self.lang = lang
@@ -147,7 +146,7 @@ class Parser():
         
         return positives,negatives
     
-    def get_from_url(self,url,max_page = 100):
+    def get_request_url(self,url,max_page = 100):
         pos_tot,neg_tot = [],[]
         step = 25
         for i in range(0,1000,step):                          
