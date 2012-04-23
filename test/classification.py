@@ -12,7 +12,7 @@ def get_features(trigr):
 	#trigr = ( (w,t),(w,t),(w,t) )
 	'''returns the features for a trigram'''
 	return{
-	'first_word:':(trigr[0][0])
+	'first_word:':(trigr[0][0]),
 	'first_pos':(trigr[0][1]),
 	'second_word':(trigr[1][0]),
 	'second_pos':(trigr[1][1]),
