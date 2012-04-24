@@ -1,5 +1,3 @@
-from classification import read_sentences_corpus
-
 standard_features = {'clean':'clean',
 					'dirty':'clean',
 					 'comfort':'comfort',
@@ -30,7 +28,8 @@ standard_features = {'clean':'clean',
 					 'look':'view',
 					 'barman':'staff',
 					 'lady':'staff',
-					 'furniture':'comfort',
+					 'furniture':'ambience',
+					 'ambience':'ambience',
 					 'rooms':'comfort',
 					 'bed':'comfort',
 					 'noisy':'comfort',
@@ -48,13 +47,12 @@ def extract_features(lista):
 	feats_words = [word for word,tag in features]
 	return set(feats_words)
 	
-def test():
+if __name__ == '__main__':
+	from classification import read_sentences_corpus
 	pos,neg = read_sentences_corpus()
-	for rev in neg[:50]:
+	for rev in pos[200:250]:
 		print ' '.join([word for word,tag in rev])
 		#only = filter_tags(rev,['NN'])
 		features = extract_features(rev)
 		print features
-if __name__ == '__main__':
-	test()
 
