@@ -100,6 +100,9 @@ class Review():
     def get_label(self):
         return self.id + ' | ' + self.get_formatted_atts() + '| (' + str(self.rating) + ')'
 
+    # def get_attributes(self):
+    #     return [self.get_formatted_atts(), self.rating]
+
     def subset_label(self, included):
         return self.id + ' | ' + str(list(included)) + ' | ' + self.get_formatted_atts()
 
@@ -333,7 +336,7 @@ class Grapher():
         self.warranted = set([])
         self.judge = judge
         for n in nodes:
-            self.graph.add_node(n.id, shape="record", label=n.get_label())
+            self.graph.add_node(n.id, shape="record", color="r", label=n.get_label(), attributes='hello!')
             self.nodes[n.id] = n
         for (n1, n2) in edges:
             if judge.equivalent(n1, n2):

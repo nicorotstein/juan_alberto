@@ -1,0 +1,28 @@
+digraph rev{
+node[style="roundrectangle,filled" fontname="Sans Serif" fontsize=16];
+edge[dir=none color=blue arrowsize=1 penwidth=1 fontname="Sans Serif" fontsize=16];
+"19:[ (+):cleanliness]" [shape=record label="19|(+):cleanliness"];
+"23:[ (+):comfort]" [shape=record label="23|(+):comfort"];
+"24:[ (+):location]" [shape=record label="24|(+):location"];
+"35:[ (+):price]" [shape=record label="35|(+):price"];
+"36:[ (+):rooms]" [shape=record label="36|(+):rooms"];
+"22:[ (+):staff]" [shape=record label="22|(+):staff"];
+"35:[ (-):cleanliness]" [shape=record label="35|(-):cleanliness"];
+"19:[ (-):comfort]" [shape=record label="19|(-):comfort"];
+"28:[ (-):location]" [shape=record label="28|(-):location"];
+"31:[ (-):price]" [shape=record label="31|(-):price"];
+"20:[ (-):rooms]" [shape=record label="20|(-):rooms"];
+"38:[ (-):staff]" [shape=record label="38|(-):staff"];
+"23:[ (+):comfort]" [fillcolor=darkgreen,fontcolor=white];
+"35:[ (+):price]" [fillcolor=darkgreen,fontcolor=white];
+"36:[ (+):rooms]" [fillcolor=darkgreen,fontcolor=white];
+"35:[ (-):cleanliness]" [fillcolor=darkgreen,fontcolor=white];
+"28:[ (-):location]" [fillcolor=darkgreen,fontcolor=white];
+"38:[ (-):staff]" [fillcolor=darkgreen,fontcolor=white];
+"19:[ (+):cleanliness]" -> "35:[ (-):cleanliness]" [dir=both color=red]];
+"22:[ (+):staff]" -> "38:[ (-):staff]" [dir=both color=red]];
+"23:[ (+):comfort]" -> "19:[ (-):comfort]" [dir=both color=red]];
+"24:[ (+):location]" -> "28:[ (-):location]" [dir=both color=red]];
+"35:[ (+):price]" -> "31:[ (-):price]" [dir=both color=red]];
+"36:[ (+):rooms]" -> "20:[ (-):rooms]" [dir=both color=red]];
+}

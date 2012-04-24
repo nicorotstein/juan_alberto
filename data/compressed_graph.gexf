@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?><gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="3" title="dir" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="shape" type="string" />
+      <attribute id="1" title="style" type="string" />
+      <attribute id="2" title="fillcolor" type="string" />
+    </attributes>
+    <nodes>
+      <node id="1" label="1 | ['27', '17', '31', '45', '53', '60', '62', '63', '66', '87', '96'] | +bathroom+stuff+room+clean+food+tranquility+friendly+atmosphere+size-breakfast-price-bed">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="0" label="0 | ['33', '32', '36', '50', '0', '5', '68', '92', '86'] | +atmosphere+stuff+tranquility+breakfast+price+bed+size-food-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+          <attvalue for="1" value="filled" />
+          <attvalue for="2" value="green" />
+        </attvalues>
+      </node>
+      <node id="3" label="3 | ['89', '21'] | +food+stuff+friendly-tranquility">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="2" label="2 | ['15', '14', '48', '23', '30', '99', '75', '74', '67', '8'] | +price+bathroom+location+clean+food+tranquility+breakfast+atmosphere+room-stuff-friendly-size">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="5" label="5 | ['38', '57', '43', '1', '81', '97'] | +atmosphere+price+location+bed-bathroom-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="4" label="4 | ['10', '88', '69', '94', '85', '11', '25', '58', '22', '46', '54', '51', '4', '78'] | +bathroom+room+tranquility+price+bed+stuff+breakfast+friendly+size-food-location-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+          <attvalue for="1" value="filled" />
+          <attvalue for="2" value="green" />
+        </attvalues>
+      </node>
+      <node id="7" label="7 | ['59'] | +atmosphere+friendly">
+        <attvalues>
+          <attvalue for="0" value="record" />
+          <attvalue for="1" value="filled" />
+          <attvalue for="2" value="green" />
+        </attvalues>
+      </node>
+      <node id="6" label="6 | ['24', '26', '64', '80'] | +tranquility+bathroom+location+room-friendly">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="1" target="0">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="1" target="3">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="1" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="1" target="5">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="1" target="4">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="1" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="0" target="3">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="0" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="3" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="3" target="4">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="3" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="2" target="5">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="2" target="4">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="2" target="7">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="5" target="4">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="5" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="16" source="4" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="17" source="7" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

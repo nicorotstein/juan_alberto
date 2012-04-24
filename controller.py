@@ -37,7 +37,7 @@ if __name__ == '__main__':
     print 'computing accepted reviews...'
     g.set_warranted()
     # print 'drawing graph...'
-    # Drawer.draw_graph(g.get_graph(), 'no_annoying_cycles_graph')
+    Drawer.draw_graph(g.get_graph(), 'no_annoying_cycles_graph')
     
     s.split()
 

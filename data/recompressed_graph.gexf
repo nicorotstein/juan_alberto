@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="3" title="dir" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="shape" type="string" />
+      <attribute id="1" title="style" type="string" />
+      <attribute id="2" title="fillcolor" type="string" />
+    </attributes>
+    <nodes>
+      <node id="1" label="1 | ['0', '4'] | +atmosphere+tranquility+price+breakfast+size+bathroom+room+bed+stuff+friendly-food-location-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+          <attvalue for="1" value="filled" />
+          <attvalue for="2" value="green" />
+        </attvalues>
+      </node>
+      <node id="0" label="0 | ['1'] | +bathroom+room+food+tranquility+atmosphere+stuff+clean+friendly+size-breakfast-price-bed">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="3" label="3 | ['2'] | +bathroom+room+food+tranquility+price+atmosphere+location+clean+breakfast-stuff-friendly-size">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="2" label="2 | ['3', '5'] | +atmosphere+stuff+location+food+price+friendly+bed-tranquility-bathroom-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="1" target="0">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="1" target="3">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="1" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="0" target="3">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="0" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="3" target="2">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
