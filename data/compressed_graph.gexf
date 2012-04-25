@@ -9,50 +9,55 @@
       <attribute id="2" title="fillcolor" type="string" />
     </attributes>
     <nodes>
-      <node id="1" label="1 | ['27', '17', '31', '45', '53', '60', '62', '63', '66', '87', '96'] | +bathroom+stuff+room+clean+food+tranquility+friendly+atmosphere+size-breakfast-price-bed">
+      <node id="1" label="1 | ['37', '61', '88', '67', '68', '83', '81', '86', '94', '96', '27', '15', '22', '69', '51', '1', '0', '5', '7'] | +atmosphere+room+food+tranquility+bathroom+stuff+clean+breakfast+friendly+size-price-bed">
         <attvalues>
           <attvalue for="0" value="record" />
         </attvalues>
       </node>
-      <node id="0" label="0 | ['33', '32', '36', '50', '0', '5', '68', '92', '86'] | +atmosphere+stuff+tranquility+breakfast+price+bed+size-food-clean">
+      <node id="0" label="0 | ['26', '20', '29', '41', '91', '84', '85'] | +atmosphere+price+breakfast+bed-food-tranquility-stuff-friendly-clean">
         <attvalues>
           <attvalue for="0" value="record" />
           <attvalue for="1" value="filled" />
           <attvalue for="2" value="green" />
         </attvalues>
       </node>
-      <node id="3" label="3 | ['89', '21'] | +food+stuff+friendly-tranquility">
+      <node id="3" label="3 | ['12', '58', '49', '42', '3', '4'] | +breakfast+atmosphere+stuff+location+price+friendly+bed-tranquility-clean-size">
         <attvalues>
           <attvalue for="0" value="record" />
         </attvalues>
       </node>
-      <node id="2" label="2 | ['15', '14', '48', '23', '30', '99', '75', '74', '67', '8'] | +price+bathroom+location+clean+food+tranquility+breakfast+atmosphere+room-stuff-friendly-size">
+      <node id="2" label="2 | ['11', '23', '46', '99', '98', '62', '70', '9', '92', '87'] | +atmosphere+food+tranquility+price+bathroom+bed+location+clean+breakfast-stuff-friendly-room">
         <attvalues>
           <attvalue for="0" value="record" />
         </attvalues>
       </node>
-      <node id="5" label="5 | ['38', '57', '43', '1', '81', '97'] | +atmosphere+price+location+bed-bathroom-clean">
-        <attvalues>
-          <attvalue for="0" value="record" />
-        </attvalues>
-      </node>
-      <node id="4" label="4 | ['10', '88', '69', '94', '85', '11', '25', '58', '22', '46', '54', '51', '4', '78'] | +bathroom+room+tranquility+price+bed+stuff+breakfast+friendly+size-food-location-clean">
+      <node id="5" label="5 | ['25', '13', '14', '17', '31', '45', '28', '53', '52', '65', '90', '93', '57'] | +bathroom+room+price+size+atmosphere+bed+location-tranquility-stuff-friendly">
         <attvalues>
           <attvalue for="0" value="record" />
           <attvalue for="1" value="filled" />
           <attvalue for="2" value="green" />
         </attvalues>
       </node>
-      <node id="7" label="7 | ['59'] | +atmosphere+friendly">
+      <node id="4" label="4 | ['36', '66', '78'] | +tranquility+stuff+size-bathroom-room-clean">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="7" label="7 | ['59', '21'] | +breakfast+bed-location-room">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="6" label="6 | ['47', '44', '40'] | +price+room+location-bathroom-size">
+        <attvalues>
+          <attvalue for="0" value="record" />
+        </attvalues>
+      </node>
+      <node id="8" label="8 | ['24', '33'] | +bathroom+location">
         <attvalues>
           <attvalue for="0" value="record" />
           <attvalue for="1" value="filled" />
           <attvalue for="2" value="green" />
-        </attvalues>
-      </node>
-      <node id="6" label="6 | ['24', '26', '64', '80'] | +tranquility+bathroom+location+room-friendly">
-        <attvalues>
-          <attvalue for="0" value="record" />
         </attvalues>
       </node>
     </nodes>
@@ -82,67 +87,107 @@
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="5" source="1" target="6">
+      <edge id="5" source="1" target="7">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="6" source="0" target="3">
+      <edge id="6" source="1" target="6">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="7" source="0" target="2">
+      <edge id="7" source="0" target="3">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="8" source="3" target="2">
+      <edge id="8" source="0" target="2">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="9" source="3" target="4">
+      <edge id="9" source="0" target="4">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="10" source="3" target="6">
+      <edge id="10" source="3" target="2">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="11" source="2" target="5">
+      <edge id="11" source="3" target="5">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="12" source="2" target="4">
+      <edge id="12" source="3" target="4">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="13" source="2" target="7">
+      <edge id="13" source="3" target="7">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="14" source="5" target="4">
+      <edge id="14" source="2" target="5">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="15" source="5" target="6">
+      <edge id="15" source="2" target="4">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="16" source="4" target="6">
+      <edge id="16" source="2" target="7">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>
       </edge>
-      <edge id="17" source="7" target="6">
+      <edge id="17" source="2" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="18" source="5" target="4">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="19" source="5" target="7">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="20" source="5" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="21" source="4" target="8">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="22" source="4" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="23" source="7" target="8">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="24" source="7" target="6">
+        <attvalues>
+          <attvalue for="3" value="none" />
+        </attvalues>
+      </edge>
+      <edge id="25" source="6" target="8">
         <attvalues>
           <attvalue for="3" value="none" />
         </attvalues>

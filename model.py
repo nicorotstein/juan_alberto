@@ -9,10 +9,10 @@ NUM_RANDOM = 100
 
 import tools
 from tools import Serializer
-# from linguatools import NGramTagger
-# from linguatools import FeaturesGrammar
-# from linguatools import Parser
-# from nltk import word_tokenize
+from linguatools import NGramTagger
+from linguatools import FeaturesGrammar
+from linguatools import Parser
+from nltk import word_tokenize
 import random
 import networkx as nx
 
