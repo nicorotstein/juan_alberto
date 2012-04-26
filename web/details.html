@@ -26,10 +26,31 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
-  </head>
 
-   <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
-    
+    <!-- Style for SIGMA Graph container-->  
+    <style>
+      /* sigma.js context : */
+      .sigma-parent {
+        position: relative;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        background: #222;
+        width
+      }
+      
+      .sigma-expand {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+    </style>
+    <!-- /style-->
+  </head>
+  
+  <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">  
     <!--navbar-->  
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -101,12 +122,55 @@
               <p>Here we explain different visualizatin techniques, which applies to different necessities of customers and providers.</p>
             </div>
             <div class="span9">
+              <h3>Visualization examples</h3>
+              <p>Filling this with reviews examples, you can visualize all the visualization tools and play with them.</p>
+
+              <form class="well form-vertical">
+                <fieldset>
+                  <legend>Positive and Negative Opinions</legend>  
+                  <textarea class="input-xxlarge" id="pos_reviews" rows="4">Pos</textarea>
+                  <textarea class="input-xxlarge" id="neg_reviews" rows="4">Neg</textarea>
+                </fieldset>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Evaluate</button>
+                  <button class="btn">Clean</button>
+                </div>
+              </form>
+  
+
               <h2>Arguments Graph</h2>
               <p>Quizas aca un chamullito sobre las visualizaciones, esta es la seccioncita acerca del grafo de argumentos, explicacion de los graficos, quizás algunos ejemplos respectivos</p>
-
+            
+              <div style='position:relative; height: 400px'>
+                <div class="sigma-parent sigma-expand">
+                  <div class="sigma-expand" id="sigma-1"></div>
+                </div>
+                <div class="sigma-expand" id="mouselayer-sigma-1"></div>
+              </div>
+        
               <h2>General Stats</h2>
               <p>Quizas aca un chamullito sobre un grafiquito de stats generales, con cosas del estilo: Nr POS, Nr NEG, stats de features. Operaciones basicas: average, con un score para cada feature, etc.</p>
-
+              
+              <div class="row-fluid">
+              <!--Div that will hold the stats chart-->
+                <div class="span6">
+                  <div id="chart_div1" style="width: 450px; height: 300px;" ></div>
+                </div>
+                <div class="span6">
+                  <div id="chart_div2" style="width: 450px; height: 300px;"></div>
+                </div>
+              </div>
+              <div class="row-fluid">
+               <!--Div that will hold the stats chart-->
+                 <div class="span6">
+                   <div id="chart_div3" style="width: 450px; height: 300px;" ></div>
+                 </div>
+                 <div class="span6">
+                   <div id="chart_div4" style="width: 450px; height: 300px;"></div>
+                 </div>
+              </div>
+                            
+              
               <h2>Features Breakdown</h2>
               <p>Quizas aca lo que comentaba de un dibujo del producto (si es aplicacble), y cuando pasas con el mouse por encima que te muestre los reviews, o una stat de los que hablan sobre este feature, positivo o negativo.</p>
               <p>por ejemplo:</p>
@@ -196,5 +260,12 @@
         </div>
       </section>
     </div>
+      <!-- the JS -->
+    <script src="http://sigmajs.org/js/sigma.min.js"></script>
+    <script src="sigma.parseGexf.js"></script>
+    <script src="http://sigmajs.org/js/sigma.fisheye.js"></script>
+    <script src="graph.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="stats.js"></script>
   </body>
 </html>
