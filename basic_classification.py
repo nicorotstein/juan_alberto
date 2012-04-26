@@ -45,7 +45,7 @@ def filter_tags(lista,tags):
 def extract_features(lista):
 	features =  [(standard_features[word.lower()],tag) for word,tag in lista if word.lower() in standard_features]
 	feats_words = [word for word,tag in features]
-	return set(feats_words)
+	return list(set(feats_words))
 	
 if __name__ == '__main__':
 	from classification import read_sentences_corpus
