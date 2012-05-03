@@ -90,7 +90,7 @@
         </div>
       </header>
 
-      <!-- Using Javascript w/ Bootstrap
+      <!-- Funcionality
       ================================================== -->
       <section id="functionality">
           <div class="page-header">
@@ -111,25 +111,43 @@
             </div> 
           </div>  
       </section>
+
+      <!-- Visualization
+      ================================================== -->
       <section id="visualization">
           <div class="page-header">
             <h1>Visualization <small>What and how we visualize the opinions, features and arguments</small></h1>
           </div>
-          <!--- aca buscar otro formatito  no rows -->
+          
+
           <div class="row-fluid">
+            <!--Left Side Panel-->
             <div class="span3">
               <h3>About visualization</h3>
               <p>Here we explain different visualizatin techniques, which applies to different necessities of customers and providers.</p>
             </div>
+            <!--Main Body-->
             <div class="span9">
               <h3>Visualization examples</h3>
-              <p>Filling this with reviews examples, you can visualize all the visualization tools and play with them.</p>
-
-              <form class="well form-vertical">
+              <p>Bring to your mind an imaginary hotel and rate it according to your own experience on it. Be objetive, and creative without complicating your mind. Your review will be added to an imaginary set of reviews, where you can notice the changes in the features extraction and the visualization tools.
+              <form class="well">
                 <fieldset>
-                  <legend>Positive and Negative Opinions</legend>  
-                  <textarea class="input-xxlarge" id="pos_reviews" rows="4">Pos</textarea>
-                  <textarea class="input-xxlarge" id="neg_reviews" rows="4">Neg</textarea>
+                  <div class="row-fluid">
+                    <div class="span8">
+                      <legend>Positive and Negative Opinions</legend>  
+                      <textarea class="span6" id="pos_reviews" rows="3">
+                        The Hotel was fantastic. Connected with metro Poble Sec and Sant Antoni. Excellent atmosphere and the staff was friendly.
+                      </textarea>
+                      <textarea class="span6" id="neg_reviews" rows="3">
+                        My gf couldn't find the cooking facilities at the small kitchen, so we couldn't cook the mushrooms. Price was to high in relation with services.  
+                      </textarea>
+                    </div>
+                    <div class="span3 well">
+                        <span class="label label-important">Important:</span>
+                        <p>The idea of writing reviews, is to provide a well formed opinion about the actual topic: "Hotels". So, be consistent, clear and objective. E.G. Positive: "The location was perfect, room provides good facilities and staff was friendly."</p>
+                    </div>
+                  </div>
+
                 </fieldset>
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary">Evaluate</button>
@@ -151,22 +169,26 @@
               <h2>General Stats</h2>
               <p>Quizas aca un chamullito sobre un grafiquito de stats generales, con cosas del estilo: Nr POS, Nr NEG, stats de features. Operaciones basicas: average, con un score para cada feature, etc.</p>
               
-              <div class="row-fluid">
+              <div class="row">
               <!--Div that will hold the stats chart-->
-                <div class="span6">
-                  <div id="chart_div1" style="width: 450px; height: 300px;" ></div>
+                <div class="span9">
+                  <div id="chart_div1" class="span6" ></div>
+                  <div class="span2">
+                    <p>hoal hola</p>
+                  </div>
                 </div>
+                
                 <div class="span6">
-                  <div id="chart_div2" style="width: 450px; height: 300px;"></div>
+                  <div id="chart_div2" class="span6"></div>
                 </div>
               </div>
-              <div class="row-fluid">
+              <div class="row">
                <!--Div that will hold the stats chart-->
                  <div class="span6">
-                   <div id="chart_div3" style="width: 450px; height: 300px;" ></div>
+                   <div id="chart_div3" class="span6" ></div>
                  </div>
                  <div class="span6">
-                   <div id="chart_div4" style="width: 450px; height: 300px;"></div>
+                   <div id="chart_div4" class="span6"></div>
                  </div>
               </div>
                             
@@ -174,8 +196,6 @@
               <h2>Features Breakdown</h2>
               <p>Quizas aca lo que comentaba de un dibujo del producto (si es aplicacble), y cuando pasas con el mouse por encima que te muestre los reviews, o una stat de los que hablan sobre este feature, positivo o negativo.</p>
               <p>por ejemplo:</p>
-              <img  src="http://3.bp.blogspot.com/-XvfgeLNS_4o/TzFls1rogLI/AAAAAAAARQ8/nEVWSDUzc7I/s1600/12279733602008098033rg1024_Cartoon_Camera_svg_hi.png" 
-              alt="camera" height="280" width="280" />
               <p>y que puedas pararte arriba de cada parte y salge un globito con stats de ese feature.</p>
             
               <h2>Algun otro grafico bueno</h2>
@@ -183,6 +203,10 @@
             </div>
           </div>  
       </section>
+
+      <!-- Languages
+      ================================================== -->
+
       <section id="languages">
         <div class="page-header">
           <h1>Language Domain <small>Lanaguges, Domains, Scopes...</small></h1>
@@ -202,6 +226,10 @@
           </div>
         </div>
       </section>
+
+      <!-- Users
+      ================================================== -->
+
       <section id="users">
         <div class="page-header">
           <h1>Users <small> Users, Sellers, Customers, Providers</small></h1>
@@ -221,6 +249,10 @@
           </div>
         </div>
       </section>
+
+      <!-- Users
+      ================================================== -->
+
       <section id="technology">
         <div class="page-header">
           <h1>Technology <small>Classification, Argumentation, RESTFUL APIs</small></h1>
@@ -240,6 +272,10 @@
           </div>
         </div>
       </section>
+
+      <!-- Goals
+      ================================================== -->
+
       <section id="goals">
         <div class="page-header">
           <h1>Goals <small>where we are, where we go...</small></h1>
@@ -261,6 +297,7 @@
       </section>
     </div>
       <!-- the JS -->
+    <script src="bootstrap/js/jquery.js"></script>
     <script src="http://sigmajs.org/js/sigma.min.js"></script>
     <script src="sigma.parseGexf.js"></script>
     <script src="http://sigmajs.org/js/sigma.fisheye.js"></script>

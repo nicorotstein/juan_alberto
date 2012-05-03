@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+    <meta charset="utf-8">
+    <title>Reviews Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- the styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    <style>
+      /* sigma.js context : */
+      .sigma-parent {
+        position: relative;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        background: #222;
+        width
+      }
+      
+      .sigma-expand {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <!--Sidebar content-->
+      <form class="well">
+        <fieldset>
+          <textarea class="input-xlarge" id="pos_reviews" rows="6"></textarea>
+          <textarea class="input-xlarge" id="neg_reviews" rows="6"></textarea>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Evaluate</button>
+            <button class="btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="span8">
+      <!--Body content-->
+      <div style='position:relative; height: 400px'>
+      <div class="sigma-parent sigma-expand">
+        <div class="sigma-expand" id="sigma-1"></div>
+      </div>
+      <div class="sigma-expand" id="mouselayer-sigma-1"></div>
+    </div>
+  </div>
+</div>
+
+    
+    <!-- the JS -->
+    <script src="http://sigmajs.org/js/sigma.min.js"></script>
+    <script src="sigma.parseGexf.js"></script>
+    <script src="http://sigmajs.org/js/sigma.fisheye.js"></script>
+    <script src="graph.js">
+      
+    </script>
+
+  </body>
+</html>
