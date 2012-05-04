@@ -1,0 +1,8 @@
+strict digraph G {
+1 [shape=record, label="1 | +location+staff| (4)", style=filled, fillcolor=green];
+3 [shape=record, label="3 | +view| (4)", style=filled, fillcolor=green];
+2 [shape=record, label="2 | +view-services-cost| (9)"];
+7 [shape=record, label="7 | +location-services| (6)", style=filled, fillcolor=green];
+6 [shape=record, label="6 | +staff+cost+clean+view-services| (12)", style=filled, fillcolor=green];
+6 -> 2  [label="/cost/"];
+}

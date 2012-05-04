@@ -418,12 +418,15 @@ class Grapher():
         for o in set(out):
             self.dotgraph.remove_node(o)
 
-    def recompress(self):
+    def prettyGraph(self):
+        print 'removing duplicates'
         self.remove_dupes()
         print 'resolving cycles...'
         self.resolve_cycles()
         print 'computing accepted reviews...'
         self.set_warranted()
+
+    def recompress(self):
         print 'compressing graph...'
         self.compress()
         print 'removing redundant reviews in compressed graph'
