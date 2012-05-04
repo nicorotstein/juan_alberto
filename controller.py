@@ -86,15 +86,12 @@ class ReviewsContainer():
 
         j = Judge(reviews)
         conflicts = j.get_conflicts()
+        self.g = Grapher(reviews, conflicts, j)
+        self.g.recompress()
+        Drawer.draw_dotgraph(self.g.get_graph(), 'final_graph')
+        Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
 
-        #por que pasas conflicts y j? 
-        self.g = Grapher(reviews,conflicts,j)
-        g = Grapher(reviews, conflicts, j)
-        g.set_warranted()
-        print 'flag 1'
-        Drawer.draw_graph(g.get_graph(), 'compressed_graph')
-        xml_file = open('data/compressed_graph.gexf','r')
-        print 'flag 2'
+        xml_file = open('data/final_graph','r')
         return xml_file.read()
 
     def test_rpc(self):
