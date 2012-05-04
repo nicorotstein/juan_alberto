@@ -15,6 +15,8 @@ from linguatools import Parser
 from nltk import word_tokenize
 import random
 import networkx as nx
+import gexf
+from gexf import Gexf
 
 class Review():
     '''
@@ -331,27 +333,56 @@ class Grapher():
     and the value is the node itself
     '''
     def __init__(self, nodes, edges, judge):
-        self.graph = nx.DiGraph()
+        self.dotgraph = nx.DiGraph()
+        self.graphContainer = Gexf("Nico Rotstein", 
+            "Arguiew (reviews as argumentation) graph")
+        self.graph = self.graphContainer.addGraph("mutual", 
+            "static", "Arguiew graph")
+        self.nodeWarrantAtt = self.graph.addNodeAttribute("warranted", 
+            "false", "boolean")
+        self.nodePosText = self.graph.addNodeAttribute("positive_text", "", 
+            "string")
+        self.nodeNegText = self.graph.addNodeAttribute("negative_text", "", 
+            "string")
+        self.dotnodes = {}
         self.nodes = {}
         self.warranted = set([])
         self.judge = judge
         for n in nodes:
-            self.graph.add_node(n.id, shape="record", color="r", label=n.get_label(), attributes='hello!')
-            self.nodes[n.id] = n
+            self.nodes[n.id] = self.graph.addNode(n.id, n.get_formatted_atts())
+            self.nodes[n.id].addAttribute(self.nodePosText, n.positive_text)
+            self.nodes[n.id].addAttribute(self.nodeNegText, n.negative_text)
+            self.dotgraph.add_node(n.id, shape="record", label=n.get_label())
+            self.dotnodes[n.id] = n
+            # self.nodes[n.id].addAttribute(self.nodeWarrantAtt, "true")
         for (n1, n2) in edges:
             if judge.equivalent(n1, n2):
-                self.graph.add_edge(n1.id, n2.id, color="red", dir="both", label=n1.get_conf_label(n2))
-                self.graph.add_edge(n2.id, n1.id, color="transparent")
+                e = self.graph.addEdge(n1.id + '-' + n2.id, n1.id, n2.id, 
+                    label=n1.get_conf_label(n2))
+                e.setColor("200", "20", "20")
+                e = self.graph.addEdge(n2.id + '-' + n1.id, n2.id, n1.id, 
+                    label=n1.get_conf_label(n2))
+                e.setColor("200", "20", "20")
+                self.dotgraph.add_edge(n1.id, n2.id, color="red", dir="both", 
+                    label=n1.get_conf_label(n2))
+                self.dotgraph.add_edge(n2.id, n1.id, color="transparent")
             else:
                 (better, worse) = judge.get_better_review(n1, n2)
-                self.graph.add_edge(better.id, worse.id, label=better.get_conf_label(worse))
+                self.graph.addEdge(better.id + '>' + worse.id, better.id, worse.id, 
+                    label=better.get_conf_label(worse))
+                # e.setColor("200", "20", "20")
+                self.dotgraph.add_edge(better.id, worse.id, 
+                    label=better.get_conf_label(worse))
 
-    def get_graph(self):
-        return self.graph
+    def get_container(self):
+        return self.graphContainer
+
+    def get_dotgraph(self):
+        return self.dotgraph
 
     def resolve_cycles(self): 
         # capture all cycles
-        cycles = nx.simple_cycles(self.graph)
+        cycles = nx.simple_cycles(self.dotgraph)
         # the kind of cycles we are interested in are either binary (eg, [1,2,1]) or
         # even-lengthed (eg, [0,1,2,0]) - here we capture the latter and flag them
         # as "blocked"- don't be fooled by the length of the list
@@ -365,9 +396,9 @@ class Grapher():
         for cycle in cycles:
             # we store all predecessors of all cycles and compute all successors
             cycle_set = list(set(cycle))
-            cycle_predecessors = tools.all_predecessors(self.graph, cycle_set, [])
+            cycle_predecessors = tools.all_predecessors(self.dotgraph, cycle_set, [])
             cycle_predecessors = list(set(cycle_predecessors) - set(blocked))
-            cycle_successors = tools.all_successors(self.graph, cycle_set, [])
+            cycle_successors = tools.all_successors(self.dotgraph, cycle_set, [])
             preds[str(cycle)] = cycle_predecessors
             # whenever a cycle has no predecessors, it introduces undecidedness
             # hence we store all successors in a global list of nodes that are
@@ -378,22 +409,37 @@ class Grapher():
         # are affected by cycles that have no predecessors or... and so on and so forth
         out = []
         for cycle in cycles:
-            if (preds[str(cycle)] == []) or (set(preds[str(cycle)]) & set(affected_by_cycles) == []):
+            if (preds[str(cycle)] == []) or (set(preds[str(cycle)]) & 
+                set(affected_by_cycles) == []):
                 out += cycle
         if out != []:
             # print "out due to unforgiving cycles: ", out
             print len(out), "reviews were involved in improper cycling"
         for o in set(out):
-            self.graph.remove_node(o)
+            self.dotgraph.remove_node(o)
+
+    def recompress(self):
+        self.remove_dupes()
+        print 'resolving cycles...'
+        self.resolve_cycles()
+        print 'computing accepted reviews...'
+        self.set_warranted()
+        print 'compressing graph...'
+        self.compress()
+        print 'removing redundant reviews in compressed graph'
+        self.remove_dupes()
+        print 'recompressing graph...'
+        self.compress()
+        print 'recompression done'
 
     def remove_dupes(self):
         removals = []
-        remaining_nodes = set(self.graph.nodes())
+        remaining_nodes = set(self.dotgraph.nodes())
         while remaining_nodes != set([]):
             n = remaining_nodes.pop()
             for n2 in remaining_nodes:
-                # if set(self.nodes[n].attributes) == set(self.nodes[n2].attributes):
-                if set(self.nodes[n2].attributes).issubset(set(self.nodes[n].attributes)):
+                if set(self.dotnodes[n2].attributes).issubset(
+                    set(self.dotnodes[n].attributes)):
                     removals.append(n2)
         if removals != []:
             # print "out due to redundance: ", set(removals)
@@ -402,69 +448,92 @@ class Grapher():
             else:
                 print len(set(removals)), "reviews were redundant"
         for r in set(removals):
-            self.graph.remove_node(r)
+            self.dotgraph.remove_node(r)
 
     def set_warranted(self):
-        undefeated = set([node for (node,x) in self.graph.edges()]) - \
-                      set([node for (x,node) in self.graph.edges()])
-        undefeated |= set([node for node in self.graph.nodes() 
-                           if nx.is_isolate(self.graph, node)])
-        warranted = undefeated | self.judge.grounded(undefeated, self.graph, set([]), set([]))
+        undefeated = set([node for (node,x) in self.dotgraph.edges()]) - \
+                      set([node for (x,node) in self.dotgraph.edges()])
+        undefeated |= set([node for node in self.dotgraph.nodes() 
+                           if nx.is_isolate(self.dotgraph, node)])
+        warranted = undefeated | self.judge.grounded(undefeated, self.dotgraph, 
+            set([]), set([]))
         for w in warranted:
-            self.graph.add_node(w, style="filled", fillcolor="green")
+            self.dotgraph.add_node(w, style="filled", fillcolor="green")
+            self.nodes[w].addAttribute(self.nodeWarrantAtt, "true")
         self.warranted = warranted
         print len(warranted), "reviews were accepted"
 
     def compress(self):
-        first_stage = set([node for (node,x) in self.graph.edges()]) - \
-                      set([node for (x,node) in self.graph.edges()])
-        first_stage |= set([node for node in self.graph.nodes() 
-                           if nx.is_isolate(self.graph, node)])
+        first_stage = set([node for (node,x) in self.dotgraph.edges()]) - \
+                      set([node for (x,node) in self.dotgraph.edges()])
+        first_stage |= set([node for node in self.dotgraph.nodes() 
+                           if nx.is_isolate(self.dotgraph, node)])
         defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
         cs = []
         cid = 0
         for stage in defeat_stages:
             cs += self.consistent_subsets(stage, self.warranted)
+        compressed_dotnodes = {}
         compressed_nodes = {}
         has_compressed = {}
         compressed_warranted = set([])
-        compressed_graph = nx.DiGraph()
+        compressed_dotgraph = nx.DiGraph()
+        compressed_graph_container = Gexf("Nico Rotstein", 
+            "Arguiew (reviews as argumentation) compressed graph")
+        compressed_graph = compressed_graph_container.addGraph("directed", 
+            "static", "Arguiew compressed graph")
+        self.nodeWarrantAtt = compressed_graph.addNodeAttribute("warranted", 
+            "false", "boolean")
+        # self.nodePosText = compressed_graph.addNodeAttribute("positive_text", "", 
+        #     "string")
+        # self.nodeNegText = compressed_graph.addNodeAttribute("negative_text", "", 
+        #     "string")
         for subset in cs:
             positive_feats = set([])
             negative_feats = set([])
             for i in subset:
-                positive_feats |= set(self.nodes[i].get_positive_feats())
-                negative_feats |= set(self.nodes[i].get_negative_feats())
+                positive_feats |= set(self.dotnodes[i].get_positive_feats())
+                negative_feats |= set(self.dotnodes[i].get_negative_feats())
                 r = Review(cid, 
                            {'feats': list(positive_feats),'text': []}, 
                            {'feats': list(negative_feats),'text': []})
-            compressed_nodes[r.id] = r
+            compressed_dotnodes[r.id] = r
+            compressed_nodes[r.id] = compressed_graph.addNode(r.id, 
+                r.get_formatted_atts())
             has_compressed[r.id] = subset
             cid += 1
             if subset.issubset(self.warranted):
+                compressed_nodes[r.id].addAttribute(self.nodeWarrantAtt, "true")
                 compressed_warranted.add(r.id)
-                compressed_graph.add_node(r.id, style="filled", fillcolor="green", 
-                                          shape="record", label=str(r.subset_label(subset)))
+                compressed_dotgraph.add_node(r.id, style="filled", 
+                    fillcolor="green", shape="record", 
+                    label=str(r.subset_label(subset)))
             else:
-                compressed_graph.add_node(r.id, shape="record", label=str(r.subset_label(subset)))
+                compressed_dotgraph.add_node(r.id, shape="record", 
+                    label=str(r.subset_label(subset)))
         for id1, n1 in has_compressed.items():
             for id2, n2 in has_compressed.items():
                 for i in n1:
                     for j in n2:
-                        ri = self.nodes[i]
-                        rj = self.nodes[j]
+                        ri = self.dotnodes[i]
+                        rj = self.dotnodes[j]
                         if ri.in_conflict(rj) and \
-                           not (id1, id2) in compressed_graph.edges() and \
-                           not (id2, id1) in compressed_graph.edges():
-                            compressed_graph.add_edge(id1, id2, dir="none")
+                           not (id1, id2) in compressed_dotgraph.edges() and \
+                           not (id2, id1) in compressed_dotgraph.edges():
+                            compressed_dotgraph.add_edge(id1, id2, dir="none")
+                            compressed_graph.addEdge(id1 + "-" + id2, id1, id2)
+                            compressed_graph.addEdge(id2 + "-" + id1, id2, id1)
         self.warranted = compressed_warranted
+        self.dotgraph = compressed_dotgraph
+        self.dotnodes = compressed_dotnodes
         self.graph = compressed_graph
+        self.graphContainer = compressed_graph_container
         self.nodes = compressed_nodes
 
     def stages(self, fringe, so_far):
         next = set()
         for r in fringe:
-            next = next | set(self.graph.successors(r))
+            next = next | set(self.dotgraph.successors(r))
         next = next - so_far - fringe
         if next == set([]):
             return []
@@ -486,16 +555,14 @@ class Grapher():
             ss = set()
             ps = set()
             for elem in elems:
-                ss |= set(self.graph.successors(elem))
-                ps |= set(self.graph.predecessors(elem))
+                ss |= set(self.dotgraph.successors(elem))
+                ps |= set(self.dotgraph.predecessors(elem))
             next = rest.pop()
-            # print "next: " + next
-            if next in ss or next in ps or set(elems).issubset(warranted) and next not in warranted:
-                # print next + " is inconsistent with " + str(elems)
+            if (next in ss or next in ps or set(elems).issubset(warranted) 
+                and next not in warranted):
                 (i, c) = self.consistent_in_rest(elems, rest, warranted)
                 return (i | set([next]), c | set(elems))
             else:
-                # print next + " is consistent with " + str(elems)
                 (i, c) = self.consistent_in_rest(elems + [next], rest, warranted)
                 return (i, set(elems + [next]) | c)
 

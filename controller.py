@@ -58,7 +58,7 @@ class ListReviews():
 
         return review_list
 
-    def parseTest(self,pos,neg):
+    def get_statistics(self,pos,neg):
         loaded_pos, loaded_neg = self.load_corpus_reviews(200,250)
         user_pos, user_neg = self.tag_new_reviews(pos,neg)
         loaded_pos.extend(user_pos)
@@ -77,7 +77,7 @@ class ListReviews():
 
         
 
-    def parseThis(self,pos,neg): 
+    def get_arguments_graph(self,pos,neg): 
         loaded_pos, loaded_neg = self.load_corpus_reviews(200,210)
         user_pos, user_neg = self.tag_new_reviews(pos,neg)
         loaded_pos.extend(user_pos)

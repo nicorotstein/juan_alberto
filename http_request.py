@@ -18,7 +18,7 @@ class Stats():
 		cherrypy.response.headers['Access-Control-Allow-Origin'] = '*'
 		cherrypy.response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
 		lr = ListReviews()
-		data = lr.parseTest([pos],[neg])
+		data = lr.get_statistics([pos],[neg])
 		json_data = json.dumps(data)
 		return json_data
 
@@ -27,7 +27,7 @@ class Stats():
 		cherrypy.response.headers['Access-Control-Allow-Origin'] = '*'
 		cherrypy.response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
 		lr = ListReviews()
-		data = lr.parseTest([pos],[neg])
+		data = lr.get_statistics([pos],[neg])
 
 		tot_pos, tot_neg = 0, 0
 		for feat in data['pos']:
