@@ -12,7 +12,7 @@ from collections import defaultdict
 #agregar server xmlrpc
 #cada object review tine atributo rating
 
-class ListReviews():
+class ReviewsContainer():
     def __init__(self):
         #self.tagger = NGramTagger('en')
         pass
@@ -101,7 +101,7 @@ class ListReviews():
         return 'evtg ok'
 
 def main():
-    l = ListReviews()
+    l = ReviewsContainer()
     
 if __name__ == '__main__':
     main()
