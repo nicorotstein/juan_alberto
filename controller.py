@@ -102,8 +102,7 @@ class ListReviews():
 
 def main():
     l = ListReviews()
-    reviews = l.parseTest(["This is a new review about this Hotel. Staff was friendly, location perfect."],["this is the new nevative review. facilities sucks, view is ugly."])
-    print reviews
+    
 if __name__ == '__main__':
     main()
 
