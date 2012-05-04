@@ -88,7 +88,7 @@ class ReviewsContainer():
         conflicts = j.get_conflicts()
         self.g = Grapher(reviews, conflicts, j)
         self.g.recompress()
-        Drawer.draw_dotgraph(self.g.get_graph(), 'final_graph')
+        Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
 
         xml_file = open('data/final_graph.gexf','r')
