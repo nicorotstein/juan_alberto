@@ -5,6 +5,7 @@ Created on Nov 30, 2011
 
 '''
 
+# -*- coding: utf-8 -*-
 NUM_RANDOM = 100
 
 import tools
@@ -250,7 +251,6 @@ class Judge():
         self.count_features()
         
     def get_conflicts(self):
-
         return [(arg1, arg2) 
                 for arg1 in self.arguments for arg2 in self.arguments
                 if arg1.in_conflict(arg2) and arg1.id < arg2.id]
@@ -332,50 +332,57 @@ class Grapher():
     a dictionary of nodes whose key is the node id 
     and the value is the node itself
     '''
-    def __init__(self, nodes, edges, judge):
+    def __init__(self, nodes):
+        self.cid = 0
+        self.judge = Judge(nodes)
+        edges = self.judge.get_conflicts()
         self.dotgraph = nx.DiGraph()
-        self.graphContainer = Gexf("Nico Rotstein", 
+        self.graph_container = Gexf("Nico Rotstein", 
             "Arguiew (reviews as argumentation) graph")
-        self.graph = self.graphContainer.addGraph("mutual", 
-            "static", "Arguiew graph")
-        self.nodeWarrantAtt = self.graph.addNodeAttribute("warranted", 
-            "false", "boolean")
-        self.nodePosText = self.graph.addNodeAttribute("positive_text", "", 
-            "string")
-        self.nodeNegText = self.graph.addNodeAttribute("negative_text", "", 
-            "string")
         self.dotnodes = {}
-        self.nodes = {}
         self.warranted = set([])
-        self.judge = judge
         for n in nodes:
-            self.nodes[n.id] = self.graph.addNode(n.id, n.get_formatted_atts())
-            self.nodes[n.id].addAttribute(self.nodePosText, n.positive_text)
-            self.nodes[n.id].addAttribute(self.nodeNegText, n.negative_text)
-            self.dotgraph.add_node(n.id, shape="record", label=n.get_label())
-            self.dotnodes[n.id] = n
-            # self.nodes[n.id].addAttribute(self.nodeWarrantAtt, "true")
+            if n.attributes != []:
+                self.dotgraph.add_node(n.id, shape="record", 
+                    label=n.get_label())
+                self.dotnodes[n.id] = n
         for (n1, n2) in edges:
-            if judge.equivalent(n1, n2):
-                e = self.graph.addEdge(n1.id + '-' + n2.id, n1.id, n2.id, 
-                    label=n1.get_conf_label(n2))
-                e.setColor("200", "20", "20")
-                e = self.graph.addEdge(n2.id + '-' + n1.id, n2.id, n1.id, 
-                    label=n1.get_conf_label(n2))
-                e.setColor("200", "20", "20")
+            if self.judge.equivalent(n1, n2):
                 self.dotgraph.add_edge(n1.id, n2.id, color="red", dir="both", 
                     label=n1.get_conf_label(n2))
                 self.dotgraph.add_edge(n2.id, n1.id, color="transparent")
             else:
-                (better, worse) = judge.get_better_review(n1, n2)
-                self.graph.addEdge(better.id + '>' + worse.id, better.id, worse.id, 
-                    label=better.get_conf_label(worse))
-                # e.setColor("200", "20", "20")
+                (better, worse) = self.judge.get_better_review(n1, n2)
                 self.dotgraph.add_edge(better.id, worse.id, 
                     label=better.get_conf_label(worse))
 
     def get_container(self):
-        return self.graphContainer
+        graph = self.graph_container.addGraph("directed", 
+            "static", "Arguiew graph")
+        nodeWarrantAtt = graph.addNodeAttribute("warranted", 
+            "false", "boolean")
+        nodePosText = graph.addNodeAttribute("positive_text", "", 
+            "string")
+        nodeNegText = graph.addNodeAttribute("negative_text", "", 
+            "string")
+        nodes = []
+        for n in self.dotgraph.nodes():
+            nodes.append(self.dotnodes[n])
+        self.judge = Judge(nodes)
+        edges = self.judge.get_conflicts()
+        node_handlers = {}
+        for n in nodes:
+            i = graph.addNode(n.id, n.get_formatted_atts())
+            node_handlers[n.id] = i
+            i.addAttribute(nodePosText, str(n.positive_text))
+            i.addAttribute(nodeNegText, str(n.negative_text))
+        for (n1,n2) in edges:
+            graph.addEdge(n1.id + '-' + n2.id, n1.id, n2.id, 
+                label=n1.get_conf_label(n2))
+        for w in self.warranted:
+            node_handlers[w].addAttribute(nodeWarrantAtt, "true")
+            node_handlers[w].setColor("20", "200", "20")
+        return self.graph_container
 
     def get_dotgraph(self):
         return self.dotgraph
@@ -462,8 +469,6 @@ class Grapher():
             set([]), set([]))
         for w in warranted:
             self.dotgraph.add_node(w, style="filled", fillcolor="green")
-            self.nodes[w].addAttribute(self.nodeWarrantAtt, "true")
-            self.nodes[w].setColor("20", "200", "20")
         self.warranted = warranted
         print len(warranted), "reviews were accepted"
 
@@ -474,7 +479,6 @@ class Grapher():
                            if nx.is_isolate(self.dotgraph, node)])
         defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
         cs = []
-        cid = 0
         for stage in defeat_stages:
             cs += self.consistent_subsets(stage, self.warranted)
         compressed_dotnodes = {}
@@ -482,13 +486,12 @@ class Grapher():
         has_compressed = {}
         compressed_warranted = set([])
         compressed_dotgraph = nx.DiGraph()
-        compressed_graph_container = Gexf("Nico Rotstein", 
-            "Arguiew (reviews as argumentation) compressed graph")
-        compressed_graph = compressed_graph_container.addGraph("directed", 
-            "static", "Arguiew compressed graph")
-        self.nodeWarrantAtt = compressed_graph.addNodeAttribute("warranted", 
-            "false", "boolean")
-        # self.nodePosText = compressed_graph.addNodeAttribute("positive_text", "", 
+        # self.compressed_graph_container = Gexf("Nico Rotstein", 
+            # "Arguiew (reviews as argumentation) compressed graph")
+        # compressed_graph = self.graph_container.addGraph("directed", "static", "Arguiew compressed graph")
+        # nodeWarrantAtt = compressed_graph.addNodeAttribute("warranted", 
+        #     "false", "boolean")
+        # # self.nodePosText = compressed_graph.addNodeAttribute("positive_text", "", 
         #     "string")
         # self.nodeNegText = compressed_graph.addNodeAttribute("negative_text", "", 
         #     "string")
@@ -498,17 +501,13 @@ class Grapher():
             for i in subset:
                 positive_feats |= set(self.dotnodes[i].get_positive_feats())
                 negative_feats |= set(self.dotnodes[i].get_negative_feats())
-                r = Review(cid, 
+                r = Review('c' + str(self.cid), 
                            {'feats': list(positive_feats),'text': []}, 
                            {'feats': list(negative_feats),'text': []})
             compressed_dotnodes[r.id] = r
-            compressed_nodes[r.id] = compressed_graph.addNode(r.id, 
-                r.get_formatted_atts())
             has_compressed[r.id] = subset
-            cid += 1
+            self.cid += 1
             if subset.issubset(self.warranted):
-                compressed_nodes[r.id].addAttribute(self.nodeWarrantAtt, "true")
-                compressed_nodes[r.id].setColor("20", "200", "20")
                 compressed_warranted.add(r.id)
                 compressed_dotgraph.add_node(r.id, style="filled", 
                     fillcolor="green", shape="record", 
@@ -526,14 +525,9 @@ class Grapher():
                            not (id1, id2) in compressed_dotgraph.edges() and \
                            not (id2, id1) in compressed_dotgraph.edges():
                             compressed_dotgraph.add_edge(id1, id2, dir="none")
-                            compressed_graph.addEdge(id1 + "-" + id2, id1, id2)
-                            compressed_graph.addEdge(id2 + "-" + id1, id2, id1)
         self.warranted = compressed_warranted
         self.dotgraph = compressed_dotgraph
         self.dotnodes = compressed_dotnodes
-        self.graph = compressed_graph
-        self.graphContainer = compressed_graph_container
-        self.nodes = compressed_nodes
 
     def stages(self, fringe, so_far):
         next = set()

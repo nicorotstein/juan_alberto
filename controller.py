@@ -82,15 +82,15 @@ class ReviewsContainer():
         loaded_neg.extend(user_neg)
         reviews = self.create_list_reviews(loaded_pos,loaded_neg)
 
-        j = Judge(reviews)
-        conflicts = j.get_conflicts()
-        self.g = Grapher(reviews, conflicts, j)
+        self.g = Grapher(reviews)
         self.g.prettyGraph()
-        # Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
-        # Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
+        Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
+        Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
+        # every time get_container() is invoked, a new graph is generated
         self.g.recompress()
         Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
+        # final_graph.gexf contains both the original graph and the final one
 
         xml_file = open('data/final_graph.gexf','r')
         return xml_file.read()

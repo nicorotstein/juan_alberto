@@ -1,5 +1,5 @@
 strict digraph G {
-1 [shape=record, label="1 | ['0'] | +staff+cost+location+clean+view-services", style=filled, fillcolor=green];
-0 [shape=record, label="0 | ['1'] | +view-services-cost"];
-1 -> 0  [dir=none];
+c3 [shape=record, label="c3 | ['c0'] | +staff+cost+location+clean+view-services", style=filled, fillcolor=green];
+c2 [shape=record, label="c2 | ['c1'] | +view-services-cost"];
+c3 -> c2  [dir=none];
 }

@@ -15,4 +15,5 @@ class Drawer():
 	def draw_gexfgraph(cls, graph_container, filename):
 		gexf_file = open('data/' + filename + '.gexf', 'w')
 		graph_container.write(gexf_file)
+		
 # EOF
