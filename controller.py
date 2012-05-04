@@ -91,7 +91,7 @@ class ReviewsContainer():
         Drawer.draw_dotgraph(self.g.get_graph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
 
-        xml_file = open('data/final_graph','r')
+        xml_file = open('data/final_graph.gexf','r')
         return xml_file.read()
 
     def test_rpc(self):
@@ -99,6 +99,7 @@ class ReviewsContainer():
 
 def main():
     l = ReviewsContainer()
+    print l.get_arguments_graph([],[])
     
 if __name__ == '__main__':
     main()
