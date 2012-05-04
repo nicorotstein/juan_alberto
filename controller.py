@@ -75,8 +75,6 @@ class ReviewsContainer():
 
         return{'pos':pos_stats, 'neg':neg_stats}
 
-        
-
     def get_arguments_graph(self,pos,neg): 
         loaded_pos, loaded_neg = self.load_corpus_reviews(200,210)
         user_pos, user_neg = self.tag_new_reviews(pos,neg)
@@ -88,8 +86,8 @@ class ReviewsContainer():
         conflicts = j.get_conflicts()
         self.g = Grapher(reviews, conflicts, j)
         self.g.prettyGraph()
-        Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
-        Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
+        # Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
+        # Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
         self.g.recompress()
         Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')

@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-03T21:44:12.473984">
+  <meta lastmodified="2012-05-03T22:08:08.150963">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) compressed graph</description>
   </meta>
@@ -17,6 +17,7 @@
         <attvalues>
           <attvalue for="0" value="true"/>
         </attvalues>
+        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="0" label="+view-services-cost">
         <attvalues/>

@@ -463,6 +463,7 @@ class Grapher():
         for w in warranted:
             self.dotgraph.add_node(w, style="filled", fillcolor="green")
             self.nodes[w].addAttribute(self.nodeWarrantAtt, "true")
+            self.nodes[w].setColor("20", "200", "20")
         self.warranted = warranted
         print len(warranted), "reviews were accepted"
 
@@ -507,6 +508,7 @@ class Grapher():
             cid += 1
             if subset.issubset(self.warranted):
                 compressed_nodes[r.id].addAttribute(self.nodeWarrantAtt, "true")
+                compressed_nodes[r.id].setColor("20", "200", "20")
                 compressed_warranted.add(r.id)
                 compressed_dotgraph.add_node(r.id, style="filled", 
                     fillcolor="green", shape="record", 
