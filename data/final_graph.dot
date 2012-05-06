@@ -1,5 +1,24 @@
 strict digraph G {
-c3 [shape=record, label="c3 | ['c0'] | +staff+cost+location+clean+view-services", style=filled, fillcolor=green];
-c2 [shape=record, label="c2 | ['c1'] | +view-services-cost"];
+c3 [shape=record, label="c3 | ['31', '21', '41'] | +location-comfort-ambience-cost-services-view-staff"];
+c2 [shape=record, label="c2 | ['27', '20', '30'] | +services+comfort+location-ambience-price-staff"];
+c1 [shape=record, label="c1 | ['24', '14', '17', '19', '32', '34'] | +ambience+view-price-comfort-location-clean-services-staff"];
+c0 [shape=record, label="c0 | ['26', '33', '29', '35'] | +staff+comfort+location+view-services-price", style=filled, fillcolor=green];
+c6 [shape=record, label="c6 | ['10'] | +location-clean"];
+c5 [shape=record, label="c5 | ['47', '2'] | +view+staff-services-cost-clean"];
+c4 [shape=record, label="c4 | ['1', '6', '46', '18', '37', '40'] | +comfort+cost+location+clean+view+staff-services-ambience", style=filled, fillcolor=green];
 c3 -> c2  [dir=none];
+c3 -> c1  [dir=none];
+c3 -> c0  [dir=none];
+c3 -> c5  [dir=none];
+c3 -> c4  [dir=none];
+c2 -> c1  [dir=none];
+c2 -> c0  [dir=none];
+c2 -> c5  [dir=none];
+c2 -> c4  [dir=none];
+c1 -> c0  [dir=none];
+c1 -> c6  [dir=none];
+c1 -> c5  [dir=none];
+c1 -> c4  [dir=none];
+c6 -> c4  [dir=none];
+c5 -> c4  [dir=none];
 }

@@ -76,18 +76,17 @@ class ReviewsContainer():
         return{'pos':pos_stats, 'neg':neg_stats}
 
     def get_arguments_graph(self,pos,neg): 
-        loaded_pos, loaded_neg = self.load_corpus_reviews(200,210)
+        loaded_pos, loaded_neg = self.load_corpus_reviews(200,250)
         user_pos, user_neg = self.tag_new_reviews(pos,neg)
         loaded_pos.extend(user_pos)
         loaded_neg.extend(user_neg)
         reviews = self.create_list_reviews(loaded_pos,loaded_neg)
 
         self.g = Grapher(reviews)
-        self.g.prettyGraph()
         Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
         # every time get_container() is invoked, a new graph is generated
-        self.g.recompress()
+        self.g.compress()
         Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
         # final_graph.gexf contains both the original graph and the final one
@@ -100,7 +99,8 @@ class ReviewsContainer():
 
 def main():
     l = ReviewsContainer()
-    print l.get_arguments_graph([],[])
+    #print 
+    l.get_arguments_graph([],[])
     
 if __name__ == '__main__':
     main()
