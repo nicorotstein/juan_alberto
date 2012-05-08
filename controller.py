@@ -100,7 +100,9 @@ class ReviewsContainer():
 
 def test():
     reviews_file = open('./test/reviews.txt', 'r')
+    i = 1
     for line in reviews_file:
+        if i % 1 == 0:
         print line
 
 def main():
