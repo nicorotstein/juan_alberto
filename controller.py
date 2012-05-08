@@ -9,8 +9,9 @@ from basic_classification import extract_features
 from model import Review
 from nltk.corpus.reader import TaggedCorpusReader
 from collections import defaultdict
+from bodao import BusinessObject
 #agregar server xmlrpc
-#cada object review tine atributo rating
+#cada object review tiene atributo rating
 
 class ReviewsContainer():
     def __init__(self):
@@ -97,11 +98,16 @@ class ReviewsContainer():
     def test_rpc(self):
         return 'evtg ok'
 
+def test():
+    reviews_file = open('./test/reviews.txt', 'r')
+    for line in reviews_file:
+        print line
+
 def main():
     l = ReviewsContainer()
     #print 
     l.get_arguments_graph([],[])
     
 if __name__ == '__main__':
-    main()
+    test()
 

@@ -7,7 +7,7 @@ from nltk import word_tokenize
 #Business Object --- 
 #This object is responsible of creating the DAO (data access object), 
 #who reads the data from storage. Here we create the model instances. 
-class BussinesObject(object):
+class BusinessObject(object):
     def __init__(self):
         pass
 
@@ -68,7 +68,7 @@ class CorpusReader(object):
     #reader = LazyCorpusLoader()
 
 def main_bo():
-	bo = BussinesObject()
+	bo = BusinessObject()
 	rev = bo.create_review("location and price","ambience and staff")
 	print rev.positive_text
 	print rev.positive_feats

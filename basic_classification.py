@@ -1,5 +1,5 @@
 standard_features = {'clean':'clean',
-					'dirty':'clean',
+					 'dirty':'clean',
 					 'comfort':'comfort',
 					 'location':'location',
 					 'connection':'location',
@@ -35,8 +35,6 @@ standard_features = {'clean':'clean',
 					 'noisy':'comfort',
 					 'silent':'comfort',
 					 'check':'staff'
-
-
 					}
 
 def filter_tags(lista,tags):
