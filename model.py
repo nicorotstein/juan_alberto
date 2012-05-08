@@ -16,8 +16,8 @@ from linguatools import Parser
 from nltk import word_tokenize
 import random
 import networkx as nx
-import gexf
-from gexf import Gexf
+import pygexf
+from pygexf import Gexf
 
 class Review():
     '''
@@ -444,7 +444,6 @@ class Grapher():
             self.dotgraph.remove_node(o)
 
     def prettyGraph(self):
-        print 'removing duplicates'
         self.remove_dupes()
         print 'resolving cycles...'
         self.resolve_cycles()
