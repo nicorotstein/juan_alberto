@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-08T13:47:18.158162">
+  <meta lastmodified="2012-05-09T13:36:24.923540">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -18,495 +18,101 @@
       <attribute id="3" title="has_compressed" type="liststring">
         <default>[]</default>
       </attribute>
+      <attribute id="4" title="redundant" type="liststring">
+        <default>[]</default>
+      </attribute>
     </attributes>
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
     <nodes>
-      <node id="24" label="-services-comfort">
+      <node id="1" label="+staff-price-comfort-restaurant">
         <attvalues>
-          <attvalue for="1" value="[('Nothing', 'NN'), ('except', 'IN'), ('that', 'IN'), ('it', 'PRP'), ('is', 'VBZ'), ('located', 'VBN'), ('in', 'IN'), ('paris', 'PRP$')]"/>
-          <attvalue for="2" value="[('rooms', 'NNS'), ('are', 'VBP'), ('too', 'RB'), ('old', 'JJ'), (',', ','), ('not', 'RB'), ('mantained', 'VBN'), (',', ','), ('we', 'PRP'), ('had', 'VBD'), ('to', 'TO'), ('change', 'VB'), ('a', 'DT'), ('room', 'NN'), ('because', 'IN'), ('of', 'IN'), ('the', 'DT'), ('toilet', 'NN'), ('was', 'VBD'), ('not', 'RB'), ('working', 'VBG'), ('properly..', ')'), ('rooms', 'NNS'), ('are', 'VBP'), ('as', 'IN'), ('size', 'NN'), ('as', 'IN'), ('the', 'DT'), ('bed...', 'NNP'), ('free', 'JJ'), ('wifi', 'FW'), ('was', 'VBD'), ('very', 'RB'), ('very', 'RB'), ('bad', 'JJ'), ('although', 'IN'), ('the', 'DT'), ('router', 'NN'), ('was', 'VBD'), ('just', 'RB'), ('inside', 'VB'), ('the', 'DT'), ('room', 'NN'), ('.', '.')]"/>
+          <attvalue for="1" value="[('I', 'PRP'), ('liked', 'VBD'), ('situation', 'NN'), ('of', 'IN'), ('hotel', 'NN'), (',', ','), ('friendly', 'RB'), ('staff', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Quite', 'NNP'), ('dark', 'VBD'), ('and', 'CC'), ('cold', 'JJ'), ('single', 'JJ'), ('room', 'NN'), (',', ','), ('everyday', 'NN'), ('the', 'DT'), ('same', 'JJ'), ('breakfast', 'NN'), ('without', 'IN'), ('any', 'DT'), ('vegetables.', 'NNP'), ('But', 'CC'), ('for', 'IN'), ('this', 'DT'), ('money', 'NN'), ('I', 'PRP'), ('could', 'MD'), ('not', 'RB'), ('expect', 'VB'), ('probably', 'RB'), ('more', 'RBR'), ('.', '.')]"/>
+          <attvalue for="4" value="['5']"/>
         </attvalues>
       </node>
-      <node id="26" label="+comfort+location+view-services">
+      <node id="0" label="+fun+location-comfort-restaurant">
         <attvalues>
-          <attvalue for="1" value="[('Nice', 'NNP'), ('location', 'NN'), ('and', 'CC'), ('good', 'JJ'), ('sized', 'VBN'), ('room', 'NN'), ('which', 'WDT'), ('was', 'VBD'), ('nice', 'JJ'), ('and', 'CC'), ('clean.Great', 'JJ'), ('view', 'NN'), ('if', 'IN'), ('you', 'PRP'), ('are', 'VBP'), ('on', 'IN'), ('the', 'DT'), ('upper', 'JJ'), ('floors.The', 'DT'), ('Eiffel', 'NNP'), ('Tower', 'NNP'), ('view', 'NN'), ('would', 'MD'), ('have', 'VB'), ('been', 'VBN'), ('even', 'RB'), ('better', 'JJR'), ('but', 'CC'), ('there', 'EX'), ('were', 'VBD'), ('not', 'RB'), ('rooms', 'NNS'), ('available', 'JJ'), ('.', '.')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('Crew', 'NNP'), ('was', 'VBD'), ('very', 'RB'), ('bad', 'JJ'), (',', ','), ('they', 'PRP'), ('trying', 'VBG'), ('to', 'TO'), ('get', 'VB'), ('more', 'JJR'), ('money', 'NN'), ('for', 'IN'), ('any', 'DT'), ('service', 'NN'), ('or', 'CC'), ('support', 'VB'), ('which', 'WDT'), ('it', 'PRP'), ('a', 'DT'), ('duty', 'NN'), ('jobs', 'NNS'), (',', ','), ('another', 'DT'), ('thing', 'NN'), ('the', 'DT'), ('house', 'NN'), ('keeping', 'VBG'), ('enter', 'JJR'), ('your', 'PRP$'), ('room', 'NN'), ('without', 'IN'), ('any', 'DT'), ('knocking', 'VBG'), ('or', 'CC'), ('ringing', 'VBG'), ('(', '#'), ('suddenly', 'RB'), (')', '#'), ('.', '.')]"/>
+          <attvalue for="1" value="[('Location', 'NN'), ('great', 'VBD'), ('for', 'IN'), ('nightlife', 'NN')]"/>
+          <attvalue for="2" value="[('rooms', 'NNS'), ('small', 'JJ'), ('breakfast', 'NN'), ('minimal', 'JJ')]"/>
+        </attvalues>
+      </node>
+      <node id="3" label="+location+quiet-fun-comfort">
+        <attvalues>
+          <attvalue for="1" value="[('Relaxing', 'VBG'), (',', ','), ('excelent', 'NN'), ('lobby', 'NN'), (',', ','), ('great', 'JJ'), ('location', 'NN'), (',', ','), ('calm', 'NN')]"/>
+          <attvalue for="2" value="[('I', 'PRP'), ('was', 'VBD'), ('affraid', 'VBN'), ('that', 'IN'), ('my', 'PRP$'), ('bed', 'VBN'), ('was', 'VBD'), ('going', 'VBG'), ('to', 'TO'), ('crash', 'VB'), ('during', 'IN'), ('the', 'DT'), ('night', 'NN'), (',', ','), ('the', 'DT'), ('cleanliness', 'NN'), ('of', 'IN'), ('the', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('bad', 'JJ'), (',', ','), ('the', 'DT'), ('towels', 'NNS'), ('were', 'VBD'), ('horrible', 'JJ'), ('.', '.')]"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="27" label="+services+location-price">
+      <node id="2" label="+price-comfort">
         <attvalues>
-          <attvalue for="1" value="[('proximity', 'NN'), ('to', 'TO'), ('city', 'NN'), ('center...strategic', 'JJ'), ('location', 'NN'), ('next', 'JJ'), ('to', 'TO'), ('metro', 'VB'), ('and', 'CC'), ('other', 'JJ'), ('surrounding', 'VBG'), ('facilities', 'NNS')]"/>
-          <attvalue for="2" value="[('Standard', 'NNP'), ('of', 'IN'), ('Meal', 'JJ'), ('in', 'IN'), ('restaurant', 'NN'), ('for', 'IN'), ('EU140', 'CD'), ('was', 'VBD'), ('very', 'RB'), ('poor', 'JJ'), ('.', '.'), ('Beverage', 'NNP'), ('prices', 'NNS'), ('on', 'IN'), ('the', 'DT'), ('top', 'JJ'), ('floor', 'NN'), ('after', 'IN'), ('9', 'CD'), ('p.m.', 'NN'), ('outrageous', 'JJ'), ('Eu', 'NNPS'), ('23', 'CD'), ('for', 'IN'), ('a', 'DT'), ('lite', 'JJ'), ('coke', 'NN'), ('?', '.'), ('?', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="20" label="+services+comfort-staff">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('hotel', 'NN'), ('facilities', 'NNS'), ('are', 'VBP'), ('very', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('the', 'DT'), ('rooms', 'NNS'), ('excellent', 'JJ'), ('offering', 'VBG'), ('fantastic', 'JJ'), ('views', 'NNS'), ('over', 'IN'), ('Paris', 'NNP'), ('.', '.')]"/>
-          <attvalue for="2" value="[('Hotel', 'NNP'), ('Staff', 'NNP'), ('racist', 'NN'), ('and', 'CC'), ('cold.I', 'NNP'), ('Was', 'VBD'), ('supposed', 'VBN'), ('to', 'TO'), ('stay', 'VB'), ('7', 'CD'), ('days', 'NNS'), ('but', 'CC'), ('after', 'IN'), ('3', 'CD'), ('days', 'NNS'), ('I', 'PRP'), ('gave', 'VBP'), ('up.it', 'PRP'), ('was', 'VBD'), ('terrible', 'JJ'), ('to', 'TO'), ('stay', 'VB'), ('with', 'IN'), ('your', 'PRP$'), ('staff', 'NN'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="21" label="+location-comfort-staff">
-        <attvalues>
-          <attvalue for="1" value="[('I', 'PRP'), ('like', 'IN'), ('the', 'DT'), ('location', 'NN'), ('and', 'CC'), ('vicinity', 'NN'), ('of', 'IN'), ('the', 'DT'), ('hotel', 'NN'), ('as', 'IN'), ('the', 'DT'), ('metro', 'NN'), ('is', 'VBZ'), ('right', 'RB'), ('underneath', 'IN'), ('Palais', 'PRP$'), ('De', 'FW'), ('Congres', 'NNPS'), ('which', 'WDT'), ('is', 'VBZ'), ('connected', 'VBN'), ('to', 'TO'), ('the', 'DT'), ('hotel', 'NN'), ('and', 'CC'), ('there', 'EX'), ('is', 'VBZ'), ('a', 'DT'), ('decent', 'JJ'), ('size', 'NN'), ('grocery', 'RB'), ('shop', 'VB'), ('at', 'IN'), ('the', 'DT'), ('basement.', 'NNP'), ('There', 'EX'), ('are', 'VBP'), ('also', 'RB'), ('a', 'DT'), ('few', 'JJ'), ('cafes', 'NNS'), ('here', 'RB'), ('and', 'CC'), ('shop', 'NN'), ('of', 'IN'), ('shoppings', 'NNS'), ('also.', 'NNP'), ('Basically', 'RB'), ('you', 'PRP'), ('could', 'MD'), ('get/buy', 'VB'), ('things', 'NNS'), ('within', 'IN'), ('walking', 'VBG'), ('distance', 'NN'), ('.', '.')]"/>
-          <attvalue for="2" value="[('Rooms', 'NNS'), ('seem', 'VBP'), ('to', 'TO'), ('be', 'VB'), ('old', 'JJ'), ('and', 'CC'), ('maitenance', 'VB'), ('is', 'VBZ'), ('absent.', 'NNP'), ('Hotel', 'NNP'), ('needs', 'VBZ'), ('to', 'TO'), ('increase', 'VB'), ('the', 'DT'), ('number', 'NN'), ('of', 'IN'), ('staff', 'NN'), ('attendants', 'NNS'), ('at', 'IN'), ('the', 'DT'), ('reception', 'NN'), ('desk', 'NN'), ('because', 'IN'), ('there', 'EX'), ('is', 'VBZ'), ('long', 'JJ'), ('waiting', 'VBG'), ('line', 'NN'), ('most', 'RBS'), ('of', 'IN'), ('the', 'DT'), ('day.', 'NNP'), ('Rooms', 'NNPS'), ('need', 'VBP'), ('to', 'TO'), ('be', 'VB'), ('renovated', 'VBN'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="46" label="+comfort+staff">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('staff', 'NN'), ('were', 'VBD'), ('wonderful.As', 'RB'), ('usual', 'JJ'), ('in', 'IN'), ('Paris,the', 'DT'), ('rooms', 'NNS'), ('are', 'VBP'), ('not', 'RB'), ('big', 'JJ'), ('but', 'CC'), ('it', 'PRP'), ('was', 'VBD'), ('very', 'RB'), ('nice', 'JJ')]"/>
-          <attvalue for="2" value="[('i', 'PRP'), ('dont', 'VBP'), ('like', 'IN'), ('lift', 'NN'), ('!', '.')]"/>
+          <attvalue for="1" value="[('I', 'PRP'), ('liked', 'VBD'), ('How', 'WRB'), ('much', 'RB'), ('value', 'NN'), ('I', 'PRP'), ('got', 'VBD'), ('for', 'IN'), ('my', 'PRP$'), ('money', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('I', 'PRP'), ('did', 'VBD'), (&quot;n't&quot;, 'RB'), ('like', 'VB'), ('that', 'IN'), ('it', 'PRP'), ('was', 'VBD'), (&quot;n't&quot;, 'RB'), ('sound', 'VB'), ('isolated', 'VBN'), ('-', ':'), ('I', 'PRP'), ('could', 'MD'), ('hear', 'VB'), ('everything', 'NN'), ('in', 'IN'), ('the', 'DT'), ('room', 'NN'), ('!', '.')]"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="47" label="+staff-clean">
+      <node id="4" label="+restaurant-quiet">
         <attvalues>
-          <attvalue for="1" value="[('Staff', 'NNP'), ('very', 'RB'), ('helpful', 'JJ'), ('and', 'CC'), ('room', 'NN'), ('very', 'RB'), ('comfortable', 'JJ')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('twin', 'JJ'), ('room', 'NN'), ('was', 'VBD'), ('not', 'RB'), ('the', 'DT'), ('one', 'CD'), ('that', 'IN'), ('one', 'CD'), ('can', 'MD'), ('expect', 'VB'), ('to', 'TO'), ('get', 'VB'), ('for', 'IN'), ('a', 'DT'), ('4', 'CD'), ('star', 'NN'), ('hotel', 'NN'), ('and', 'CC'), ('for', 'IN'), ('such', 'JJ'), ('a', 'DT'), ('price.', 'NNP'), ('Unpleasant', 'JJ'), ('yellow', 'JJ'), ('colour', 'PRP$'), ('of', 'IN'), ('the', 'DT'), ('walls', 'NNS'), (',', ','), ('not', 'RB'), ('so', 'RB'), ('clean', 'JJ'), ('floor', 'NN'), ('and', 'CC'), ('etc.', 'NNP'), ('The', 'DT'), ('Pay', 'NN'), ('TV', 'NN'), ('was', 'VBD'), ('not', 'RB'), ('working', 'VBG'), ('..', ':'), ('.', '.')]"/>
+          <attvalue for="1" value="[('Breakfast', 'NNP'), ('included', 'VBD')]"/>
+          <attvalue for="2" value="[('Very', 'NNP'), ('noisy', 'NN')]"/>
         </attvalues>
       </node>
-      <node id="29" label="+location-price">
+      <node id="7" label="+fun+price-building-comfort-staff">
         <attvalues>
-          <attvalue for="1" value="[('Location', 'NNP')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('price', 'NN'), ('is', 'VBZ'), ('high.', 'NNP'), ('It', 'PRP'), (&quot;'s&quot;, 'VBZ'), ('rather', 'RB'), ('business', 'NN'), ('.', '.')]"/>
+          <attvalue for="1" value="[('It', 'PRP'), ('was', 'VBD'), ('local', 'JJ'), ('to', 'TO'), ('the', 'DT'), ('restaurants', 'NNS'), (',', ','), ('bars', 'NNS'), ('and', 'CC'), ('clubs', 'NNS'), ('and', 'CC'), ('was', 'VBD'), ('basic', 'JJ'), ('but', 'CC'), ('value', 'NN'), ('for', 'IN'), ('money', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Difficult', 'NNP'), ('to', 'TO'), ('find', 'VB'), ('!', '.'), ('Has', 'NNP'), ('no', 'DT'), ('signs', 'NNS'), ('outside', 'IN'), ('to', 'TO'), ('identify', 'VB'), ('it', 'PRP'), ('until', 'IN'), ('your', 'PRP$'), ('find', 'NN'), ('reception', 'NN'), ('inside.', 'NNP'), ('Shower', 'NNP'), ('was', 'VBD'), ('poorly', 'RB'), ('fitted', 'VBN'), ('and', 'CC'), ('and', 'CC'), ('flooded', 'VBD'), ('the', 'DT'), ('bathroom', 'NN'), ('whenever', 'NN'), ('it', 'PRP'), ('was', 'VBD'), ('used', 'VBN'), ('.', '.')]"/>
+        </attvalues>
+      </node>
+      <node id="6" label="+fun+location-clean">
+        <attvalues>
+          <attvalue for="1" value="[('Nice', 'NNP'), ('rooms', 'NNS'), ('with', 'IN'), ('cable', 'JJ'), ('tv', 'NN'), ('and', 'CC'), ('great', 'JJ'), ('location', 'NN'), ('because', 'IN'), ('it', 'PRP'), (&quot;'s&quot;, 'VBZ'), ('very', 'RB'), ('near', 'IN'), ('to', 'TO'), ('paceville', 'VB'), (&quot;'&quot;, 'POS'), ('bars', 'NNS'), ('and', 'CC'), ('to', 'TO'), ('bus', 'VB'), ('stops.', 'NNP'), ('Also', 'NNP'), ('the', 'DT'), ('staffs', 'NNS'), ('are', 'VBP'), ('very', 'RB'), ('kind.', 'NNP'), ('It', 'PRP'), (&quot;'s&quot;, 'VBZ'), ('a', 'DT'), ('good', 'JJ'), ('choice', 'NN'), ('for', 'IN'), ('solo', 'NN'), ('travelers', 'NNS'), ('who', 'WP'), ('just', 'RB'), ('need', 'VBP'), ('a', 'DT'), ('bed', 'VBN'), ('to', 'TO'), ('sleep', 'VB'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Bathroom', 'NNP'), ('floor', 'NN'), ('was', 'VBD'), ('dirty', 'JJ'), (',', ','), ('espacially', 'RB'), ('the', 'DT'), ('shower', 'NN'), ('floor', 'NN'), ('.', '.')]"/>
+        </attvalues>
+      </node>
+      <node id="8" label="+restaurant+location+staff-services-comfort">
+        <attvalues>
+          <attvalue for="1" value="[('The', 'DT'), ('staff', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('friendly', 'RB'), ('and', 'CC'), ('had', 'VBD'), ('helped', 'VBN'), ('with', 'IN'), ('each', 'DT'), ('problem', 'NN'), (',', ','), ('the', 'DT'), ('breakfast', 'NN'), ('was', 'VBD'), ('quite', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('the', 'DT'), ('hotel', 'NN'), ('is', 'VBZ'), ('well', 'RB'), ('located', 'VBN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Useing', 'VBG'), ('the', 'DT'), ('internet', 'NN'), ('was', 'VBD'), ('too', 'RB'), ('expensive', 'JJ'), (',', ','), ('house', 'NN'), ('keeping', 'VBG'), ('was', 'VBD'), ('not', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('it', 'PRP'), ('was', 'VBD'), ('too', 'RB'), ('warm', 'JJ'), ('inside', 'NN'), ('the', 'DT'), ('room', 'NN'), ('.', '.')]"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="40" label="+comfort+clean">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('rooms', 'NNS'), ('and', 'CC'), ('bed', 'VBN'), ('sheet', 'NN'), ('are', 'VBP'), ('clean', 'JJ'), (',', ','), ('the', 'DT'), ('bathroom', 'NN'), ('new', 'JJ'), ('but', 'CC'), ('I', 'PRP'), ('was', 'VBD'), ('in', 'IN'), ('the', 'DT'), ('renewed', 'VBN'), ('room', 'NN'), (',', ','), ('and', 'CC'), ('I', 'PRP'), ('do', 'VBP'), (&quot;n't&quot;, 'RB'), ('know', 'VB'), ('how', 'WRB'), ('are', 'VBP'), ('the', 'DT'), ('old', 'JJ'), ('rooms', 'NNS'), ('.', '.')]"/>
-          <attvalue for="2" value="[('Car', 'NNP'), ('park', 'NN'), ('is', 'VBZ'), ('rather', 'RB'), ('expensif', 'IN'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="41" label="+location-ambience-services-cost-view">
-        <attvalues>
-          <attvalue for="1" value="[('I', 'PRP'), ('stayed', 'VBD'), ('there', 'EX'), ('while', 'IN'), ('traveling', 'VBG'), ('as', 'IN'), ('honeymoon.', 'NNP'), ('We', 'PRP'), ('stayed', 'VBD'), ('4nights', 'PRP$'), (',', ','), ('so', 'RB'), ('was', 'VBD'), ('discounted.', 'NNP'), ('The', 'DT'), ('price', 'NN'), ('itself', 'PRP'), ('was', 'VBD'), ('expensive', 'JJ'), ('though', 'IN'), (',', ','), ('it', 'PRP'), ('s', 'VBZ'), ('adequate', 'JJ'), ('to', 'TO'), ('stay', 'VB'), ('as', 'IN'), ('safe', 'JJ'), ('and', 'CC'), ('comfort.', 'NNP'), ('To', 'TO'), ('airport', 'VB'), ('is', 'VBZ'), ('easy', 'JJ'), ('by', 'IN'), ('bus', 'NN'), ('beside', 'NN'), ('of', 'IN'), ('this', 'DT'), ('hotel.', 'NNP'), ('Location', 'NNP'), ('is', 'VBZ'), ('also', 'RB'), ('nice', 'VB'), ('.', '.')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('top', 'JJ'), ('floor', 'NN'), ('bar', 'NN'), ('is', 'VBZ'), ('too', 'RB'), ('pricey.', 'JJ'), ('Great', 'JJ'), ('view', 'NN'), ('and', 'CC'), ('ambience', 'VB'), (';', ':'), ('but', 'CC'), ('the', 'DT'), ('view', 'NN'), ('is', 'VBZ'), ('just', 'RB'), ('as', 'IN'), ('good', 'JJ'), ('as', 'IN'), ('the', 'DT'), ('one', 'CD'), ('from', 'IN'), ('our', 'PRP$'), ('room.', 'NNP'), ('No', 'RB'), ('prices', 'NNS'), ('listed', 'VBN'), ('on', 'IN'), ('the', 'DT'), ('menu', 'JJS'), ('and', 'CC'), ('we', 'PRP'), ('were', 'VBD'), ('shocked', 'VBN'), ('when', 'WRB'), ('the', 'DT'), ('bill', 'NN'), ('for', 'IN'), ('just', 'RB'), ('two', 'CD'), ('drinks', 'NNS'), ('and', 'CC'), ('dessert', 'VB'), ('cost', 'NN'), ('the', 'DT'), ('same', 'JJ'), ('as', 'IN'), ('our', 'PRP$'), ('steak/lobster', 'JJ'), ('dinner', 'NN'), ('at', 'IN'), ('a', 'DT'), ('nearby', 'JJ'), ('4-star', 'NN'), ('restaurant', 'NN'), ('!', '.'), ('My', 'PRP$'), ('rec', 'FW'), (':', ':'), ('Skip', 'UH'), ('the', 'DT'), ('top', 'JJ'), ('floor', 'NN'), ('bar', 'NN'), ('and', 'CC'), ('order', 'NN'), ('room', 'NN'), ('service', 'NN'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="1" label="+location+staff">
-        <attvalues>
-          <attvalue for="1" value="[('the', 'DT'), ('staff', 'NN'), ('were', 'VBD'), ('very', 'RB'), ('helpful', 'JJ'), ('and', 'CC'), ('courtious.', 'NNP'), ('the', 'DT'), ('location', 'NN'), ('was', 'VBD'), ('ideal', 'JJ'), ('for', 'IN'), ('all', 'DT'), ('the', 'DT'), ('tourist', 'NN'), ('sites', 'NNS'), ('we', 'PRP'), ('visited', 'VBD')]"/>
-          <attvalue for="2" value="[('Bathtubs', 'NNP'), ('should', 'MD'), ('be', 'VB'), ('fixed', 'VBN'), ('..', ':'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="2" label="+view-services-cost">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('view', 'NN'), ('was', 'VBD'), ('outstanding', 'JJ'), ('as', 'IN'), ('was', 'VBD'), ('the', 'DT'), ('staff.', 'NNP'), ('Thank', 'NNP'), ('you', 'PRP')]"/>
-          <attvalue for="2" value="[('Gym', 'PRP'), ('facilities', 'NNS'), ('were', 'VBD'), ('an', 'DT'), ('added', 'VBN'), ('cost', 'NN'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="6" label="+staff+cost+clean+view-services">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('best', 'JJS'), ('thing', 'NN'), ('about', 'IN'), ('the', 'DT'), ('Hotel', 'NN'), ('was', 'VBD'), ('the', 'DT'), ('superb', 'JJ'), ('view', 'NN'), ('of', 'IN'), ('Paris', 'NNP'), ('and', 'CC'), ('the', 'DT'), ('Eiffel', 'NNP'), ('Tower', 'NNP'), ('from', 'IN'), ('our', 'PRP$'), ('bedroom.', 'NNP'), ('The', 'DT'), ('hotel', 'NN'), ('manager', 'NN'), ('generously', 'RB'), ('upgraded', 'VBN'), ('our', 'PRP$'), ('room', 'NN'), ('at', 'IN'), ('no', 'DT'), ('extra', 'JJ'), ('cost', 'NN'), ('which', 'WDT'), ('was', 'VBD'), ('very', 'RB'), ('much', 'JJ'), ('appreciated.', 'NNP'), ('The', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('clean', 'JJ'), ('and', 'CC'), ('all', 'DT'), ('the', 'DT'), ('staff', 'NN'), ('very', 'RB'), ('helpful', 'JJ'), ('and', 'CC'), ('friendly', 'RB'), ('.', '.')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('extras', 'NNS'), ('we', 'PRP'), ('had', 'VBD'), ('to', 'TO'), ('pay', 'VB'), ('for', 'IN'), ('such', 'JJ'), ('as', 'IN'), ('coffee', 'NN'), ('which', 'WDT'), ('was', 'VBD'), ('not', 'RB'), ('available', 'JJ'), ('in', 'IN'), ('the', 'DT'), ('room', 'NN'), ('and', 'CC'), ('food', 'NN'), ('was', 'VBD'), ('expensive.', 'NNP'), ('Having', 'VBG'), ('said', 'VBD'), ('that', 'IN'), ('the', 'DT'), ('hotel', 'NN'), ('and', 'CC'), ('service', 'NN'), ('was', 'VBD'), ('superb', 'JJ'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="10" label="+location-clean">
-        <attvalues>
-          <attvalue for="1" value="[('Location', 'NNP')]"/>
-          <attvalue for="2" value="[('Given', 'VBN'), ('a', 'DT'), ('twin', 'JJ'), ('bedroom', 'NN'), ('instead', 'RB'), ('of', 'IN'), ('a', 'DT'), ('double', 'JJ'), ('bathroom', 'NN'), ('was', 'VBD'), ('dirty', 'RB'), ('and', 'CC'), ('had', 'VBD'), ('stains', 'NNS'), ('all', 'PDT'), ('over', 'IN'), ('the', 'DT'), ('sink', 'NN'), ('had', 'VBD'), ('problems', 'NNS'), ('with', 'IN'), ('my', 'PRP$'), ('safe', 'JJ'), ('and', 'CC'), ('my', 'PRP$'), ('television', 'NN'), ('concierge', 'NN'), ('did', 'VBD'), (&quot;n't&quot;, 'RB'), ('show', 'VB'), ('up', 'IN'), ('after', 'IN'), ('calling', 'VBG')]"/>
-        </attvalues>
-      </node>
-      <node id="14" label="-location">
-        <attvalues>
-          <attvalue for="1" value="[('Envioroment', 'NNP'), ('was', 'VBD'), ('good', 'JJ')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('location', 'NN'), ('and', 'CC'), ('rate', 'NN')]"/>
-        </attvalues>
-      </node>
-      <node id="17" label="+view-location">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('view', 'NN'), ('from', 'IN'), ('the', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('wonderful', 'JJ'), ('!', '.'), ('!', '.'), ('Though', 'RB'), ('the', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('small', 'JJ'), ('it', 'PRP'), ('was', 'VBD'), ('just', 'RB'), ('the', 'DT'), ('best', 'JJS'), ('place', 'NN'), ('to', 'TO'), ('stay', 'VB'), ('!', '.')]"/>
-          <attvalue for="2" value="[('Information', 'NNP'), ('about', 'IN'), ('location', 'NN'), ('was', 'VBD'), ('not', 'RB'), ('accurate', 'JJ'), ('on', 'IN'), ('the', 'DT'), ('web', 'JJS'), ('site', 'NN'), ('that', 'WDT'), ('I', 'PRP'), ('happen', 'VB'), ('to', 'TO'), ('view.', 'NNP'), ('I', 'PRP'), ('was', 'VBD'), ('looking', 'VBG'), ('for', 'IN'), ('close', 'NN'), ('hotel', 'NN'), ('to', 'TO'), ('guard', 'VB'), ('du', 'RP'), ('Nord', 'NNP'), ('and', 'CC'), ('this', 'DT'), ('hotel', 'NN'), ('info', 'TO'), ('was', 'VBD'), ('number', 'NN'), ('two', 'CD'), ('on', 'IN'), ('the', 'DT'), ('list.', 'NNP'), ('It', 'PRP'), ('turned', 'VBD'), ('out', 'IN'), ('to', 'TO'), ('be', 'VB'), ('significant', 'JJ'), ('distance', 'NN'), ('from', 'IN'), ('it', 'PRP'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="19" label="+view-staff">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('view', 'NN'), ('from', 'IN'), ('the', 'DT'), ('room....', 'NNP'), ('.', '.')]"/>
-          <attvalue for="2" value="[('check', 'NN'), ('in', 'IN'), ('stuff', 'NN'), ('not', 'RB'), ('pleasant', 'VB'), ('and', 'CC'), ('tired.not', 'RB'), ('helpfull', 'MD'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="18" label="+staff+clean+view-ambience">
-        <attvalues>
-          <attvalue for="1" value="[('We', 'PRP'), ('selected', 'VBD'), ('the', 'DT'), ('Concorde', 'NNP'), ('La', 'NNP'), ('Fayette', 'NNP'), ('based', 'VBN'), ('on', 'IN'), ('ratings', 'NNS'), ('on', 'IN'), ('Booking.com', 'NNP'), ('and', 'CC'), ('we', 'PRP'), ('were', 'VBD'), ('not', 'RB'), ('disappointed.', 'NNP'), ('Everything', 'VBG'), ('on', 'IN'), ('the', 'DT'), ('hotel', 'NN'), ('was', 'VBD'), ('great', 'JJ'), (',', ','), ('especially', 'RB'), ('the', 'DT'), ('price.', 'NNP'), ('We', 'PRP'), ('stayed', 'VBD'), ('in', 'IN'), ('an', 'DT'), ('ordinary', 'JJ'), ('double', 'JJ'), ('room', 'NN'), ('on', 'IN'), ('the', 'DT'), ('27th', 'JJ'), ('floor.', 'NNP'), ('The', 'DT'), ('view', 'NN'), ('was', 'VBD'), ('amazing.', 'NNP'), ('The', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('clean', 'JJ'), ('and', 'CC'), ('nice', 'JJ'), ('prepared', 'VBN'), ('when', 'WRB'), ('we', 'PRP'), ('came.', 'VBP'), ('The', 'DT'), ('staff', 'NN'), ('very', 'RB'), ('kind', 'VB'), ('and', 'CC'), ('friendly', 'JJ'), ('and', 'CC'), ('they', 'PRP'), ('were', 'VBD'), ('all', 'DT'), ('excellent', 'JJ'), ('in', 'IN'), ('English.', 'NNP'), ('We', 'PRP'), ('recommend', 'VBP'), ('this', 'DT'), ('hotel', 'NN'), ('from', 'IN'), ('all', 'DT'), ('of', 'IN'), ('our', 'PRP$'), ('heart', 'NN'), ('.', '.')]"/>
-          <attvalue for="2" value="[('Upholstered', 'NNP'), ('chair', 'PRP$'), ('was', 'VBD'), ('worn/wripped', 'VBN'), ('in', 'IN'), ('on', 'IN'), ('the', 'DT'), ('arms', 'NNS'), ('and', 'CC'), ('some', 'DT'), ('of', 'IN'), ('the', 'DT'), ('furniture', 'NN'), ('was', 'VBD'), ('banged', 'VBN'), ('up.', 'NNP'), ('Room', 'NNP'), ('was', 'VBD'), ('small', 'JJ'), ('for', 'IN'), ('the', 'DT'), ('price.', 'NNP'), ('No', 'RB'), ('machines', 'NNS'), ('available', 'JJ'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="31" label="+location-services-comfort">
-        <attvalues>
-          <attvalue for="1" value="[('The', 'DT'), ('location', 'NN'), ('was', 'VBD'), ('excellent.', 'NNP'), ('Close', 'VB'), ('to', 'TO'), ('all', 'DT'), ('major', 'JJ'), ('attractions', 'NNS')]"/>
-          <attvalue for="2" value="[('Breakfast', 'JJS'), ('far', 'RB'), ('too', 'RB'), ('costly.', 'FW'), ('Decor', 'CC'), ('in', 'IN'), ('main', 'JJ'), ('hotel', 'NN'), ('very', 'RB'), ('dated', 'VBN'), ('/', '#'), ('plastic.', 'FW'), ('Very', 'RB'), ('tiny', 'JJ'), ('rooms', 'NNS'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="30" label="+services+location-ambience">
-        <attvalues>
-          <attvalue for="1" value="[('Excellent', 'NNP'), ('location', 'NN'), ('for', 'IN'), ('transfer', 'JJR'), ('to', 'TO'), ('any', 'DT'), ('location', 'NN'), ('in', 'IN'), ('or', 'CC'), ('out', 'IN'), ('of', 'IN'), ('Paris', 'NNP'), ('with', 'IN'), ('Metro/', '('), ('Taxis.', 'NNP'), ('Excellent', 'NNP'), ('customer', 'NN'), ('service', 'NN'), ('from', 'IN'), ('hotel', 'NN'), ('staff.', 'NNP'), ('In', 'IN'), ('fact', 'NN'), ('Hotel', 'NNP'), ('Admin', 'NNP'), ('showed', 'VBD'), ('extreme', 'JJ'), ('care', 'NN'), ('when', 'WRB'), ('my', 'PRP$'), ('wife', 'NN'), ('felt', 'VBD'), ('tiered', 'VBN'), ('just', 'RB'), ('before', 'IN'), ('we', 'PRP'), ('enter', 'VBP'), ('the', 'DT'), ('Breakfast', 'JJS'), ('Hall', 'NNP'), ('one', 'CD'), ('day', 'NN'), ('and', 'CC'), ('in', 'IN'), ('no', 'DT'), ('time', 'NN'), ('the', 'DT'), ('medic', 'JJ'), ('team', 'NN'), ('was', 'VBD'), ('at', 'IN'), ('my', 'PRP$'), ('wife', 'NN'), ('head', 'NN'), ('checking', 'VBG'), ('here', 'RB'), ('fully.', 'FW'), ('It', 'PRP'), ('is', 'VBZ'), ('a', 'DT'), ('reaction', 'NN'), ('I', 'PRP'), ('m', 'VBP'), ('very', 'RB'), ('much', 'JJ'), ('great', 'JJ'), ('full', 'JJ'), ('for', 'IN'), ('and', 'CC'), ('shall', 'JJ'), ('never', 'RB'), ('forget', 'VB'), ('to', 'TO'), ('the', 'DT'), ('hotel', 'NN'), ('administration', 'NN'), ('.', '.'), ('Further', 'JJ'), (',', ','), ('the', 'DT'), ('concierge', 'JJ'), ('desk', 'NN'), ('was', 'VBD'), ('knowledgable', 'JJ'), ('and', 'CC'), ('extremely', 'RB'), ('helpful', 'JJ'), ('at', 'IN'), ('all', 'DT'), ('times', 'NNS'), ('.', '.')]"/>
-          <attvalue for="2" value="[('Old', 'NNP'), ('furniture', 'NN'), ('.', '.')]"/>
-        </attvalues>
-      </node>
-      <node id="37" label="+location+view-ambience">
-        <attvalues>
-          <attvalue for="1" value="[('location', 'NN'), ('and', 'CC'), ('view', 'NN')]"/>
-          <attvalue for="2" value="[('Old', 'NNP'), ('hotel', 'NN'), ('and', 'CC'), ('furniture', 'NN')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="35" label="+staff+location+view">
-        <attvalues>
-          <attvalue for="1" value="[('Excellent', 'NNP'), ('location', 'NN'), ('-', ':'), ('view', 'VB'), ('from', 'IN'), ('hotel', 'NN'), (',', ','), ('very', 'RB'), ('friendly', 'RB'), ('staff', 'NN'), ('(', ':'), ('multilingual', 'JJ'), (')', '#'), (',', ','), ('large', 'JJ'), ('lobby', 'NN')]"/>
-          <attvalue for="2" value="[('I', 'PRP'), ('did', 'VBD'), ('not', 'RB'), ('like', 'VB'), ('that', 'IN'), ('I', 'PRP'), ('get', 'VBP'), ('the', 'DT'), ('room', 'NN'), ('totaly', 'RB'), ('diferent', 'VB'), ('from', 'IN'), ('the', 'DT'), ('pictures', 'NNS'), ('and', 'CC'), ('not', 'RB'), ('like', 'IN'), ('the', 'DT'), ('last', 'JJ'), ('time', 'NN'), ('I', 'PRP'), ('was', 'VBD'), ('there', 'EX'), (',', ','), ('so', 'RB'), ('I', 'PRP'), ('m', 'VBP'), ('not', 'RB'), ('shore', 'VB'), ('if', 'IN'), ('I', 'PRP'), ('go', 'VBP'), ('there', 'EX'), ('again', 'RB')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="34" label="+ambience-staff">
-        <attvalues>
-          <attvalue for="1" value="[('Ambience', 'NNP'), ('of', 'IN'), ('the', 'DT'), ('Hotel', 'NN'), ('Reception', 'NN'), ('Area', 'NN'), ('is', 'VBZ'), ('impressive', 'JJ')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('staff', 'NN'), ('was', 'VBD'), ('kind', 'NN'), ('of', 'IN'), ('rude', 'JJ')]"/>
-        </attvalues>
-      </node>
-      <node id="33" label="+comfort+view+location+staff">
-        <attvalues>
-          <attvalue for="1" value="[('Location', 'NNP'), (',', ','), ('comfort', 'NN'), (',', ','), ('design', 'NN'), (',', ','), ('staff', 'NN'), (',', ','), ('view', 'NN'), ('of', 'IN'), ('the', 'DT'), ('city', 'NN')]"/>
-          <attvalue for="2" value="[('The', 'DT'), ('hotel', 'NN'), ('needs', 'VBZ'), ('a', 'DT'), ('full', 'JJ'), ('rehab.', 'NNP'), ('Both', 'DT'), ('its', 'PRP$'), ('interior', 'JJ'), ('and', 'CC'), ('exterior', 'JJ'), ('gives', 'VBZ'), ('assosication', 'CD'), ('to', 'TO'), ('Eastern-Europe', 'VB'), ('15', 'CD'), ('years', 'NNS'), ('ago.', ')'), ('&quot;', '#'), ('Glad', 'UH'), ('I', 'PRP'), ('booked', 'VBD'), ('a', 'DT'), ('superior', 'JJ'), ('room', 'NN'), ('&quot;', ':'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="32" label="-price-comfort-clean">
-        <attvalues>
-          <attvalue for="1" value="[('Staff', 'NNP'), ('was', 'VBD'), ('friendly', 'RB'), (',', ','), ('and', 'CC'), ('helpfull', 'JJ'), ('.', '.')]"/>
-          <attvalue for="2" value="[('My', 'PRP$'), ('room', 'NN'), ('(', ':'), ('1231', 'CD'), (')', '#'), ('was', 'VBD'), ('very', 'RB'), ('worn', 'VBN'), ('out', 'IN'), ('and', 'CC'), ('old', 'JJ'), (',', ','), ('very', 'RB'), ('smelly', 'RB'), ('and', 'CC'), ('stuffy.', 'NNP'), ('It', 'PRP'), ('had', 'VBD'), ('stained', 'VBN'), ('carpeting', 'VBG'), (',', ','), ('stained', 'VBN'), ('worn', 'VBN'), ('out', 'IN'), ('bed', 'VBN'), ('skirt', 'NN'), (',', ','), ('smelly', 'RB'), ('sheets', 'NNS'), (',', ','), ('chipped', 'VBN'), ('and', 'CC'), ('scratched', 'VBN'), ('walls', 'NNS'), (',', ','), ('dirty', 'RB'), ('window.', 'NNP'), ('The', 'DT'), ('air', 'NN'), ('conditioning', 'VBG'), ('didn', 'WRB'), ('\xe2\x80\x99', 'SYM'), ('t', 'RP'), ('work', 'VB'), ('properly', 'RB'), ('and', 'CC'), ('the', 'DT'), ('handle', 'JJ'), ('fell', 'VBD'), ('off', 'IN'), ('when', 'WRB'), ('I', 'PRP'), ('tried', 'VBD'), ('to', 'TO'), ('use', 'VB'), ('it', 'PRP'), ('the', 'DT'), ('first', 'JJ'), ('time.', 'NNP'), ('Several', 'JJ'), ('furnishings', 'NNS'), ('and', 'CC'), ('appliances', 'NNS'), ('in', 'IN'), ('the', 'DT'), ('room', 'NN'), ('were', 'VBD'), ('starting', 'VBG'), ('to', 'TO'), ('fall', 'VB'), ('off', 'IN'), ('their', 'PRP$'), ('hangings.', 'NNP'), ('I', 'PRP'), ('honestly', 'RB'), ('felt', 'VBD'), ('I', 'PRP'), ('was', 'VBD'), ('at', 'IN'), ('a', 'DT'), ('construction', 'NN'), ('site', 'NN'), ('in', 'IN'), ('the', 'DT'), ('seventies', 'NNS'), ('especially', 'RB'), ('with', 'IN'), ('the', 'DT'), ('ugly', 'JJ'), (',', ','), ('mismatched', 'VBN'), ('and', 'CC'), ('outdated', 'VBN'), ('d', 'VBN'), ('\xc3\xa9', '#'), ('cor.', 'FW'), ('I', 'PRP'), ('stayed', 'VBD'), ('at', 'IN'), ('this', 'DT'), ('hotel', 'NN'), ('before', 'IN'), ('and', 'CC'), ('I', 'PRP'), ('had', 'VBD'), ('a', 'DT'), ('wonderful', 'JJ'), ('room', 'NN'), ('at', 'IN'), ('a', 'DT'), ('cheaper', 'JJR'), ('price', 'NN'), ('!', '.'), ('!', '.'), ('!', &quot;''&quot;), ('This', 'DT'), ('time', 'NN'), ('the', 'DT'), ('experience', 'NN'), ('was', 'VBD'), ('completely', 'RB'), ('different', 'JJ'), ('not', 'RB'), ('to', 'TO'), ('mention', 'VB'), ('the', 'DT'), ('rude', 'JJ'), ('nervous', 'JJ'), ('lady', 'RB'), ('who', 'WP'), ('checked', 'VBD'), ('me', 'PRP'), ('in', 'IN'), ('!', '.')]"/>
-        </attvalues>
       </node>
     </nodes>
     <edges>
-      <edge source="14" target="41" id="14-41" label="/location/">
+      <edge source="0" target="4" id="0-4" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="21" target="35" id="21-35" label="/staff/">
+      <edge source="1" target="8" id="1-8" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="21" target="33" id="21-33" label="/comfort/staff/">
+      <edge source="3" target="4" id="3-4" label="/quiet/">
         <attvalues/>
       </edge>
-      <edge source="1" target="14" id="1-14" label="/location/">
+      <edge source="0" target="3" id="0-3" label="/fun/">
         <attvalues/>
       </edge>
-      <edge source="1" target="17" id="1-17" label="/location/">
+      <edge source="3" target="7" id="3-7" label="/fun/">
         <attvalues/>
       </edge>
-      <edge source="19" target="41" id="19-41" label="/view/">
+      <edge source="3" target="6" id="3-6" label="/fun/">
         <attvalues/>
       </edge>
-      <edge source="19" target="46" id="19-46" label="/staff/">
+      <edge source="1" target="2" id="1-2" label="/price/">
         <attvalues/>
       </edge>
-      <edge source="19" target="47" id="19-47" label="/staff/">
+      <edge source="0" target="8" id="0-8" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="30" target="41" id="30-41" label="/services/">
+      <edge source="1" target="4" id="1-4" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="1" target="19" id="1-19" label="/staff/">
+      <edge source="1" target="7" id="1-7" label="/staff/price/">
         <attvalues/>
       </edge>
-      <edge source="18" target="47" id="18-47" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="41" id="18-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="30" target="6" id="30-6" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="32" target="6" id="32-6" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="21" id="20-21" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="24" id="20-24" label="/services/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="26" id="20-26" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="21" target="40" id="21-40" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="21" target="47" id="21-47" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="21" target="46" id="21-46" label="/comfort/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="46" id="20-46" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="47" id="20-47" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="40" id="24-40" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="19" target="6" id="19-6" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="46" id="24-46" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="41" id="20-41" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="32" target="33" id="32-33" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="10" target="40" id="10-40" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="35" id="17-35" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="37" id="17-37" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="31" id="17-31" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="30" id="17-30" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="33" id="17-33" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="41" id="17-41" label="/view/location/">
-        <attvalues/>
-      </edge>
-      <edge source="2" target="30" id="2-30" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="21" target="6" id="21-6" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="33" target="41" id="33-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="26" id="17-26" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="27" id="17-27" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="32" target="46" id="32-46" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="32" target="40" id="32-40" label="/comfort/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="21" id="17-21" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="17" target="29" id="17-29" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="37" target="41" id="37-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="2" target="27" id="2-27" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="2" target="20" id="2-20" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="6" id="34-6" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="26" target="41" id="26-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="30" target="34" id="30-34" label="/ambience/">
-        <attvalues/>
-      </edge>
-      <edge source="30" target="31" id="30-31" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="41" id="34-41" label="/ambience/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="47" id="34-47" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="46" id="34-46" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="27" target="41" id="27-41" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="47" target="6" id="47-6" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="26" target="31" id="26-31" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="26" target="30" id="26-30" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="26" target="32" id="26-32" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="31" target="46" id="31-46" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="31" target="40" id="31-40" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="27" target="6" id="27-6" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="35" target="41" id="35-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="2" target="41" id="2-41" label="/view/">
-        <attvalues/>
-      </edge>
-      <edge source="2" target="6" id="2-6" label="/cost/">
-        <attvalues/>
-      </edge>
-      <edge source="26" target="27" id="26-27" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="31" target="33" id="31-33" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="40" target="47" id="40-47" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="19" id="18-19" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="19" target="33" id="19-33" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="1" target="20" id="1-20" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="1" target="21" id="1-21" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="19" target="35" id="19-35" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="6" id="20-6" label="/services/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="10" target="6" id="10-6" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="33" id="24-33" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="30" id="24-30" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="10" target="17" id="10-17" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="10" target="14" id="10-14" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="10" target="18" id="10-18" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="35" id="34-35" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="41" target="6" id="41-6" label="/cost/view/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="29" id="14-29" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="34" target="37" id="34-37" label="/ambience/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="21" id="18-21" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="20" id="18-20" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="21" id="14-21" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="27" id="14-27" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="26" id="14-26" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="1" target="34" id="1-34" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="27" target="31" id="27-31" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="35" id="14-35" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="37" id="14-37" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="30" id="14-30" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="31" id="14-31" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="14" target="33" id="14-33" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="26" id="24-26" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="24" target="27" id="24-27" label="/services/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="32" id="18-32" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="18" target="34" id="18-34" label="/staff/ambience/">
-        <attvalues/>
-      </edge>
-      <edge source="21" target="26" id="21-26" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="33" target="34" id="33-34" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="35" id="20-35" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="33" id="20-33" label="/staff/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="32" id="20-32" label="/comfort/">
-        <attvalues/>
-      </edge>
-      <edge source="20" target="31" id="20-31" label="/services/comfort/">
+      <edge source="7" target="8" id="7-8" label="/staff/">
         <attvalues/>
       </edge>
     </edges>

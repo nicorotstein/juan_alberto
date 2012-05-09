@@ -10,6 +10,7 @@ from model import Review
 from nltk.corpus.reader import TaggedCorpusReader
 from collections import defaultdict
 from bodao import BusinessObject
+from model import Stats
 #agregar server xmlrpc
 #cada object review tiene atributo rating
 
@@ -99,11 +100,38 @@ class ReviewsContainer():
         return 'evtg ok'
 
 def test():
-    reviews_file = open('./test/reviews.txt', 'r')
-    i = 1
+    ob = BusinessObject()
+    reviews_file = open('./eg3/reviews.txt', 'r')
+    i = 0
+    positive = ""
+    negative = ""
+    reviews = []
     for line in reviews_file:
-        if i % 1 == 0:
-        print line
+        if line != "":
+            if i % 3 == 0:
+                positive = line
+            elif i % 3 == 1:
+                negative = line
+            elif  i % 3 == 2:
+                print '+ ' + positive
+                print '- ' + negative
+                reviews.append(ob.create_review(positive, negative))
+        i += 1
+    for r in reviews:
+        print '+ ' + str(r.positive_feats)
+        print '- ' + str(r.negative_feats)
+        print '~ ' + str(r.undecided_feats)
+        print ''
+    graph = Grapher(reviews)
+    Drawer.draw_dotgraph(graph.get_dotgraph(), 'first_graph')
+    Drawer.draw_gexfgraph(graph.get_container(), 'first_graph')
+    # every time get_container() is invoked, a new graph is generated
+    graph.compress()
+    Drawer.draw_dotgraph(graph.get_dotgraph(), 'final_graph')
+    Drawer.draw_gexfgraph(graph.get_container(), 'final_graph')
+
+    Stats.rate_features(reviews)
+    Stats.count_features(reviews)
 
 def main():
     l = ReviewsContainer()

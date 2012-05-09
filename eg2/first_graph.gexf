@@ -1,0 +1,117 @@
+<gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
+  <meta lastmodified="2012-05-09T10:03:04.313947">
+    <creator>Nico Rotstein</creator>
+    <description>Arguiew (reviews as argumentation) graph</description>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" label="Arguiew graph">
+    <attributes class="node" mode="dynamic"/>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="warranted" type="boolean">
+        <default>false</default>
+      </attribute>
+      <attribute id="1" title="positive_text" type="string">
+        <default></default>
+      </attribute>
+      <attribute id="2" title="negative_text" type="string">
+        <default></default>
+      </attribute>
+      <attribute id="3" title="has_compressed" type="liststring">
+        <default>[]</default>
+      </attribute>
+      <attribute id="4" title="redundant" type="liststring">
+        <default>[]</default>
+      </attribute>
+    </attributes>
+    <attributes class="edge" mode="dynamic"/>
+    <attributes class="edge" mode="static"/>
+    <nodes>
+      <node id="1" label="+comfort+staff-quiet">
+        <attvalues>
+          <attvalue for="1" value="[('Large', 'JJ'), ('room', 'NN'), (',', ','), ('friendly', 'RB'), ('staff', 'NN')]"/>
+          <attvalue for="2" value="[('Noisy', 'NNP')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="0" label="+comfort+clean-building-view">
+        <attvalues>
+          <attvalue for="1" value="[('Clean', 'JJ'), ('warm', 'NN'), ('comfortable.', 'NNP'), ('Friendly', 'NNP'), ('and', 'CC'), ('efficient', 'JJ'), ('staff.', 'NNP'), ('Great', 'NNP'), ('shower', 'NN'), ('and', 'CC'), ('really', 'RB'), ('comfortable', 'JJ'), ('bed', 'VBN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('The', 'DT'), ('outside', 'NN'), ('needs', 'VBZ'), ('tidying', 'VBG'), ('up', 'RP'), (',', ','), ('looks', 'NNS'), ('a', 'DT'), ('wee', 'NN'), ('bit', 'NN'), ('scruffy.', 'NNP'), ('Change', 'NNP'), ('the', 'DT'), ('net', 'JJ'), ('curtains', 'NNS'), ('they', 'PRP'), ('look', 'VBP'), ('grubby', 'RB')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="3" label="+extras">
+        <attvalues>
+          <attvalue for="1" value="[('The', 'DT'), ('spa', 'NN'), ('-', ':'), ('large', 'JJ'), ('room', 'NN'), ('also', 'RB')]"/>
+          <attvalue for="2" value="[('They', 'PRP'), ('allocate', 'VBP'), ('rooms', 'NNS'), ('on', 'IN'), ('arrival', 'NN'), ('-', ':'), ('so', 'RB'), ('as', 'IN'), ('we', 'PRP'), ('arrived', 'VBD'), ('late', 'JJ'), ('we', 'PRP'), ('had', 'VBD'), ('the', 'DT'), ('last', 'JJ'), ('room', 'NN'), ('available', 'JJ'), ('which', 'WDT'), ('was', 'VBD'), (&quot;n't&quot;, 'RB'), ('what', 'WP'), ('we', 'PRP'), ('wanted', 'VBD'), ('(', ':'), ('we', 'PRP'), ('ordered', 'VBD'), ('twin', 'NN'), (',', ','), ('we', 'PRP'), ('got', 'VBD'), ('double', 'JJ'), (')', 'NN'), ('The', 'DT'), ('other', 'JJ'), ('room', 'NN'), ('available', 'JJ'), ('was', 'VBD'), ('on', 'IN'), ('the', 'DT'), ('smoking', 'NN'), ('floor', 'NN'), ('and', 'CC'), ('very', 'RB'), ('smelly', 'RB')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="2" label="+price+location">
+        <attvalues>
+          <attvalue for="1" value="[('We', 'PRP'), ('were', 'VBD'), ('flying', 'VBG'), ('early', 'JJ'), ('next', 'JJ'), ('morning', 'NN'), ('so', 'IN'), ('the', 'DT'), ('location', 'NN'), ('and', 'CC'), ('standard', 'JJ'), ('for', 'IN'), ('the', 'DT'), ('one', 'CD'), ('night', 'NN'), ('was', 'VBD'), ('excellent.', 'NNP'), ('Also', 'NNP'), ('the', 'DT'), ('fact', 'NN'), ('that', 'IN'), ('we', 'PRP'), ('could', 'MD'), ('leave', 'VB'), ('our', 'PRP$'), ('car', 'NN'), ('for', 'IN'), ('the', 'DT'), ('two', 'CD'), ('weeks', 'NNS'), ('was', 'VBD'), ('so', 'RB'), ('handy.', 'NNP'), ('Good', 'NNP'), ('value', 'NN'), ('for', 'IN'), ('money', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Could', 'MD'), ('do', 'VB'), ('with', 'IN'), ('a', 'DT'), ('bit', 'NN'), ('of', 'IN'), ('a', 'DT'), ('facelift', 'NN'), ('in', 'IN'), ('places', 'NNS'), ('.', '.')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="5" label="+price-services">
+        <attvalues>
+          <attvalue for="1" value="[('Size', 'NNP'), ('of', 'IN'), ('room', 'NN'), ('was', 'VBD'), ('excellent', 'JJ'), ('especially', 'RB'), ('considering', 'VBG'), ('the', 'DT'), ('price', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('It', 'PRP'), ('said', 'VBD'), ('there', 'RB'), ('would', 'MD'), ('be', 'VB'), ('room', 'NN'), ('service', 'NN'), ('24/7', 'CD'), ('but', 'CC'), ('I', 'PRP'), ('phoned', 'VBD'), ('up', 'RP'), ('and', 'CC'), ('was', 'VBD'), ('told', 'VBN'), ('there', 'RB'), ('was', 'VBD'), ('no', 'DT'), ('service', 'NN'), ('for', 'IN'), ('the', 'DT'), ('rest', 'NN'), ('of', 'IN'), ('the', 'DT'), ('night', 'NN'), ('.', '.')]"/>
+        </attvalues>
+      </node>
+      <node id="4" label="+services+comfort+location+clean-building">
+        <attvalues>
+          <attvalue for="1" value="[('Parking', 'VBG'), (',', ','), ('no', 'DT'), ('hassle', 'NN'), (',', ','), ('clean', 'JJ'), ('comfy', 'NN'), ('warm', 'NN'), ('room', 'NN'), (',', ','), ('room', 'NN'), ('only', 'RB'), ('deal', 'VBP'), (',', ','), ('convenient', 'JJ'), ('location', 'NN'), ('.', '.')]"/>
+          <attvalue for="2" value="[('Uninviting', 'VBG'), ('exterior', 'NN')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="7" label="+comfort+clean-location-staff">
+        <attvalues>
+          <attvalue for="1" value="[('Cheap', 'NNP'), ('hotel', 'NN'), ('near', 'IN'), ('the', 'DT'), ('airport', 'NN'), ('with', 'IN'), ('clean', 'JJ'), ('rooms', 'NNS')]"/>
+          <attvalue for="2" value="[('staff', 'NN'), ('were', 'VBD'), ('very', 'RB'), ('poor.', 'NNP'), ('very', 'RB'), ('limited', 'VBN'), ('english', 'JJ'), ('and', 'CC'), ('did', 'VBD'), (&quot;n't&quot;, 'RB'), ('smile', 'VB'), ('or', 'CC'), ('show', 'VB'), ('any', 'DT'), ('level', 'NN'), ('of', 'IN'), ('customer', 'NN'), ('service.', 'NNP'), ('Did', 'NNP'), (&quot;n't&quot;, 'RB'), ('make', 'VB'), ('you', 'PRP'), ('feel', 'VB'), ('welcome', 'JJ'), ('or', 'CC'), ('demonstrate', 'JJ'), ('any', 'DT'), ('knowledge', 'NN'), ('of', 'IN'), ('the', 'DT'), ('surrounding', 'VBG'), ('area', 'NN'), ('.', '.')]"/>
+        </attvalues>
+      </node>
+      <node id="6" label="+services+restaurant-comfort">
+        <attvalues>
+          <attvalue for="1" value="[('The', 'DT'), ('food', 'NN'), ('was', 'VBD'), ('good', 'JJ'), ('but', 'CC'), ('the', 'DT'), ('service', 'NN'), ('was', 'VBD'), ('slow', 'JJ')]"/>
+          <attvalue for="2" value="[('Smell', 'NNP'), ('of', 'IN'), ('cigarette', 'NN'), ('smoke.', 'NNP'), ('The', 'NNP'), ('entrance', 'NN'), ('to', 'TO'), ('the', 'DT'), ('car', 'NN'), ('park', 'NN'), ('had', 'VBD'), ('a', 'DT'), ('lump', 'NN'), ('of', 'IN'), ('concrete', 'JJ'), ('which', 'WDT'), ('was', 'VBD'), ('difficult', 'JJ'), ('to', 'TO'), ('drive', 'JJ'), ('over', 'IN'), ('with', 'IN'), ('my', 'PRP$'), ('van.', 'NNP'), ('The', 'NNP'), ('window', 'NN'), ('in', 'IN'), ('my', 'PRP$'), ('room', 'NN'), ('had', 'VBD'), ('dust', 'VBN'), ('in', 'IN'), ('the', 'DT'), ('runners', 'NNS'), ('.', '.')]"/>
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="0" target="6" id="0-6" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="5" target="6" id="5-6" label="/services/">
+        <attvalues/>
+      </edge>
+      <edge source="4" target="5" id="4-5" label="/services/">
+        <attvalues/>
+      </edge>
+      <edge source="4" target="6" id="4-6" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="4" target="7" id="4-7" label="/location/">
+        <attvalues/>
+      </edge>
+      <edge source="1" target="7" id="1-7" label="/staff/">
+        <attvalues/>
+      </edge>
+      <edge source="1" target="6" id="1-6" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="6" target="7" id="6-7" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="2" target="7" id="2-7" label="/location/">
+        <attvalues/>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

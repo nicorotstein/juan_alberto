@@ -353,6 +353,7 @@ class Grapher():
         self.dotnodes = {}
         self.has_compressed = {}
         self.warranted = set([])
+        self.redundant = {}
         for n in nodes:
             if n.attributes != []:
                 self.dotgraph.add_node(n.id, shape="record", 
@@ -380,6 +381,7 @@ class Grapher():
             "string")
         attHasCompressed = graph.addNodeAttribute("has_compressed", "[]", 
             "liststring")
+        attRedundant = graph.addNodeAttribute("redundant", "[]", "liststring")
         nodes = []
         for n in self.dotgraph.nodes():
             nodes.append(self.dotnodes[n])
@@ -400,6 +402,8 @@ class Grapher():
         for w in self.warranted:
             node_handlers[w].addAttribute(attWarrant, "true")
             node_handlers[w].setColor("20", "200", "20")
+        for r in self.redundant.keys():
+            node_handlers[r].addAttribute(attRedundant, str(self.redundant[r]))
         return self.graph_container
 
     def get_dotgraph(self):
@@ -459,28 +463,32 @@ class Grapher():
     def remove_dupes(self):
         removals = []
         remaining_nodes = set(self.dotgraph.nodes())
+        self.redundant = {}
         while remaining_nodes != set([]):
             n = remaining_nodes.pop()
             for n2 in remaining_nodes:
                 if set(self.dotnodes[n2].attributes).issubset(
                     set(self.dotnodes[n].attributes)):
-                    removals.append(n2)
+                    removals.append((n2,n))
+                    self.redundant[n] = []
         if removals != []:
             if len(set(removals)) == 1:
                 print "1 review was redundant"
             else:
                 print len(set(removals)), "reviews were redundant"
-        for r in set(removals):
-            print "review " + r + " was redundant - should be attached to the review that stayed in!!!"
+        for (r, n) in set(removals):
+            print "review " + r + " was redundant with " + n
+            # should be attached to the review that stayed in!!!
             self.dotgraph.remove_node(r)
+            self.redundant[n] += r
 
     def set_warranted(self):
         undefeated = set([node for (node,x) in self.dotgraph.edges()]) - \
                       set([node for (x,node) in self.dotgraph.edges()])
         undefeated |= set([node for node in self.dotgraph.nodes() 
                            if nx.is_isolate(self.dotgraph, node)])
-        warranted = undefeated | self.judge.grounded(undefeated, self.dotgraph, 
-            set([]), set([]))
+        warranted = undefeated | self.judge.grounded(undefeated, 
+            self.dotgraph, set([]), set([]))
         for w in warranted:
             self.dotgraph.add_node(w, style="filled", fillcolor="green")
         self.warranted = warranted
@@ -533,6 +541,7 @@ class Grapher():
         self.dotgraph = compressed_dotgraph
         self.dotnodes = compressed_dotnodes
         self.has_compressed = has_compressed
+        self.redundant = {}
 
     def stages(self, fringe, so_far):
         next = set()
@@ -570,7 +579,67 @@ class Grapher():
                 (i, c) = self.consistent_in_rest(elems + [next], rest, warranted)
                 return (i, set(elems + [next]) | c)
 
+class Stats():
+    # def __init__(self):
+    #     pass
+
+    @classmethod
+    def rate_features(cls, arguments):
+        for arg in arguments:
+            arg.set_rating(arguments)
+        all_atts = [(op, fe, arg.rating) for arg in arguments \
+            for (op, fe) in arg.attributes]
+        # print 'all attributes', all_atts
+        fe_set = set([fe for (op, fe, rating) in all_atts])
+        ratings = {}
+        for fe in fe_set:
+            ratings['+', fe] = 0
+            ratings['-', fe] = 0
+        for (op, fe, rating) in all_atts:
+            ratings[op, fe] += rating
+        # print 'ratings', ratings
+        fe_ratings = {}
+        for fe in fe_set:
+            fe_ratings[fe] = ratings['+', fe] - ratings['-', fe]
+        # print fe_ratings
+        print '\nFEATURES RATING'
+        for (fe, rating) in fe_ratings.iteritems():
+            if rating >= 0:
+                print fe, 'is accepted'
+            else:
+                print fe, 'is rejected'
+        return fe_ratings
+
+    @classmethod
+    def count_features(cls, arguments):
+        all_atts = [(op, fe) for arg in arguments \
+            for (op, fe) in arg.attributes]
+        # print 'all attributes', all_atts
+        fe_set = set([fe for (op, fe) in all_atts])
+        count = {}
+        for fe in fe_set:
+            count['+', fe] = 0
+            count['-', fe] = 0
+        for (op, fe) in all_atts:
+            count[op, fe] += 1
+        # print 'ratings', ratings
+        fe_count = {}
+        for fe in fe_set:
+            fe_count[fe] = count['+', fe] - count['-', fe]
+        # print fe_ratings
+        print '\nFEATURES COUNT'
+        for (fe, rating) in fe_count.iteritems():
+            if rating >= 0:
+                print fe, 'is accepted'
+            else:
+                print fe, 'is rejected'
+        return fe_count
+
+
 # if __name__ == '__main__':
     # g = Grapher()
+
+
+
 
 # EOF

@@ -9,19 +9,21 @@ from nltk import word_tokenize
 #who reads the data from storage. Here we create the model instances. 
 class BusinessObject(object):
     def __init__(self):
-        pass
+        self.current_review_id = -1
 
-    def create_review(self,text_pos,text_neg):
+    def create_review(self, text_pos, text_neg):
         postag_pos = pos_tag(word_tokenize(text_pos))
         postag_neg = pos_tag(word_tokenize(text_neg))
 
         feats_pos = extract_features(postag_pos)
         feats_neg = extract_features(postag_neg)
 
+        self.current_review_id += 1
+
         positive_data = {'feats':feats_pos, 'text':postag_pos}
         negative_data = {'feats':feats_neg, 'text':postag_neg}
 
-        return Review(revid = -1, positive = positive_data , negative = negative_data )
+        return Review(revid=self.current_review_id, positive=positive_data, negative=negative_data )
 
     def read_review(self):
 		dao = CorpusReader()

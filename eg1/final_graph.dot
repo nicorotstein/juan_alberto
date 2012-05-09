@@ -1,0 +1,7 @@
+strict digraph G {
+c2 [shape=record, label="c2 | ['1'] | +services+comfort", style=filled, fillcolor=green];
+c1 [shape=record, label="c1 | ['3', '5'] | +location-services-price-clean-staff"];
+c0 [shape=record, label="c0 | ['2', '6'] | +building+bar+restaurant+price+services+staff-nothing-location", style=filled, fillcolor=green];
+c2 -> c1  [dir=none];
+c1 -> c0  [dir=none];
+}
