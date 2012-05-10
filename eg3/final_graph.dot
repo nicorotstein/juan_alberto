@@ -1,8 +1,8 @@
 strict digraph G {
-c3 [shape=record, label="c3 | ['2', '4'] | +price+restaurant-comfort-quiet", style=filled, fillcolor=green];
-c2 [shape=record, label="c2 | ['7'] | +fun+price-building-comfort-staff"];
+c3 [shape=record, label="c3 | ['2'] | +price-comfort", style=filled, fillcolor=green];
+c2 [shape=record, label="c2 | ['4', '7'] | +fun+price+restaurant-building-comfort-quiet-staff"];
 c1 [shape=record, label="c1 | ['1', '0'] | +fun+location+staff-price-comfort-restaurant"];
-c0 [shape=record, label="c0 | ['8', '6'] | +restaurant+location+staff-services-comfort-clean", style=filled, fillcolor=green];
+c0 [shape=record, label="c0 | ['8', '3', '6'] | +fun+restaurant+staff+quiet+location-services-comfort-clean", style=filled, fillcolor=green];
 c3 -> c1  [dir=none];
 c2 -> c1  [dir=none];
 c2 -> c0  [dir=none];

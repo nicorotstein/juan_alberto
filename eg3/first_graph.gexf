@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-09T10:19:41.597124">
+  <meta lastmodified="2012-05-09T19:51:02.926222">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -36,8 +36,15 @@
         <attvalues>
           <attvalue for="1" value="[('Location', 'NN'), ('great', 'VBD'), ('for', 'IN'), ('nightlife', 'NN')]"/>
           <attvalue for="2" value="[('rooms', 'NNS'), ('small', 'JJ'), ('breakfast', 'NN'), ('minimal', 'JJ')]"/>
-          <attvalue for="4" value="['3']"/>
         </attvalues>
+      </node>
+      <node id="3" label="+location+quiet-comfort">
+        <attvalues>
+          <attvalue for="1" value="[('Relaxing', 'VBG'), (',', ','), ('excelent', 'NN'), ('lobby', 'NN'), (',', ','), ('great', 'JJ'), ('location', 'NN'), (',', ','), ('calm', 'NN')]"/>
+          <attvalue for="2" value="[('I', 'PRP'), ('was', 'VBD'), ('affraid', 'VBN'), ('that', 'IN'), ('my', 'PRP$'), ('bed', 'VBN'), ('was', 'VBD'), ('going', 'VBG'), ('to', 'TO'), ('crash', 'VB'), ('during', 'IN'), ('the', 'DT'), ('night', 'NN'), (',', ','), ('the', 'DT'), ('cleanliness', 'NN'), ('of', 'IN'), ('the', 'DT'), ('room', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('bad', 'JJ'), (',', ','), ('the', 'DT'), ('towels', 'NNS'), ('were', 'VBD'), ('horrible', 'JJ'), ('.', '.')]"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="2" label="+price-comfort">
         <attvalues>
@@ -51,9 +58,7 @@
         <attvalues>
           <attvalue for="1" value="[('Breakfast', 'NNP'), ('included', 'VBD')]"/>
           <attvalue for="2" value="[('Very', 'NNP'), ('noisy', 'NN')]"/>
-          <attvalue for="0" value="true"/>
         </attvalues>
-        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="7" label="+fun+price-building-comfort-staff">
         <attvalues>
@@ -61,7 +66,7 @@
           <attvalue for="2" value="[('Difficult', 'NNP'), ('to', 'TO'), ('find', 'VB'), ('!', '.'), ('Has', 'NNP'), ('no', 'DT'), ('signs', 'NNS'), ('outside', 'IN'), ('to', 'TO'), ('identify', 'VB'), ('it', 'PRP'), ('until', 'IN'), ('your', 'PRP$'), ('find', 'NN'), ('reception', 'NN'), ('inside.', 'NNP'), ('Shower', 'NNP'), ('was', 'VBD'), ('poorly', 'RB'), ('fitted', 'VBN'), ('and', 'CC'), ('and', 'CC'), ('flooded', 'VBD'), ('the', 'DT'), ('bathroom', 'NN'), ('whenever', 'NN'), ('it', 'PRP'), ('was', 'VBD'), ('used', 'VBN'), ('.', '.')]"/>
         </attvalues>
       </node>
-      <node id="6" label="+location-clean">
+      <node id="6" label="+fun+location-clean">
         <attvalues>
           <attvalue for="1" value="[('Nice', 'NNP'), ('rooms', 'NNS'), ('with', 'IN'), ('cable', 'JJ'), ('tv', 'NN'), ('and', 'CC'), ('great', 'JJ'), ('location', 'NN'), ('because', 'IN'), ('it', 'PRP'), (&quot;'s&quot;, 'VBZ'), ('very', 'RB'), ('near', 'IN'), ('to', 'TO'), ('paceville', 'VB'), (&quot;'&quot;, 'POS'), ('bars', 'NNS'), ('and', 'CC'), ('to', 'TO'), ('bus', 'VB'), ('stops.', 'NNP'), ('Also', 'NNP'), ('the', 'DT'), ('staffs', 'NNS'), ('are', 'VBP'), ('very', 'RB'), ('kind.', 'NNP'), ('It', 'PRP'), (&quot;'s&quot;, 'VBZ'), ('a', 'DT'), ('good', 'JJ'), ('choice', 'NN'), ('for', 'IN'), ('solo', 'NN'), ('travelers', 'NNS'), ('who', 'WP'), ('just', 'RB'), ('need', 'VBP'), ('a', 'DT'), ('bed', 'VBN'), ('to', 'TO'), ('sleep', 'VB'), ('.', '.')]"/>
           <attvalue for="2" value="[('Bathroom', 'NNP'), ('floor', 'NN'), ('was', 'VBD'), ('dirty', 'JJ'), (',', ','), ('espacially', 'RB'), ('the', 'DT'), ('shower', 'NN'), ('floor', 'NN'), ('.', '.')]"/>
@@ -85,7 +90,7 @@
       <edge source="1" target="8" id="1-8" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="7" target="8" id="7-8" label="/staff/">
+      <edge source="3" target="4" id="3-4" label="/quiet/">
         <attvalues/>
       </edge>
       <edge source="1" target="2" id="1-2" label="/price/">
@@ -98,6 +103,9 @@
         <attvalues/>
       </edge>
       <edge source="1" target="7" id="1-7" label="/staff/price/">
+        <attvalues/>
+      </edge>
+      <edge source="7" target="8" id="7-8" label="/staff/">
         <attvalues/>
       </edge>
     </edges>

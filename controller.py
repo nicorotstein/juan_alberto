@@ -99,9 +99,9 @@ class ReviewsContainer():
     def test_rpc(self):
         return 'evtg ok'
 
-def test():
+def test(which_one):
     ob = BusinessObject()
-    reviews_file = open('./eg3/reviews.txt', 'r')
+    reviews_file = open('./eg' + which_one + '/reviews.txt', 'r')
     i = 0
     positive = ""
     negative = ""
@@ -123,15 +123,26 @@ def test():
         print '~ ' + str(r.undecided_feats)
         print ''
     graph = Grapher(reviews)
-    Drawer.draw_dotgraph(graph.get_dotgraph(), 'first_graph')
-    Drawer.draw_gexfgraph(graph.get_container(), 'first_graph')
+    Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/first_graph')
+    Drawer.draw_gexfgraph(graph.get_container(), './eg' + which_one + '/first_graph')
     # every time get_container() is invoked, a new graph is generated
     graph.compress()
-    Drawer.draw_dotgraph(graph.get_dotgraph(), 'final_graph')
-    Drawer.draw_gexfgraph(graph.get_container(), 'final_graph')
+    Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/final_graph')
+    Drawer.draw_gexfgraph(graph.get_container(), './eg' + which_one + '/final_graph')
 
-    Stats.rate_features(reviews)
-    Stats.count_features(reviews)
+    rated_feats = Stats.rate_features(reviews)
+    counted_feats = Stats.count_features(reviews)
+    warranted_feats = Stats.warranted_features(graph.get_warranted())
+    dump_feats(rated_feats, './eg' + which_one + '/rated.csv')
+    dump_feats(counted_feats, './eg' + which_one + '/counted.csv')
+    dump_feats(warranted_feats, './eg' + which_one + '/warranted.csv')
+
+def dump_feats(dictio, filename):
+    import csv
+    f = open(filename,'w')
+    writer = csv.writer(f, dialect='excel')
+    for e in dictio.iteritems():
+        writer.writerow(e)
 
 def main():
     l = ReviewsContainer()
@@ -139,5 +150,7 @@ def main():
     l.get_arguments_graph([],[])
     
 if __name__ == '__main__':
-    test()
+    import sys
+    # print sys.argv
+    test(sys.argv[1])
 

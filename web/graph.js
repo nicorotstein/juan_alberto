@@ -47,7 +47,7 @@ function init() {
       }).draw(2,2,2);
     });
     
-    s1.parseGexf('../data/les_miserables.gexf');
+    s1.parseGexf('../data/final_graph.gexf');
     console.log(s1)
 
     s1.draw();

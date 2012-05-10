@@ -77,11 +77,11 @@
       ================================================== -->
       <header class="jumbotron subhead" id="overview">
         <h1>Arguiew Details</h1>
-        <p class="lead">Information you need to understand how Arguiew works: technical and commercial details, user experiences, examples and tests. Any doubt, <a href=#contact> contact us!</a></p>
+        <p class="lead">What you need to know to understand how Arguiew works: technical and commercial details, user experiences, examples and tests. Any doubt, <a href=#contact> contact us!</a></p>
         <div class="subnav subnav-fixed">
           <ul class="nav nav-pills">
             <li><a href="#functionality">Functionality</a></li>
-            <li><a href="#visualization">Visualization</a></li>
+            <li><a href="#visualisation">Visualisation</a></li>
             <li><a href="#languages">Language Domain</a></li>
             <li><a href="#users">Who would use it?</a></li>
             <li><a href="#technology">Technology</a></li>
@@ -94,57 +94,76 @@
       ================================================== -->
       <section id="functionality">
           <div class="page-header">
-            <h1>Functionality <small>What are the limits of our software</small></h1>
+            <h1>Functionality <small>Arguiew features and inner working</small></h1>
           </div>
           <!--- aca buscar otro formatito  no rows -->
           <div class="row-fluid">
             <div class="span3">
               <h3>About Functionality</h3>
-              <p>Here we will show different functionalities of our tools.</p> 
+              <p>nada</p> 
             </div>
             <div class="span9">
-              <h2>Review Parsing </h2>
-              <p>Quizas aca algo sobre como funcionan las componentes principales para cargar reviews, y como se parsean. Ni puta idea. </p>
+              <h2>Review parsing</h2>
+              <p>
+                From a URL pointing to a list of reviews, each review is encapsulated into an object. Text, features, and other relevant data are stored. Arguiew manipulates these objects in order to find hidden relations among them. MORE HERE.
+              </p>
               
-              <h2>Features Extraction </h2>
-              <p>Quizas aca algo sobre la deteccion de features, la extraccion. Yo pondria un poco de detalle tecnico, y ejemplos de muestra. TODO: comentar lo de dependencias (small-> SIZE) y features implicitos "good quality picture" ->SENSOR</p>
+              <h2>Features extraction</h2>
+              <p>
+                Text is rendered into machine-readable features (or keywords or categories, as you prefer). We take care of putting everything into the right bucket, e.g. "small", "tiny" and "huge" fall into the "size" feature; we also try to detect implicit references, e.g. "good picture quality" falls into the "camera sensor" feature. Furthermore, we try to capture multiple features out of a single one, e.g. a positive reference to "nightlife" implies a negative reference to "quietness".
+              </p>
+
+              <h2>Debate generation</h2>
+              <p>
+                We read reviews to come up with a general idea about which product features are good, and then decide upon how these match our expectations. A single review represents an opinion. When adding more reviews, conflict arises; it's up to us to come up with a conclusion! If there were no conflict, this is straightforward, but we know this is not generally the case. Arguiew organises reviews as being part of a (virtual) debate. Compatible reviews are teamed up and redundant reviews are inserted into the most general review in order to yield a compact graphical representation. The user can thus decide upon this drawing instead of going through hundreds of reviews.
+              </p>
+
+              <h2>Automated reasoning</h2>
+              <p>
+                Arguiew offers three alternatives for obtaining the consensus: (1) "Feature counting" checks positive and negative occurrences for every feature. If there are more positive than negative, the conclusion is that the consensus about that feature is a positive opinion. (2) "Feature rating" assigns a rating to each review according to a measure of compatibility with regard to the rest of the reviews. Features inherit different ratings according to the reviews they are in; the total rating (the sum) of positive opinions for each feature is checked against the total rating of negative opinions for that feature, and a conclusion is drawn. (3) "Argumentation" organises reviews as a debate held by reviewers. Pairs of conflicting reviews are resolved by giving preference to the higher-rating one. Cycles are resolved to get rid of irrelevant sub-debates and the final network is evaluated following computational argumentation techniques. The result is a consistent subset of reviews whose features are to be believed in.
+              </p>
             </div> 
           </div>  
       </section>
 
-      <!-- Visualization
+      <!-- visualisation
       ================================================== -->
-      <section id="visualization">
+      <section id="visualisation">
           <div class="page-header">
-            <h1>Visualization <small>What and how we visualize the opinions, features and arguments</small></h1>
+            <h1>Visualisation <small>What is it good for</small></h1>
           </div>
-          
 
           <div class="row-fluid">
             <!--Left Side Panel-->
             <div class="span3">
-              <h3>About visualization</h3>
-              <p>Here we explain different visualizatin techniques, which applies to different necessities of customers and providers.</p>
+              <h3>About visualisation</h3>
+              <p>
+                nada
+              </p>
             </div>
             <!--Main Body-->
             <div class="span9">
-              <h3>Visualization examples</h3>
-              <p>Bring to your mind an imaginary hotel and rate it according to your own experience on it. Be objetive, and creative without complicating your mind. Your review will be added to an imaginary set of reviews, where you can notice the changes in the features extraction and the visualization tools.
+              <h3>Visualisation examples</h3>
+              <p>
+                Bring to your mind an imaginary hotel and rate it according to your own experience. Be objective (and creative if you must). Your review will be added to the list of reviews below. Note that these reviews are already put in a graph. Once you enter yours and hit the "Evaluate" button, you'll see how the graph changes to accommodate a depiction of your review, including the features you mentioned.
+              </p>
               <form class="well">
                 <fieldset>
                   <div class="row-fluid">
                     <div class="span8">
                       <legend>Positive and Negative Opinions</legend>  
                       <textarea class="span6" id="pos_reviews" rows="3">
-                        The Hotel was fantastic. Connected with metro Poble Sec and Sant Antoni. Excellent atmosphere and the staff was friendly.
+                        The hotel was fantastic. Connected with metro Poble Sec and Sant Antoni. Excellent atmosphere and staff was friendly.
                       </textarea>
                       <textarea class="span6" id="neg_reviews" rows="3">
-                        My gf couldn't find the cooking facilities at the small kitchen, so we couldn't cook the mushrooms. Price was to high in relation with services.  
+                        My gf couldn't find the cooking facilities in the small kitchen, so we couldn't cook the mushrooms. Price was too high in relation to services.  
                       </textarea>
                     </div>
                     <div class="span3 well">
                         <span class="label label-important">Important:</span>
-                        <p>The idea of writing reviews, is to provide a well formed opinion about the actual topic: "Hotels". So, be consistent, clear and objective. E.G. Positive: "The location was perfect, room provides good facilities and staff was friendly."</p>
+                        <p>
+                          The idea of writing reviews is to provide an informed yet brief opinion. Try to be consistent, clear and objective.
+                        </p>
                     </div>
                   </div>
 
@@ -157,7 +176,9 @@
   
 
               <h2>Arguments Graph</h2>
-              <p>Quizas aca un chamullito sobre las visualizaciones, esta es la seccioncita acerca del grafo de argumentos, explicacion de los graficos, quizás algunos ejemplos respectivos</p>
+              <p>
+                Each node in the graph below corresponds to a review. Edges between reviews represent conflict. Nodes are labelled with their features and edges, with the conflicting features between the pair of nodes they relate. A compression tool keeps the graph small when the number of reviews grow.
+              </p>
             
               <div style='position:relative; height: 400px'>
                 <div class="sigma-parent sigma-expand">
@@ -167,14 +188,15 @@
               </div>
         
               <h2>General Stats</h2>
-              <p>Quizas aca un chamullito sobre un grafiquito de stats generales, con cosas del estilo: Nr POS, Nr NEG, stats de features. Operaciones basicas: average, con un score para cada feature, etc.</p>
-              
+              <p>
+                Apart from the graphic visualisation, we also provide general statistics about the features, such as: positive and negative frequency, compatibility rating, and so on. Decisions could be drawn from these numbers.
+              </p>              
               <div class="row">
               <!--Div that will hold the stats chart-->
                 <div class="span9">
                   <div id="chart_div1" class="span6" ></div>
                   <div class="span2">
-                    <p>hoal hola</p>
+                    <p>hello, hello? what is this?</p>
                   </div>
                 </div>
                 
@@ -199,7 +221,7 @@
               <p>y que puedas pararte arriba de cada parte y salge un globito con stats de ese feature.</p>
             
               <h2>Algun otro grafico bueno</h2>
-              <p>Lo que se nos ocurra que podamos creer que da mucha informacion de un solo vistazo, y que se pueda tunear, filtrar etc. Hay que analizar que cosas serian utiles visualizar, tanto cliente como user.</p>
+              <p>Lo que se nos ocurra que podamos creer que da mucha informacion de un solo vistazo, y que se pueda tunear, filtrar etc. Hay que analizar que cosas serian utiles visualisar, tanto cliente como user.</p>
             </div>
           </div>  
       </section>

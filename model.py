@@ -71,7 +71,7 @@ class Review():
     def set_rating(self, reviews):
         if not self.accrued:
             common_atts = []
-            for r in reviews:
+            for r in set(reviews) - set([self]):
                 common_atts.append(set(self.attributes) & 
                     set(r.get_attributes()))
             rating = 0
@@ -409,6 +409,9 @@ class Grapher():
     def get_dotgraph(self):
         return self.dotgraph
 
+    def get_warranted(self):
+        return [self.dotnodes[w] for w in self.warranted]
+
     def resolve_cycles(self): 
         # capture all cycles
         cycles = nx.simple_cycles(self.dotgraph)
@@ -604,11 +607,26 @@ class Stats():
         # print fe_ratings
         print '\nFEATURES RATING'
         for (fe, rating) in fe_ratings.iteritems():
-            if rating >= 0:
+            if rating > 0:
                 print fe, 'is accepted'
+            elif rating == 0:
+                print fe, 'is undecided'
             else:
                 print fe, 'is rejected'
         return fe_ratings
+
+    @classmethod
+    def warranted_features(cls, warranted):
+        warr_atts = set([att for arg in warranted for att in arg.attributes])
+        warrants = {}
+        print '\nWARRANTS'
+        for (op, fe) in warr_atts:
+            warrants[fe] = op
+            if op == '+':
+                print fe, 'is accepted'
+            else:
+                print fe, 'is rejected'
+        return warrants
 
     @classmethod
     def count_features(cls, arguments):
@@ -629,8 +647,10 @@ class Stats():
         # print fe_ratings
         print '\nFEATURES COUNT'
         for (fe, rating) in fe_count.iteritems():
-            if rating >= 0:
+            if rating > 0:
                 print fe, 'is accepted'
+            elif rating == 0:
+                print fe, 'is undecided'
             else:
                 print fe, 'is rejected'
         return fe_count
