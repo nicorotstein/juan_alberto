@@ -1,9 +1,5 @@
-restaurant,+
-price,+
-comfort,-
-quiet,+
 fun,+
+comfort,-
 location,+
 clean,-
-services,-
-staff,+
+quiet,+

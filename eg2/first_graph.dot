@@ -1,19 +1,20 @@
 strict digraph G {
-1 [shape=record, label="1 | +comfort+staff-quiet| (6)", style=filled, fillcolor=green];
-0 [shape=record, label="0 | +comfort+clean-building-view| (10)", style=filled, fillcolor=green];
-3 [shape=record, label="3 | +extras| (1)", style=filled, fillcolor=green];
-2 [shape=record, label="2 | +price+location| (4)", style=filled, fillcolor=green];
-5 [shape=record, label="5 | +price-services| (3)"];
-4 [shape=record, label="4 | +services+comfort+location+clean-building| (13)", style=filled, fillcolor=green];
-7 [shape=record, label="7 | +comfort+clean-location-staff| (9)"];
-6 [shape=record, label="6 | +services+restaurant-comfort| (4)"];
+1 [shape=record, label="1 | +comfort+staff-quiet| (3)", style=filled, fillcolor=green];
+0 [shape=record, label="0 | +comfort+clean-building-view| (6)", style=filled, fillcolor=green];
+3 [shape=record, label="3 | +extras| (0)", style=filled, fillcolor=green];
+2 [shape=record, label="2 | +price+location| (2)", style=filled, fillcolor=green];
+5 [shape=record, label="5 | +price-services| (1)"];
+4 [shape=record, label="4 | +services+comfort+location+clean-building| (8)", style=filled, fillcolor=green];
+7 [shape=record, label="7 | +comfort+clean-location-staff| (5)"];
+6 [shape=record, label="6 | +services+restaurant-comfort| (1)"];
 1 -> 6  [label="/comfort/"];
 0 -> 6  [label="/comfort/"];
+5 -> 6  [color=red, dir=both, label="/services/"];
 4 -> 5  [label="/services/"];
 4 -> 7  [label="/location/"];
 4 -> 6  [label="/comfort/"];
 7 -> 1  [label="/staff/"];
 7 -> 2  [label="/location/"];
 7 -> 6  [label="/comfort/"];
-6 -> 5  [label="/services/"];
+6 -> 5  [color=transparent];
 }

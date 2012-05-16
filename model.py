@@ -388,6 +388,7 @@ class Grapher():
         self.judge = Judge(nodes)
         edges = self.judge.get_conflicts()
         node_handlers = {}
+        print 'nodes', nodes
         for n in nodes:
             i = graph.addNode(n.id, n.get_formatted_atts())
             node_handlers[n.id] = i
@@ -402,6 +403,7 @@ class Grapher():
         for w in self.warranted:
             node_handlers[w].addAttribute(attWarrant, "true")
             node_handlers[w].setColor("20", "200", "20")
+        print node_handlers
         for r in self.redundant.keys():
             node_handlers[r].addAttribute(attRedundant, str(self.redundant[r]))
         return self.graph_container
@@ -445,8 +447,8 @@ class Grapher():
                 set(affected_by_cycles) == []):
                 out += cycle
         if out != []:
-            # print "out due to unforgiving cycles: ", out
-            print len(out), "reviews were involved in improper cycling"
+            print "involved in improper cycles: ", out
+            # print len(out), "reviews were involved in improper cycling"
         for o in set(out):
             self.dotgraph.remove_node(o)
 
@@ -479,11 +481,13 @@ class Grapher():
                 print "1 review was redundant"
             else:
                 print len(set(removals)), "reviews were redundant"
+        print removals
         for (r, n) in set(removals):
             print "review " + r + " was redundant with " + n
             # should be attached to the review that stayed in!!!
-            self.dotgraph.remove_node(r)
-            self.redundant[n] += r
+            if r in self.dotgraph.nodes():
+                self.dotgraph.remove_node(r)
+                self.redundant[n] += r
 
     def set_warranted(self):
         undefeated = set([node for (node,x) in self.dotgraph.edges()]) - \
@@ -658,8 +662,5 @@ class Stats():
 
 # if __name__ == '__main__':
     # g = Grapher()
-
-
-
 
 # EOF

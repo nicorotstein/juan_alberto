@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-09T19:51:02.991147">
+  <meta lastmodified="2012-05-10T19:24:05.073843">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -50,9 +50,7 @@
         <attvalues>
           <attvalue for="1" value="[('I', 'PRP'), ('liked', 'VBD'), ('How', 'WRB'), ('much', 'RB'), ('value', 'NN'), ('I', 'PRP'), ('got', 'VBD'), ('for', 'IN'), ('my', 'PRP$'), ('money', 'NN'), ('.', '.')]"/>
           <attvalue for="2" value="[('I', 'PRP'), ('did', 'VBD'), (&quot;n't&quot;, 'RB'), ('like', 'VB'), ('that', 'IN'), ('it', 'PRP'), ('was', 'VBD'), (&quot;n't&quot;, 'RB'), ('sound', 'VB'), ('isolated', 'VBN'), ('-', ':'), ('I', 'PRP'), ('could', 'MD'), ('hear', 'VB'), ('everything', 'NN'), ('in', 'IN'), ('the', 'DT'), ('room', 'NN'), ('!', '.')]"/>
-          <attvalue for="0" value="true"/>
         </attvalues>
-        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="4" label="+restaurant-quiet">
         <attvalues>
@@ -78,9 +76,7 @@
         <attvalues>
           <attvalue for="1" value="[('The', 'DT'), ('staff', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('friendly', 'RB'), ('and', 'CC'), ('had', 'VBD'), ('helped', 'VBN'), ('with', 'IN'), ('each', 'DT'), ('problem', 'NN'), (',', ','), ('the', 'DT'), ('breakfast', 'NN'), ('was', 'VBD'), ('quite', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('the', 'DT'), ('hotel', 'NN'), ('is', 'VBZ'), ('well', 'RB'), ('located', 'VBN'), ('.', '.')]"/>
           <attvalue for="2" value="[('Useing', 'VBG'), ('the', 'DT'), ('internet', 'NN'), ('was', 'VBD'), ('too', 'RB'), ('expensive', 'JJ'), (',', ','), ('house', 'NN'), ('keeping', 'VBG'), ('was', 'VBD'), ('not', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('it', 'PRP'), ('was', 'VBD'), ('too', 'RB'), ('warm', 'JJ'), ('inside', 'NN'), ('the', 'DT'), ('room', 'NN'), ('.', '.')]"/>
-          <attvalue for="0" value="true"/>
         </attvalues>
-        <viz:color r="20" g="200" b="20"/>
       </node>
     </nodes>
     <edges>
@@ -132,50 +128,25 @@
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
     <nodes>
-      <node id="c3" label="+price-comfort">
+      <node id="c1" label="+restaurant-quiet">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['2']"/>
-          <attvalue for="0" value="true"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="c2" label="+fun+price+restaurant-building-comfort-quiet-staff">
-        <attvalues>
-          <attvalue for="1" value=""/>
-          <attvalue for="2" value=""/>
-          <attvalue for="3" value="['4', '7']"/>
+          <attvalue for="3" value="['4']"/>
         </attvalues>
       </node>
-      <node id="c1" label="+fun+location+staff-price-comfort-restaurant">
+      <node id="c0" label="+fun+location+quiet-comfort-clean">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['1', '0']"/>
-        </attvalues>
-      </node>
-      <node id="c0" label="+fun+restaurant+staff+quiet+location-services-comfort-clean">
-        <attvalues>
-          <attvalue for="1" value=""/>
-          <attvalue for="2" value=""/>
-          <attvalue for="3" value="['8', '3', '6']"/>
+          <attvalue for="3" value="['3', '6']"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
     </nodes>
     <edges>
-      <edge source="c1" target="c3" id="c1-c3" label="/price/">
-        <attvalues/>
-      </edge>
-      <edge source="c1" target="c2" id="c1-c2" label="/staff/price/restaurant/">
-        <attvalues/>
-      </edge>
-      <edge source="c0" target="c2" id="c0-c2" label="/staff/quiet/">
-        <attvalues/>
-      </edge>
-      <edge source="c0" target="c1" id="c0-c1" label="/restaurant/">
+      <edge source="c0" target="c1" id="c0-c1" label="/quiet/">
         <attvalues/>
       </edge>
     </edges>
