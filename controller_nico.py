@@ -21,11 +21,11 @@ if __name__ == '__main__':
     print 'creating graph...'
     g = Grapher(reviews)
     # print 'drawing graph...'
-    Drawer.draw_dotgraph(g.get_dotgraph(), 'original_graph')
+    Drawer.draw_gexfgraph(g.get_container(), 'original_graph')
 
     g.compress()
-    Drawer.draw_dotgraph(g.get_dotgraph(), 'final_graph')
-    # Drawer.draw_gexfgraph(g.get_container(), 'final_graph')
+    # Drawer.draw_dotgraph(g.get_dotgraph(), 'final_graph')
+    Drawer.draw_gexfgraph(g.get_container(), 'final_graph')
 
 
     # s.split()
@@ -47,16 +47,16 @@ if __name__ == '__main__':
     # s.split()
 
     # print 'compressing graph...'
-    g.compress()
+    # g.compress()
     # print 'drawing graph...'
-    Drawer.draw_dotgraph(g.get_dotgraph(), 'compressed_graph')
+    # Drawer.draw_dotgraph(g.get_dotgraph(), 'compressed_graph')
     
     # s.split()
 
     # print 'removing redundant reviews in compressed graph'
-    g.remove_dupes()
+    # g.remove_dupes()
     # print 'drawing graph...'
-    Drawer.draw_dotgraph(g.get_dotgraph(), 'compressed_non-redundant_graph')
+    # Drawer.draw_dotgraph(g.get_dotgraph(), 'compressed_non-redundant_graph')
 
     # s.split
 

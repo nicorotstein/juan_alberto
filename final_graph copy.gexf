@@ -1,0 +1,155 @@
+<gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
+  <meta lastmodified="2012-05-17T15:50:39.698234">
+    <creator>Nico Rotstein</creator>
+    <description>Arguiew (reviews as argumentation) graph</description>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" label="Arguiew graph">
+    <attributes class="node" mode="dynamic"/>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="warranted" type="boolean">
+        <default>false</default>
+      </attribute>
+      <attribute id="1" title="positive_text" type="string">
+        <default></default>
+      </attribute>
+      <attribute id="2" title="negative_text" type="string">
+        <default></default>
+      </attribute>
+      <attribute id="3" title="has_compressed" type="liststring">
+        <default>[]</default>
+      </attribute>
+      <attribute id="4" title="redundant" type="liststring">
+        <default>[]</default>
+      </attribute>
+    </attributes>
+    <attributes class="edge" mode="dynamic"/>
+    <attributes class="edge" mode="static"/>
+    <nodes>
+      <node id="c3" label="+tranquility+price+stuff+room-atmosphere-bed">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['91', '86', '6']"/>
+        </attvalues>
+      </node>
+      <node id="c2" label="+price+stuff+atmosphere+bed+location-breakfast-bathroom-size">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['76', '12', '54', '31', '53', '52']"/>
+        </attvalues>
+      </node>
+      <node id="c1" label="+bathroom+food+tranquility+price+atmosphere+bed+stuff+clean+breakfast+friendly+size-room-location">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['45', '62', '63', '73', '83', '38', '20', '23', '46', '30', '40', '3', '2', '4', '8']"/>
+        </attvalues>
+      </node>
+      <node id="c0" label="+atmosphere+room+bathroom+bed+location+clean+breakfast+size-price-stuff-friendly">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['24', '33', '32', '44', '56', '34', '89', '70', '41', '67']"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="c7" label="+food+size">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['55', '72']"/>
+        </attvalues>
+      </node>
+      <node id="c6" label="+food+tranquility+bathroom+room+breakfast-price">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['19', '81', '37']"/>
+        </attvalues>
+      </node>
+      <node id="c5" label="+atmosphere+room+bathroom+bed+location+clean+breakfast+size-food-tranquility-price-friendly">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['25', '26', '27', '58', '16', '29', '0', '74', '80', '87', '97', '21']"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="c4" label="+bathroom+location-room">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['14']"/>
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="c1" target="c2" id="c1-c2" label="/bathroom/breakfast/size/location/">
+        <attvalues/>
+      </edge>
+      <edge source="c5" target="c6" id="c5-c6" label="/food/tranquility/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c2" id="c0-c2" label="/bathroom/breakfast/size/price/stuff/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c3" id="c0-c3" label="/atmosphere/bed/price/stuff/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c1" id="c0-c1" label="/room/location/price/stuff/friendly/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c4" id="c0-c4" label="/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c5" target="c7" id="c5-c7" label="/food/">
+        <attvalues/>
+      </edge>
+      <edge source="c1" target="c6" id="c1-c6" label="/price/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c3" target="c6" id="c3-c6" label="/price/">
+        <attvalues/>
+      </edge>
+      <edge source="c3" target="c5" id="c3-c5" label="/tranquility/price/atmosphere/bed/">
+        <attvalues/>
+      </edge>
+      <edge source="c3" target="c4" id="c3-c4" label="/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c1" target="c3" id="c1-c3" label="/atmosphere/bed/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c2" target="c3" id="c2-c3" label="/atmosphere/bed/">
+        <attvalues/>
+      </edge>
+      <edge source="c2" target="c4" id="c2-c4" label="/bathroom/">
+        <attvalues/>
+      </edge>
+      <edge source="c2" target="c5" id="c2-c5" label="/price/breakfast/bathroom/size/">
+        <attvalues/>
+      </edge>
+      <edge source="c2" target="c6" id="c2-c6" label="/price/breakfast/bathroom/">
+        <attvalues/>
+      </edge>
+      <edge source="c2" target="c7" id="c2-c7" label="/size/">
+        <attvalues/>
+      </edge>
+      <edge source="c4" target="c6" id="c4-c6" label="/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c1" target="c5" id="c1-c5" label="/food/tranquility/price/friendly/room/location/">
+        <attvalues/>
+      </edge>
+      <edge source="c4" target="c5" id="c4-c5" label="/room/">
+        <attvalues/>
+      </edge>
+      <edge source="c1" target="c4" id="c1-c4" label="/location/">
+        <attvalues/>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

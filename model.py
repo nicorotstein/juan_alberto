@@ -6,7 +6,7 @@ Created on Nov 30, 2011
 '''
 
 # -*- coding: utf-8 -*-
-NUM_RANDOM = 100
+NUM_RANDOM = 20
 
 import tools
 from tools import Serializer
@@ -15,9 +15,10 @@ from linguatools import FeaturesGrammar
 from linguatools import Parser
 from nltk import word_tokenize
 import random
-import networkx as nx
+# import networkx as nx1
 import pygexf
 from pygexf import Gexf
+import nx
 
 class Review():
     '''
@@ -388,7 +389,6 @@ class Grapher():
         self.judge = Judge(nodes)
         edges = self.judge.get_conflicts()
         node_handlers = {}
-        print 'nodes', nodes
         for n in nodes:
             i = graph.addNode(n.id, n.get_formatted_atts())
             node_handlers[n.id] = i
@@ -403,7 +403,6 @@ class Grapher():
         for w in self.warranted:
             node_handlers[w].addAttribute(attWarrant, "true")
             node_handlers[w].setColor("20", "200", "20")
-        print node_handlers
         for r in self.redundant.keys():
             node_handlers[r].addAttribute(attRedundant, str(self.redundant[r]))
         return self.graph_container
@@ -454,8 +453,8 @@ class Grapher():
 
     def prettyGraph(self):
         self.remove_dupes()
-        print 'resolving cycles...'
-        self.resolve_cycles()
+        # print 'resolving cycles...'
+        # self.resolve_cycles()
         print 'computing accepted reviews...'
         self.set_warranted()
 
@@ -483,17 +482,19 @@ class Grapher():
                 print len(set(removals)), "reviews were redundant"
         print removals
         for (r, n) in set(removals):
-            print "review " + r + " was redundant with " + n
-            # should be attached to the review that stayed in!!!
-            if r in self.dotgraph.nodes():
+            if r in self.dotgraph.nodes() and n in self.dotgraph.nodes():
+                print "review " + r + " was redundant with " + n
                 self.dotgraph.remove_node(r)
+                if r in self.redundant.keys():
+                    del self.redundant[r] # THIS ISN'T THE SOLUTION!!!
                 self.redundant[n] += r
 
     def set_warranted(self):
         undefeated = set([node for (node,x) in self.dotgraph.edges()]) - \
                       set([node for (x,node) in self.dotgraph.edges()])
         undefeated |= set([node for node in self.dotgraph.nodes() 
-                           if nx.is_isolate(self.dotgraph, node)])
+                           # if nx.is_isolate(self.dotgraph, node)])
+                            if self.dotgraph.is_isolate(node)])
         warranted = undefeated | self.judge.grounded(undefeated, 
             self.dotgraph, set([]), set([]))
         for w in warranted:
@@ -505,7 +506,8 @@ class Grapher():
         first_stage = set([node for (node,x) in self.dotgraph.edges()]) - \
                       set([node for (x,node) in self.dotgraph.edges()])
         first_stage |= set([node for node in self.dotgraph.nodes() 
-                           if nx.is_isolate(self.dotgraph, node)])
+                           # if nx.is_isolate(self.dotgraph, node)])
+                            if self.dotgraph.is_isolate(node)])
         defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
         cs = []
         for stage in defeat_stages:
