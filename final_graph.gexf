@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-17T18:13:09.852140">
+  <meta lastmodified="2012-05-18T08:19:01.227312">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -25,7 +25,31 @@
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
     <nodes>
-      <node id="11" label="+breakfast+clean">
+      <node id="11" label="+size">
+        <attvalues>
+          <attvalue for="1" value="[]"/>
+          <attvalue for="2" value="[]"/>
+          <attvalue for="0" value="true"/>
+          <attvalue for="4" value="[]"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="10" label="+clean">
+        <attvalues>
+          <attvalue for="1" value="[]"/>
+          <attvalue for="2" value="[]"/>
+          <attvalue for="0" value="true"/>
+          <attvalue for="4" value="['1', '6', '5']"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="13" label="+food+price">
+        <attvalues>
+          <attvalue for="1" value="[]"/>
+          <attvalue for="2" value="[]"/>
+        </attvalues>
+      </node>
+      <node id="12" label="+tranquility+stuff">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -34,7 +58,19 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="10" label="+bed-size">
+      <node id="15" label="+breakfast+friendly">
+        <attvalues>
+          <attvalue for="1" value="[]"/>
+          <attvalue for="2" value="[]"/>
+        </attvalues>
+      </node>
+      <node id="17" label="+food+price-atmosphere">
+        <attvalues>
+          <attvalue for="1" value="[]"/>
+          <attvalue for="2" value="[]"/>
+        </attvalues>
+      </node>
+      <node id="19" label="+atmosphere+stuff-friendly">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -42,28 +78,7 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="13" label="+bathroom+location">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-          <attvalue for="0" value="true"/>
-          <attvalue for="4" value="[]"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="12" label="+food+price">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="15" label="+size">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="17" label="+tranquility-size">
+      <node id="18" label="+bathroom">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -71,37 +86,22 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="16" label="+atmosphere+bed">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="19" label="+location-size">
+      <node id="1" label="+bed+size">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
           <attvalue for="0" value="true"/>
-          <attvalue for="4" value="['2']"/>
+          <attvalue for="4" value="['9']"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="18" label="+bathroom+room">
+      <node id="0" label="+breakfast+friendly-bed">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
         </attvalues>
       </node>
-      <node id="1" label="+location-atmosphere">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-          <attvalue for="0" value="true"/>
-          <attvalue for="4" value="[]"/>
-        </attvalues>
-        <viz:color r="20" g="200" b="20"/>
-      </node>
-      <node id="0" label="+tranquility+bed-size">
+      <node id="3" label="+price+stuff">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -109,19 +109,7 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="3" label="+bed-clean">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="5" label="+friendly">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="4" label="+breakfast+bed-atmosphere">
+      <node id="4" label="+stuff-food">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -129,19 +117,13 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="7" label="+food-clean">
+      <node id="7" label="+friendly-tranquility">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
         </attvalues>
       </node>
-      <node id="6" label="+food+tranquility">
-        <attvalues>
-          <attvalue for="1" value="[]"/>
-          <attvalue for="2" value="[]"/>
-        </attvalues>
-      </node>
-      <node id="9" label="+clean-size">
+      <node id="6" label="+bathroom+room">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
@@ -149,54 +131,44 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="8" label="+tranquility+bathroom-location">
+      <node id="8" label="+atmosphere+stuff-food">
         <attvalues>
           <attvalue for="1" value="[]"/>
           <attvalue for="2" value="[]"/>
+          <attvalue for="0" value="true"/>
         </attvalues>
+        <viz:color r="20" g="200" b="20"/>
       </node>
     </nodes>
     <edges>
-      <edge source="15" target="9" id="15-9" label="/size/">
+      <edge source="0" target="1" id="0-1" label="/bed/">
         <attvalues/>
       </edge>
-      <edge source="1" target="8" id="1-8" label="/location/">
+      <edge source="17" target="19" id="17-19" label="/atmosphere/">
         <attvalues/>
       </edge>
-      <edge source="7" target="9" id="7-9" label="/clean/">
+      <edge source="0" target="19" id="0-19" label="/friendly/">
         <attvalues/>
       </edge>
-      <edge source="0" target="15" id="0-15" label="/size/">
+      <edge source="17" target="4" id="17-4" label="/food/">
         <attvalues/>
       </edge>
-      <edge source="15" target="17" id="15-17" label="/size/">
+      <edge source="13" target="4" id="13-4" label="/food/">
         <attvalues/>
       </edge>
-      <edge source="3" target="9" id="3-9" label="/clean/">
+      <edge source="15" target="19" id="15-19" label="/friendly/">
         <attvalues/>
       </edge>
-      <edge source="10" target="15" id="10-15" label="/size/">
+      <edge source="12" target="7" id="12-7" label="/tranquility/">
         <attvalues/>
       </edge>
-      <edge source="11" target="7" id="11-7" label="/clean/">
+      <edge source="13" target="8" id="13-8" label="/food/">
         <attvalues/>
       </edge>
-      <edge source="1" target="16" id="1-16" label="/atmosphere/">
+      <edge source="19" target="7" id="19-7" label="/friendly/">
         <attvalues/>
       </edge>
-      <edge source="11" target="3" id="11-3" label="/clean/">
-        <attvalues/>
-      </edge>
-      <edge source="15" target="19" id="15-19" label="/size/">
-        <attvalues/>
-      </edge>
-      <edge source="13" target="8" id="13-8" label="/location/">
-        <attvalues/>
-      </edge>
-      <edge source="16" target="4" id="16-4" label="/atmosphere/">
-        <attvalues/>
-      </edge>
-      <edge source="19" target="8" id="19-8" label="/location/">
+      <edge source="17" target="8" id="17-8" label="/food/atmosphere/">
         <attvalues/>
       </edge>
     </edges>
@@ -223,37 +195,37 @@
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
     <nodes>
-      <node id="c2" label="+breakfast+bathroom+clean+location-atmosphere">
+      <node id="c2" label="+bed+size">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['1', '11', '13']"/>
+          <attvalue for="3" value="['1']"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="c1" label="+atmosphere+food+tranquility+bathroom+bed+size-location-clean">
+      <node id="c1" label="+food+breakfast+price+friendly-tranquility-atmosphere-bed">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['3', '15', '7', '16', '8']"/>
+          <attvalue for="3" value="['0', '13', '15', '7', '17']"/>
         </attvalues>
       </node>
-      <node id="c0" label="+tranquility+breakfast+clean+location+bed-atmosphere-size">
+      <node id="c0" label="+atmosphere+room+tranquility+price+bathroom+stuff+clean+size-food-friendly">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['10', '17', '19', '0', '4', '9']"/>
+          <attvalue for="3" value="['11', '10', '12', '19', '18', '3', '4', '6', '8']"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
     </nodes>
     <edges>
-      <edge source="c1" target="c2" id="c1-c2" label="/atmosphere/location/clean/">
+      <edge source="c1" target="c2" id="c1-c2" label="/bed/">
         <attvalues/>
       </edge>
-      <edge source="c0" target="c1" id="c0-c1" label="/clean/location/atmosphere/size/">
+      <edge source="c0" target="c1" id="c0-c1" label="/atmosphere/tranquility/food/friendly/">
         <attvalues/>
       </edge>
     </edges>

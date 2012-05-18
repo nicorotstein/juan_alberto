@@ -31,12 +31,24 @@ class DiGraph():
 		return self._edges
 
 	def is_isolate(self, node):
-		neighbourhood = [e for (e,f) in self._edges] + [e for (f,e) in self._edges]
-		return e == []
-
+		neighbourhood = [e for (e,x) in self._edges if x == node] + \
+						[e for (x,e) in self._edges if x == node]
+		print neighbourhood
+		return neighbourhood == []
 	
 	# @classmethod
 	# def is_isolate(cls, graph, node):
 	# 	return graph.is_isolate(node)
+
+if __name__ == '__main__':
+	g = DiGraph()
+	g.add_node(1)
+	g.add_node(2)
+	g.add_node(3)
+	g.add_edge(1,2)
+	print g.is_isolate(1)
+	print g.is_isolate(2)
+	print g.is_isolate(3)
+
 
 # EOF

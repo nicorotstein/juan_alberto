@@ -445,8 +445,8 @@ class Grapher():
             if (preds[str(cycle)] == []) or (set(preds[str(cycle)]) & 
                 set(affected_by_cycles) == []):
                 out += cycle
-        if out != []:
-            print "involved in improper cycles: ", out
+        # if out != []:
+            # print "involved in improper cycles: ", out
             # print len(out), "reviews were involved in improper cycling"
         for o in set(out):
             self.dotgraph.remove_node(o)
@@ -455,13 +455,13 @@ class Grapher():
         self.remove_dupes()
         # print 'resolving cycles...'
         # self.resolve_cycles()
-        print 'computing accepted reviews...'
+        # print 'computing accepted reviews...'
         self.set_warranted()
 
     def compress(self):
-        print 'compressing graph...'
+        # print 'compressing graph...'
         self.compress()
-        print 'removing redundant reviews in compressed graph'
+        # print 'removing redundant reviews in compressed graph'
         self.remove_dupes()
 
     def remove_dupes(self):
@@ -475,15 +475,15 @@ class Grapher():
                     set(self.dotnodes[n].attributes)):
                     removals.append((n2,n))
                     self.redundant[n] = []
-        if removals != []:
-            if len(set(removals)) == 1:
-                print "1 review was redundant"
-            else:
-                print len(set(removals)), "reviews were redundant"
-        print removals
+        # if removals != []:
+        #     if len(set(removals)) == 1:
+        #         print "1 review was redundant"
+        #     else:
+        #         print len(set(removals)), "reviews were redundant"
+        # print removals
         for (r, n) in set(removals):
             if r in self.dotgraph.nodes() and n in self.dotgraph.nodes():
-                print "review " + r + " was redundant with " + n
+                # print "review " + r + " was redundant with " + n
                 self.dotgraph.remove_node(r)
                 if r in self.redundant.keys():
                     del self.redundant[r] # THIS ISN'T THE SOLUTION!!!
@@ -500,7 +500,7 @@ class Grapher():
         for w in warranted:
             self.dotgraph.add_node(w, style="filled", fillcolor="green")
         self.warranted = warranted
-        print len(warranted), "reviews were accepted"
+        # print len(warranted), "reviews were accepted"
 
     def compress(self):
         first_stage = set([node for (node,x) in self.dotgraph.edges()]) - \
