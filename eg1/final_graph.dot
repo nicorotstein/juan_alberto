@@ -1,5 +1,0 @@
-strict digraph G {
-c1 [shape=record, label="c1 | ['6'] | +building-location"];
-c0 [shape=record, label="c0 | ['1', '4'] | +services+quiet+location", style=filled, fillcolor=green];
-c1 -> c0  [dir=none];
-}
