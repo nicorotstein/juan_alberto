@@ -33,7 +33,6 @@ class DiGraph():
 	def is_isolate(self, node):
 		neighbourhood = [e for (e,x) in self._edges if x == node] + \
 						[e for (x,e) in self._edges if x == node]
-		print neighbourhood
 		return neighbourhood == []
 	
 	# @classmethod

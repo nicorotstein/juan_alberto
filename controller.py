@@ -85,11 +85,11 @@ class ReviewsContainer():
         reviews = self.create_list_reviews(loaded_pos,loaded_neg)
 
         self.g = Grapher(reviews)
-        Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
+        # Drawer.draw_dotgraph(self.g.get_dotgraph(), 'first_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'first_graph')
         # every time get_container() is invoked, a new graph is generated
         self.g.compress()
-        Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
+        # Drawer.draw_dotgraph(self.g.get_dotgraph(), 'final_graph')
         Drawer.draw_gexfgraph(self.g.get_container(), 'final_graph')
         # final_graph.gexf contains both the original graph and the final one
 
@@ -113,8 +113,8 @@ def test(which_one):
             elif i % 3 == 1:
                 negative = line
             elif  i % 3 == 2:
-                print '+ ' + positive
-                print '- ' + negative
+                # print '+ ' + positive
+                # print '- ' + negative
                 reviews.append(ob.create_review(positive, negative))
         i += 1
     for r in reviews:
@@ -123,12 +123,16 @@ def test(which_one):
         print '~ ' + str(r.undecided_feats)
         print ''
     graph = Grapher(reviews)
-    Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/first_graph')
+    # Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/first_graph')
     Drawer.draw_gexfgraph(graph.get_container(), './eg' + which_one + '/first_graph')
     # every time get_container() is invoked, a new graph is generated
     graph.compress()
-    Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/final_graph')
+    # Drawer.draw_dotgraph(graph.get_dotgraph(), './eg' + which_one + '/final_graph')
     Drawer.draw_gexfgraph(graph.get_container(), './eg' + which_one + '/final_graph')
+
+    # TODO: keep redundant nodes, but hide them
+    # TODO: filter graph based on a set of features
+    # TODO: finish up the slideshow!
 
     rated_feats = Stats.rate_features(reviews)
     counted_feats = Stats.count_features(reviews)

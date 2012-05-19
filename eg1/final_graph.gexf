@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-10T19:28:53.985371">
+  <meta lastmodified="2012-05-18T19:55:39.220625">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -21,6 +21,9 @@
       <attribute id="4" title="redundant" type="liststring">
         <default>[]</default>
       </attribute>
+      <attribute id="5" title="hidden" type="boolean">
+        <default>false</default>
+      </attribute>
     </attributes>
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
@@ -30,14 +33,18 @@
           <attvalue for="1" value="[('Modern', 'NNP'), ('building', 'NN'), (',', ','), ('the', 'DT'), ('rooms', 'NNS'), ('are', 'VBP'), ('adequate', 'JJ'), ('at', 'IN'), ('the', 'DT'), ('hotel', 'NN'), ('level.', 'NNP'), ('Nice', 'NNP'), ('structure', 'NN'), ('and', 'CC'), ('services', 'NNS'), ('.', '.')]"/>
           <attvalue for="2" value="[('We', 'PRP'), ('booked', 'VBD'), ('a', 'DT'), ('room', 'NN'), ('for', 'IN'), ('a', 'DT'), ('week', 'NN'), ('and', 'CC'), ('paid', 'VBD'), ('in', 'IN'), ('advance', 'NN'), (',', ','), ('as', 'IN'), ('requested.', 'NNP'), ('However', 'NNP'), (',', ','), ('we', 'PRP'), ('arrived', 'VBD'), ('at', 'IN'), ('3pm', 'CD'), ('(', 'CD'), ('check-in', 'JJ'), ('time', 'NN'), ('at', 'IN'), ('2pm', 'CD'), (')', 'CD'), ('but', 'CC'), ('they', 'PRP'), ('gave', 'VBP'), ('us', 'PRP'), ('the', 'DT'), ('room', 'NN'), ('only', 'RB'), ('after', 'IN'), ('9pm', 'CD'), ('!', '.'), ('!', '.'), ('Unacceptable', 'NNP'), ('for', 'IN'), ('any', 'DT'), ('hotel', 'NN'), ('.', '.')]"/>
           <attvalue for="0" value="true"/>
+          <attvalue for="5" value="true"/>
         </attvalues>
-        <viz:color r="20" g="200" b="20"/>
+        <viz:color r="222" g="0" b="0"/>
       </node>
       <node id="0" label="+services+comfort">
         <attvalues>
           <attvalue for="1" value="[('The', 'DT'), ('hotel', 'NN'), ('is', 'VBZ'), ('well-placed', 'JJ'), (',', ','), ('room', 'NN'), ('service', 'NN'), ('was', 'VBD'), ('adequate', 'JJ'), ('and', 'CC'), ('the', 'DT'), ('restaurant', 'NN'), ('\xe2', ':'), ('\x80', ':'), ('\x99', ':'), ('s', 'NNS'), ('menu', 'VBP'), ('is', 'VBZ'), ('quite', 'RB'), ('diverse', 'JJ'), ('.', '.')]"/>
           <attvalue for="2" value="[('The', 'DT'), ('restaurant', 'NN'), ('pricing', 'NN'), ('was', 'VBD'), ('overly', 'RB'), ('expensive', 'JJ'), ('.', '.')]"/>
+          <attvalue for="0" value="true"/>
+          <attvalue for="4" value="['1']"/>
         </attvalues>
+        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="3" label="+extras+location-price-restaurant">
         <attvalues>
@@ -49,7 +56,9 @@
         <attvalues>
           <attvalue for="1" value="[('We', 'PRP'), ('loved', 'VBD'), ('the', 'DT'), ('view.', 'NNP'), ('The', 'NNP'), ('food', 'NN'), ('that', 'WDT'), ('we', 'PRP'), ('had', 'VBD'), ('was', 'VBD'), ('very', 'RB'), ('good', 'JJ'), ('but', 'CC'), ('the', 'DT'), ('restaurant', 'NN'), ('prices', 'NNS'), ('were', 'VBD'), ('quite', 'RB'), ('high.', 'NNP'), ('We', 'NNP'), ('enjoyed', 'VBD'), ('the', 'DT'), ('pool', 'NN'), ('area', 'NN'), ('and', 'CC'), ('found', 'VBD'), ('it', 'PRP'), ('very', 'RB'), ('relaxing.', 'NNP'), ('We', 'NNP'), ('liked', 'VBD'), ('the', 'DT'), ('bar', 'NN'), ('that', 'IN'), ('was', 'VBD'), ('open', 'JJ'), ('within', 'IN'), ('the', 'DT'), ('hotel.', 'NNP'), ('Reception', 'NNP'), ('were', 'VBD'), ('very', 'RB'), ('helpful', 'JJ'), ('and', 'CC'), ('informative', 'JJ'), ('.', '.')]"/>
           <attvalue for="2" value="[('Nothing', 'NN'), ('.', '.')]"/>
+          <attvalue for="0" value="true"/>
         </attvalues>
+        <viz:color r="20" g="200" b="20"/>
       </node>
       <node id="5" label="+extras-comfort-clean-staff">
         <attvalues>
@@ -65,7 +74,7 @@
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
-      <node id="6" label="+building-location">
+      <node id="6" label="+building+staff-location">
         <attvalues>
           <attvalue for="1" value="[('The', 'DT'), ('facilities', 'NNS'), ('are', 'VBP'), ('excellent', 'JJ'), ('and', 'CC'), ('so', 'RB'), ('were', 'VBD'), ('the', 'DT'), ('service', 'NN'), ('and', 'CC'), ('the', 'DT'), ('personnel', 'NN'), ('.', '.')]"/>
           <attvalue for="2" value="[('Location', 'NN'), (':', ':'), ('it', 'PRP'), ('is', 'VBZ'), ('quite', 'RB'), ('isolated', 'VBN'), ('and', 'CC'), ('far', 'RB'), ('from', 'IN'), ('the', 'DT'), ('key', 'JJ'), ('places', 'NNS'), ('of', 'IN'), ('the', 'DT'), ('city.', 'NNP'), ('Parking', 'NNP'), (':', ':'), ('too', 'RB'), ('expensive', 'JJ'), ('.', '.')]"/>
@@ -74,6 +83,9 @@
     </nodes>
     <edges>
       <edge source="0" target="5" id="0-5" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="5" target="6" id="5-6" label="/staff/">
         <attvalues/>
       </edge>
       <edge source="2" target="6" id="2-6" label="/location/">
@@ -111,29 +123,57 @@
       <attribute id="4" title="redundant" type="liststring">
         <default>[]</default>
       </attribute>
+      <attribute id="5" title="hidden" type="boolean">
+        <default>false</default>
+      </attribute>
     </attributes>
     <attributes class="edge" mode="dynamic"/>
     <attributes class="edge" mode="static"/>
     <nodes>
-      <node id="c1" label="+building-location">
+      <node id="c3" label="+services+comfort">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['0']"/>
+          <attvalue for="0" value="true"/>
+        </attvalues>
+        <viz:color r="20" g="200" b="20"/>
+      </node>
+      <node id="c2" label="+building+staff-location">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
           <attvalue for="3" value="['6']"/>
         </attvalues>
       </node>
-      <node id="c0" label="+services+quiet+location">
+      <node id="c1" label="+extras+location-staff-price-comfort-clean-restaurant">
         <attvalues>
           <attvalue for="1" value=""/>
           <attvalue for="2" value=""/>
-          <attvalue for="3" value="['1', '4']"/>
+          <attvalue for="3" value="['3', '5']"/>
+        </attvalues>
+      </node>
+      <node id="c0" label="+restaurant+price+quiet+extras+location+fun+staff-nothing">
+        <attvalues>
+          <attvalue for="1" value=""/>
+          <attvalue for="2" value=""/>
+          <attvalue for="3" value="['2', '4']"/>
           <attvalue for="0" value="true"/>
         </attvalues>
         <viz:color r="20" g="200" b="20"/>
       </node>
     </nodes>
     <edges>
-      <edge source="c0" target="c1" id="c0-c1" label="/location/">
+      <edge source="c1" target="c3" id="c1-c3" label="/comfort/">
+        <attvalues/>
+      </edge>
+      <edge source="c1" target="c2" id="c1-c2" label="/location/staff/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c2" id="c0-c2" label="/location/">
+        <attvalues/>
+      </edge>
+      <edge source="c0" target="c1" id="c0-c1" label="/restaurant/price/staff/">
         <attvalues/>
       </edge>
     </edges>

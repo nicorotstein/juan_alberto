@@ -1,5 +1,5 @@
 <gexf xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.gephi.org/gexf/1.1draft" xmlns:ns0="xsi" version="1.1" ns0:schemaLocation="http://www.gephi.org/gexf/1.1draft http://gephi.org/gexf/1.1draft.xsd">
-  <meta lastmodified="2012-05-10T19:24:05.073843">
+  <meta lastmodified="2012-05-18T20:01:59.007421">
     <creator>Nico Rotstein</creator>
     <description>Arguiew (reviews as argumentation) graph</description>
   </meta>
@@ -20,6 +20,9 @@
       </attribute>
       <attribute id="4" title="redundant" type="liststring">
         <default>[]</default>
+      </attribute>
+      <attribute id="5" title="hidden" type="boolean">
+        <default>false</default>
       </attribute>
     </attributes>
     <attributes class="edge" mode="dynamic"/>
@@ -50,7 +53,20 @@
         <attvalues>
           <attvalue for="1" value="[('I', 'PRP'), ('liked', 'VBD'), ('How', 'WRB'), ('much', 'RB'), ('value', 'NN'), ('I', 'PRP'), ('got', 'VBD'), ('for', 'IN'), ('my', 'PRP$'), ('money', 'NN'), ('.', '.')]"/>
           <attvalue for="2" value="[('I', 'PRP'), ('did', 'VBD'), (&quot;n't&quot;, 'RB'), ('like', 'VB'), ('that', 'IN'), ('it', 'PRP'), ('was', 'VBD'), (&quot;n't&quot;, 'RB'), ('sound', 'VB'), ('isolated', 'VBN'), ('-', ':'), ('I', 'PRP'), ('could', 'MD'), ('hear', 'VB'), ('everything', 'NN'), ('in', 'IN'), ('the', 'DT'), ('room', 'NN'), ('!', '.')]"/>
+          <attvalue for="0" value="true"/>
+          <attvalue for="5" value="true"/>
         </attvalues>
+        <viz:color r="222" g="0" b="0"/>
+      </node>
+      <node id="5" label="+staff">
+        <attvalues>
+          <attvalue for="1" value="[('The', 'DT'), ('staff', 'NN')]"/>
+          <attvalue for="2" value="[('The', 'DT'), ('bedclothes', 'NNS'), ('(', ':'), ('or', 'CC'), ('sheets', 'NNS'), (')', ':'), ('are', 'VBP'), ('too', 'RB'), ('short', 'JJ'), ('and', 'CC'), ('hardly', 'RB'), ('covered', 'VBN'), ('the', 'DT'), ('mattress', 'NN'), ('.', '.')]"/>
+          <attvalue for="0" value="true"/>
+          <attvalue for="5" value="true"/>
+          <attvalue for="5" value="true"/>
+        </attvalues>
+        <viz:color r="222" g="0" b="0"/>
       </node>
       <node id="4" label="+restaurant-quiet">
         <attvalues>
@@ -62,6 +78,7 @@
         <attvalues>
           <attvalue for="1" value="[('It', 'PRP'), ('was', 'VBD'), ('local', 'JJ'), ('to', 'TO'), ('the', 'DT'), ('restaurants', 'NNS'), (',', ','), ('bars', 'NNS'), ('and', 'CC'), ('clubs', 'NNS'), ('and', 'CC'), ('was', 'VBD'), ('basic', 'JJ'), ('but', 'CC'), ('value', 'NN'), ('for', 'IN'), ('money', 'NN'), ('.', '.')]"/>
           <attvalue for="2" value="[('Difficult', 'NNP'), ('to', 'TO'), ('find', 'VB'), ('!', '.'), ('Has', 'NNP'), ('no', 'DT'), ('signs', 'NNS'), ('outside', 'IN'), ('to', 'TO'), ('identify', 'VB'), ('it', 'PRP'), ('until', 'IN'), ('your', 'PRP$'), ('find', 'NN'), ('reception', 'NN'), ('inside.', 'NNP'), ('Shower', 'NNP'), ('was', 'VBD'), ('poorly', 'RB'), ('fitted', 'VBN'), ('and', 'CC'), ('and', 'CC'), ('flooded', 'VBD'), ('the', 'DT'), ('bathroom', 'NN'), ('whenever', 'NN'), ('it', 'PRP'), ('was', 'VBD'), ('used', 'VBN'), ('.', '.')]"/>
+          <attvalue for="4" value="['2']"/>
         </attvalues>
       </node>
       <node id="6" label="+fun+location-clean">
@@ -76,6 +93,7 @@
         <attvalues>
           <attvalue for="1" value="[('The', 'DT'), ('staff', 'NN'), ('was', 'VBD'), ('very', 'RB'), ('friendly', 'RB'), ('and', 'CC'), ('had', 'VBD'), ('helped', 'VBN'), ('with', 'IN'), ('each', 'DT'), ('problem', 'NN'), (',', ','), ('the', 'DT'), ('breakfast', 'NN'), ('was', 'VBD'), ('quite', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('the', 'DT'), ('hotel', 'NN'), ('is', 'VBZ'), ('well', 'RB'), ('located', 'VBN'), ('.', '.')]"/>
           <attvalue for="2" value="[('Useing', 'VBG'), ('the', 'DT'), ('internet', 'NN'), ('was', 'VBD'), ('too', 'RB'), ('expensive', 'JJ'), (',', ','), ('house', 'NN'), ('keeping', 'VBG'), ('was', 'VBD'), ('not', 'RB'), ('good', 'JJ'), ('and', 'CC'), ('it', 'PRP'), ('was', 'VBD'), ('too', 'RB'), ('warm', 'JJ'), ('inside', 'NN'), ('the', 'DT'), ('room', 'NN'), ('.', '.')]"/>
+          <attvalue for="4" value="['5']"/>
         </attvalues>
       </node>
     </nodes>
@@ -86,10 +104,10 @@
       <edge source="1" target="8" id="1-8" label="/restaurant/">
         <attvalues/>
       </edge>
-      <edge source="3" target="4" id="3-4" label="/quiet/">
+      <edge source="7" target="8" id="7-8" label="/staff/">
         <attvalues/>
       </edge>
-      <edge source="1" target="2" id="1-2" label="/price/">
+      <edge source="3" target="4" id="3-4" label="/quiet/">
         <attvalues/>
       </edge>
       <edge source="0" target="8" id="0-8" label="/restaurant/">
@@ -99,9 +117,6 @@
         <attvalues/>
       </edge>
       <edge source="1" target="7" id="1-7" label="/staff/price/">
-        <attvalues/>
-      </edge>
-      <edge source="7" target="8" id="7-8" label="/staff/">
         <attvalues/>
       </edge>
     </edges>
@@ -123,6 +138,9 @@
       </attribute>
       <attribute id="4" title="redundant" type="liststring">
         <default>[]</default>
+      </attribute>
+      <attribute id="5" title="hidden" type="boolean">
+        <default>false</default>
       </attribute>
     </attributes>
     <attributes class="edge" mode="dynamic"/>

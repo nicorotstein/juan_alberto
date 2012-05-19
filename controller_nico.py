@@ -11,14 +11,10 @@ if __name__ == '__main__':
     l = ReviewsList() # by now it generates a given number of random reviews
     reviews = l.get_all_reviews()
     print 'analysing ' + str(len(reviews)) + ' reviews...'
-    print 'setting ratings and other judicial matters...'
-    j = Judge(reviews)
-    print 'determining conflicts...'
-    conflicts = j.get_conflicts()
 
     s.split()
 
-    print 'creating graph...'
+    # print 'creating graph...'
     g = Grapher(reviews)
     # print 'drawing graph...'
     Drawer.draw_gexfgraph(g.get_container(), 'original_graph')

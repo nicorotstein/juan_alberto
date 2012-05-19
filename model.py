@@ -6,7 +6,7 @@ Created on Nov 30, 2011
 '''
 
 # -*- coding: utf-8 -*-
-NUM_RANDOM = 20
+NUM_RANDOM = 7
 
 import tools
 from tools import Serializer
@@ -360,16 +360,22 @@ class Grapher():
                 self.dotgraph.add_node(n.id, shape="record", 
                     label=n.get_label())
                 self.dotnodes[n.id] = n
+        # self.removals = set([])
+        self.remove_dupes()
         for (n1, n2) in edges:
-            if self.judge.equivalent(n1, n2):
-                self.dotgraph.add_edge(n1.id, n2.id, color="red", dir="both", 
-                    label=n1.get_conf_label(n2))
-                self.dotgraph.add_edge(n2.id, n1.id, color="transparent")
+            if n1.id not in self.removals and n2.id not in self.removals:
+                if self.judge.equivalent(n1, n2):
+                    self.dotgraph.add_edge(n1.id, n2.id, color="red", dir="both", 
+                        label=n1.get_conf_label(n2))
+                    self.dotgraph.add_edge(n2.id, n1.id, color="transparent")
+                else:
+                    (better, worse) = self.judge.get_better_review(n1, n2)
+                    self.dotgraph.add_edge(better.id, worse.id, 
+                        label=better.get_conf_label(worse))
             else:
-                (better, worse) = self.judge.get_better_review(n1, n2)
-                self.dotgraph.add_edge(better.id, worse.id, 
-                    label=better.get_conf_label(worse))
-        self.prettyGraph()
+                print "omitting", (n1.id, n2.id)
+        # self.prettyGraph()
+        self.set_warranted()
 
     def get_container(self):
         graph = self.graph_container.addGraph("directed", 
@@ -383,6 +389,7 @@ class Grapher():
         attHasCompressed = graph.addNodeAttribute("has_compressed", "[]", 
             "liststring")
         attRedundant = graph.addNodeAttribute("redundant", "[]", "liststring")
+        attHidden = graph.addNodeAttribute("hidden", "false","boolean")
         nodes = []
         for n in self.dotgraph.nodes():
             nodes.append(self.dotnodes[n])
@@ -398,13 +405,18 @@ class Grapher():
                 i.addAttribute(attHasCompressed, 
                     str(list(self.has_compressed[n.id])))
         for (n1,n2) in edges:
-            graph.addEdge(n1.id + '-' + n2.id, n1.id, n2.id, 
-                label=n1.get_conf_label(n2))
+            if n1.id not in self.removals and n2.id not in self.removals:
+                graph.addEdge(n1.id + '-' + n2.id, n1.id, n2.id, 
+                    label=n1.get_conf_label(n2))
         for w in self.warranted:
             node_handlers[w].addAttribute(attWarrant, "true")
             node_handlers[w].setColor("20", "200", "20")
         for r in self.redundant.keys():
             node_handlers[r].addAttribute(attRedundant, str(self.redundant[r]))
+        for rv in self.redundant.values():
+            for r in rv:
+                node_handlers[r].addAttribute(attHidden, "true")
+                node_handlers[r].setColor("222", "0", "0")
         return self.graph_container
 
     def get_dotgraph(self):
@@ -451,16 +463,16 @@ class Grapher():
         for o in set(out):
             self.dotgraph.remove_node(o)
 
-    def prettyGraph(self):
-        self.remove_dupes()
-        # print 'resolving cycles...'
-        # self.resolve_cycles()
-        # print 'computing accepted reviews...'
-        self.set_warranted()
+    # def prettyGraph(self):
+    #     self.remove_dupes()
+    #     # print 'resolving cycles...'
+    #     # self.resolve_cycles()
+    #     # print 'computing accepted reviews...'
+    #     self.set_warranted()
 
     def compress(self):
         # print 'compressing graph...'
-        self.compress()
+        self.do_compress()
         # print 'removing redundant reviews in compressed graph'
         self.remove_dupes()
 
@@ -475,19 +487,25 @@ class Grapher():
                     set(self.dotnodes[n].attributes)):
                     removals.append((n2,n))
                     self.redundant[n] = []
+                elif set(self.dotnodes[n].attributes).issubset(
+                    set(self.dotnodes[n2].attributes)):
+                    removals.append((n,n2))
+                    self.redundant[n2] = []
         # if removals != []:
         #     if len(set(removals)) == 1:
         #         print "1 review was redundant"
         #     else:
         #         print len(set(removals)), "reviews were redundant"
-        # print removals
-        for (r, n) in set(removals):
-            if r in self.dotgraph.nodes() and n in self.dotgraph.nodes():
-                # print "review " + r + " was redundant with " + n
-                self.dotgraph.remove_node(r)
-                if r in self.redundant.keys():
-                    del self.redundant[r] # THIS ISN'T THE SOLUTION!!!
-                self.redundant[n] += r
+        self.removals = set([r for (r, n) in removals])
+        for (r, n) in removals:
+            self.redundant[n].append(r)
+            # if r in self.dotgraph.nodes() and n in self.dotgraph.nodes():
+            #     # print "review " + r + " was redundant with " + n
+            #     self.dotgraph.remove_node(r)
+            #     if r in self.redundant.keys():
+            #         del self.redundant[r]
+            #         pass # TODO: transitivity????
+            #     self.redundant[n] += r
 
     def set_warranted(self):
         undefeated = set([node for (node,x) in self.dotgraph.edges()]) - \
@@ -502,12 +520,13 @@ class Grapher():
         self.warranted = warranted
         # print len(warranted), "reviews were accepted"
 
-    def compress(self):
+    def do_compress(self):
         first_stage = set([node for (node,x) in self.dotgraph.edges()]) - \
                       set([node for (x,node) in self.dotgraph.edges()])
         first_stage |= set([node for node in self.dotgraph.nodes() 
                            # if nx.is_isolate(self.dotgraph, node)])
-                            if self.dotgraph.is_isolate(node)])
+                            if self.dotgraph.is_isolate(node) and
+                            node not in self.removals])
         defeat_stages = [first_stage] + self.stages(first_stage, first_stage)
         cs = []
         for stage in defeat_stages:
@@ -536,16 +555,16 @@ class Grapher():
             else:
                 compressed_dotgraph.add_node(r.id, shape="record", 
                     label=str(r.subset_label(subset)))
-        for id1, n1 in has_compressed.items():
-            for id2, n2 in has_compressed.items():
-                for i in n1:
-                    for j in n2:
-                        ri = self.dotnodes[i]
-                        rj = self.dotnodes[j]
-                        if ri.in_conflict(rj) and \
-                           not (id1, id2) in compressed_dotgraph.edges() and \
-                           not (id2, id1) in compressed_dotgraph.edges():
-                           compressed_dotgraph.add_edge(id1, id2, dir="none")
+        # for id1, n1 in has_compressed.items():
+        #     for id2, n2 in has_compressed.items():
+        #         for i in n1:
+        #             for j in n2:
+        #                 ri = self.dotnodes[i]
+        #                 rj = self.dotnodes[j]
+        #                 if ri.in_conflict(rj) and \
+        #                    not (id1, id2) in compressed_dotgraph.edges() and \
+        #                    not (id2, id1) in compressed_dotgraph.edges():
+        #                    compressed_dotgraph.add_edge(id1, id2, dir="none")
         self.warranted = compressed_warranted
         self.dotgraph = compressed_dotgraph
         self.dotnodes = compressed_dotnodes
