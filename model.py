@@ -372,8 +372,8 @@ class Grapher():
                     (better, worse) = self.judge.get_better_review(n1, n2)
                     self.dotgraph.add_edge(better.id, worse.id, 
                         label=better.get_conf_label(worse))
-            else:
-                print "omitting", (n1.id, n2.id)
+            # else:
+            #     print "omitting", (n1.id, n2.id)
         # self.prettyGraph()
         self.set_warranted()
 
